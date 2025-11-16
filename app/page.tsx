@@ -42,7 +42,7 @@ function AboutSection({ aboutRef, skills }: { aboutRef: React.RefObject<HTMLElem
           initial={{ opacity: 0, x: -50 }}
           animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="mb-8 sm:mb-10 md:mb-12 relative inline-block pb-2"
+          className="mb-8 sm:mb-10 md:mb-12 relative inline-block pb-0"
         >
           <h2 className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold tracking-tighter leading-tight">
             <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
@@ -51,7 +51,7 @@ function AboutSection({ aboutRef, skills }: { aboutRef: React.RefObject<HTMLElem
           </h2>
           {/* Underline animation */}
           <motion.div
-            className="absolute bottom-0 left-0 h-1 bg-black"
+            className="absolute -bottom-1 left-0 h-1 bg-black"
             initial={{ scaleX: 0, originX: 0 }}
             animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
             transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
@@ -767,125 +767,146 @@ export default function Portfolio() {
       {/* Main Layout */}
       <div className="w-full pb-20">
         {/* Hero Section */}
-        <div className="min-h-screen flex items-center px-4 sm:px-6 md:px-8 lg:px-12 pt-20 sm:pt-24 md:pt-28">
+        <div className="min-h-screen flex items-center px-4 sm:px-6 md:px-8 lg:px-12 pt-20 sm:pt-24 md:pt-28 relative">
           <motion.div
             className="w-full"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
           >
-            {/* Main Content - Left Aligned */}
-            <div className="w-full max-w-6xl">
-              {/* "Hi" - appears first */}
-              <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0 }}
-                className="mb-2 sm:mb-4 md:mb-6"
-              >
-                <h1 className="text-5xl xs:text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-light tracking-tighter leading-tight">
-                  <span className="bg-gradient-to-r from-primary via-purple-500 to-secondary bg-clip-text text-transparent">
-                    Hi,
-                  </span>
-                </h1>
-              </motion.div>
-
-              {/* "I'm Suyash" - appears smoothly after Hi */}
-              <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
-                className="mb-6 sm:mb-8 md:mb-12 relative inline-block"
-              >
-                <h2 className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-semibold tracking-tighter leading-tight relative">
-                  I'm{" "}
-                  <span className="relative inline-block">
-                    {/* Black text background */}
-                    <span className="text-black dark:text-black relative z-10" style={{ color: "#0232B8" }}>
-                      Suyash
+            {/* Main Content - Flex layout with text left and image right */}
+            <div className="w-full max-w-6xl flex flex-col lg:flex-row items-start lg:items-start justify-between gap-8 lg:gap-12 relative">
+              {/* Left Side - Text Content */}
+              <div className="w-full lg:w-1/2 flex flex-col">
+                {/* "Hi" - appears first */}
+                <motion.div
+                  initial={{ opacity: 0, x: -50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8, delay: 0 }}
+                  className="mb-2 sm:mb-4 md:mb-6"
+                >
+                  <h1 className="text-5xl xs:text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-light tracking-tighter leading-tight">
+                    <span className="bg-gradient-to-r from-primary via-purple-500 to-secondary bg-clip-text text-transparent">
+                      Hi,
                     </span>
-                    
-                    {/* Light brown fill rectangle (#EDE4D9) */}
-                    <motion.div
-                      className="absolute inset-0 pointer-events-none"
-                      style={{ backgroundColor: "#D9E2ED", originX: 0 }}
-                      initial={{ scaleX: 0 }}
-                      animate={{ scaleX: 1 }}
-                      transition={{ duration: 1.5, delay: 1.4, ease: "easeOut" }}
-                    />
-                  </span>
-                </h2>
-              </motion.div>
+                  </h1>
+                </motion.div>
 
-              {/* "Pushing ideas into reality" - appears last with stagger */}
-              <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 1.2 }}
-                className="mb-8 sm:mb-10 md:mb-12"
-              >
-                <p className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-foreground/80 tracking-tight leading-snug">
-                  Pushing <span style={{ color: "#880808", fontFamily: "Dancing Script, cursive", fontWeight: 600 }}>ideas</span> into <span style={{ color: "#880808", fontFamily: "Dancing Script, cursive", fontWeight: 600 }}>reality</span>
-                </p>
-              </motion.div>
-
-              {/* Subtitle with smooth entry */}
-              <motion.p
-                className="text-lg sm:text-xl text-foreground/60 mb-12 max-w-2xl leading-relaxed"
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 1.6 }}
-              >
-              </motion.p>
-
-              {/* Let's Connect Section */}
-              <motion.div
-                className="mt-12 sm:mt-16 md:mt-20 flex flex-col gap-4 sm:gap-6"
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 2 }}
-              >
-                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 sm:gap-8">
-                  <div></div>
-                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
-                    <h3 className="text-xl xs:text-2xl sm:text-2xl md:text-3xl font-light text-foreground/80 whitespace-nowrap">
-                      Let's{" "}
-                      <span style={{ color: "#0232B8", fontFamily: "Dancing Script, cursive", fontWeight: 600, textDecoration: "underline", textDecorationColor: "#880808", textDecorationThickness: "2px", textUnderlineOffset: "4px" }}>
-                        Connect
+                {/* "I'm Suyash" - appears smoothly after Hi */}
+                <motion.div
+                  initial={{ opacity: 0, x: -50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8, delay: 0.6 }}
+                  className="mb-6 sm:mb-8 md:mb-12 relative inline-block"
+                >
+                  <h2 className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-semibold tracking-tighter leading-tight relative whitespace-nowrap">
+                    I'm{" "}
+                    <span className="relative inline">
+                      {/* Black text background */}
+                      <span className="text-black dark:text-black relative z-10" style={{ color: "#0232B8" }}>
+                        Suyash
                       </span>
-                    </h3>
-                    
-                    {/* Social Icons */}
-                    <div className="flex items-center gap-3 sm:gap-4">
-                      <motion.a
-                        href="https://github.com/SUYASHSINGH7985"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={{ scale: 1.2, y: -2 }}
-                        className="text-foreground/60 hover:text-foreground transition-colors duration-300"
-                      >
-                        <Github size={20} className="sm:w-6 sm:h-6" />
-                      </motion.a>
                       
-                      <motion.a
-                        href="https://linkedin.com/in/s4yashh"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={{ scale: 1.2, y: -2 }}
-                        className="text-foreground/60 hover:text-foreground transition-colors duration-300"
-                      >
-                        <Linkedin size={20} className="sm:w-6 sm:h-6" />
-                      </motion.a>
+                      {/* Light brown fill rectangle (#EDE4D9) */}
+                      <motion.div
+                        className="absolute inset-0 pointer-events-none"
+                        style={{ backgroundColor: "#D9E2ED", originX: 0 }}
+                        initial={{ scaleX: 0 }}
+                        animate={{ scaleX: 1 }}
+                        transition={{ duration: 1.5, delay: 1.4, ease: "easeOut" }}
+                      />
+                    </span>
+                  </h2>
+                </motion.div>
+
+                {/* "Pushing ideas into reality" - appears last with stagger */}
+                <motion.div
+                  initial={{ opacity: 0, x: -50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8, delay: 1.2 }}
+                  className="mb-8 sm:mb-10 md:mb-12"
+                >
+                  <p className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-foreground/80 tracking-tight leading-snug">
+                    Pushing <span style={{ color: "#880808", fontFamily: "Dancing Script, cursive", fontWeight: 600 }}>ideas</span> into <span style={{ color: "#880808", fontFamily: "Dancing Script, cursive", fontWeight: 600 }}>reality</span>
+                  </p>
+                </motion.div>
+
+                {/* Subtitle with smooth entry */}
+                <motion.p
+                  className="text-lg sm:text-xl text-foreground/60 mb-12 max-w-2xl leading-relaxed"
+                  initial={{ opacity: 0, x: -50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8, delay: 1.6 }}
+                >
+                </motion.p>
+
+                {/* Let's Connect Section */}
+                <motion.div
+                  className="mt-12 sm:mt-16 md:mt-20 flex flex-col gap-4 sm:gap-6"
+                  initial={{ opacity: 0, x: -50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8, delay: 2 }}
+                >
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 sm:gap-8">
+                    <div></div>
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
+                      <h3 className="text-xl xs:text-2xl sm:text-2xl md:text-3xl font-light text-foreground/80 whitespace-nowrap">
+                        Let's{" "}
+                        <span style={{ color: "#0232B8", fontFamily: "Dancing Script, cursive", fontWeight: 600, textDecoration: "underline", textDecorationColor: "#880808", textDecorationThickness: "2px", textUnderlineOffset: "4px" }}>
+                          Connect
+                        </span>
+                      </h3>
                       
-                      <motion.a
-                        href="mailto:singhsuyash012@gmail.com"
-                        whileHover={{ scale: 1.2, y: -2 }}
-                        className="text-foreground/60 hover:text-foreground transition-colors duration-300"
-                      >
-                        <Mail size={20} className="sm:w-6 sm:h-6" />
-                      </motion.a>
+                      {/* Social Icons */}
+                      <div className="flex items-center gap-3 sm:gap-4">
+                        <motion.a
+                          href="https://github.com/SUYASHSINGH7985"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          whileHover={{ scale: 1.2, y: -2 }}
+                          className="text-foreground/60 hover:text-foreground transition-colors duration-300"
+                        >
+                          <Github size={20} className="sm:w-6 sm:h-6" />
+                        </motion.a>
+                        
+                        <motion.a
+                          href="https://linkedin.com/in/s4yashh"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          whileHover={{ scale: 1.2, y: -2 }}
+                          className="text-foreground/60 hover:text-foreground transition-colors duration-300"
+                        >
+                          <Linkedin size={20} className="sm:w-6 sm:h-6" />
+                        </motion.a>
+                        
+                        <motion.a
+                          href="mailto:singhsuyash012@gmail.com"
+                          whileHover={{ scale: 1.2, y: -2 }}
+                          className="text-foreground/60 hover:text-foreground transition-colors duration-300"
+                        >
+                          <Mail size={20} className="sm:w-6 sm:h-6" />
+                        </motion.a>
+                      </div>
                     </div>
                   </div>
+                </motion.div>
+              </div>
+
+              {/* Right Side - Circular Photo - Positioned Absolutely */}
+              <motion.div
+                className="hidden lg:flex absolute right-0 top-0 lg:relative lg:top-auto lg:right-auto w-1/2 justify-end"
+                initial={{ opacity: 0, scale: 0.8, x: 50 }}
+                animate={{ opacity: 1, scale: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 1.8 }}
+              >
+                <div className="relative w-72 h-72 rounded-full overflow-hidden border-4 border-gradient-to-r from-primary to-secondary shadow-2xl hover:shadow-primary/30 transition-shadow duration-300">
+                  <Image
+                    src="/suyash1.png"
+                    alt="Suyash Singh"
+                    fill
+                    className="object-cover"
+                    priority
+                  />
                 </div>
               </motion.div>
             </div>
