@@ -774,8 +774,8 @@ export default function Portfolio() {
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
           >
-            {/* Main Content - Flex layout with text left and image right */}
-            <div className="w-full max-w-6xl flex flex-col lg:flex-row items-start lg:items-start justify-between gap-8 lg:gap-12 relative">
+            {/* Main Content - Responsive Flex layout */}
+            <div className="w-full max-w-6xl flex flex-col lg:flex-row items-center lg:items-start justify-between gap-8 lg:gap-12 relative">
               {/* Left Side - Text Content */}
               <div className="w-full lg:w-1/2 flex flex-col">
                 {/* "Hi" - appears first */}
@@ -841,16 +841,16 @@ export default function Portfolio() {
                 </motion.p>
               </div>
 
-              {/* Right Side - Circular Photo with Let's Connect Below - Shifted Right */}
+              {/* Right Side - Circular Photo with Let's Connect Below */}
               <motion.div
-                className="hidden lg:flex flex-col items-center gap-8 lg:absolute lg:right-[-50px] lg:top-0 w-auto justify-end"
-                initial={{ opacity: 0, scale: 0.8, x: 50 }}
-                animate={{ opacity: 1, scale: 1, x: 0 }}
+                className="w-full lg:w-auto flex flex-col items-center gap-6 sm:gap-8 lg:absolute lg:right-[-50px] lg:top-0"
+                initial={{ opacity: 0, scale: 0.8, y: 30 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 1.8 }}
               >
                 {/* Circular Photo */}
                 <motion.div 
-                  className="relative w-72 h-72 rounded-full overflow-hidden border-4 border-gradient-to-r from-primary to-secondary shadow-2xl hover:shadow-primary/30 transition-shadow duration-300"
+                  className="relative w-56 sm:w-64 md:w-72 h-56 sm:h-64 md:h-72 rounded-full overflow-hidden border-4 border-gradient-to-r from-primary to-secondary shadow-2xl hover:shadow-primary/30 transition-shadow duration-300"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 1.2, delay: 2.0, ease: "easeOut" }}
@@ -866,12 +866,12 @@ export default function Portfolio() {
 
                 {/* Let's Connect Section - Below Photo */}
                 <motion.div
-                  className="flex flex-col gap-4 sm:gap-6 items-center"
+                  className="flex flex-col gap-3 sm:gap-4 md:gap-6 items-center"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 2.2 }}
                 >
-                  <h3 className="text-xl xs:text-2xl sm:text-2xl md:text-3xl font-light text-foreground/80 whitespace-nowrap">
+                  <h3 className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-light text-foreground/80 whitespace-nowrap">
                     Let's{" "}
                     <span style={{ color: "#0232B8", fontFamily: "Dancing Script, cursive", fontWeight: 600, textDecoration: "underline", textDecorationColor: "#880808", textDecorationThickness: "2px", textUnderlineOffset: "4px" }}>
                       Connect
@@ -887,7 +887,7 @@ export default function Portfolio() {
                       whileHover={{ scale: 1.2, y: -2 }}
                       className="text-foreground/60 hover:text-foreground transition-colors duration-300"
                     >
-                      <Github size={20} className="sm:w-6 sm:h-6" />
+                      <Github size={20} className="sm:w-5 md:w-6" />
                     </motion.a>
                     
                     <motion.a
@@ -897,7 +897,7 @@ export default function Portfolio() {
                       whileHover={{ scale: 1.2, y: -2 }}
                       className="text-foreground/60 hover:text-foreground transition-colors duration-300"
                     >
-                      <Linkedin size={20} className="sm:w-6 sm:h-6" />
+                      <Linkedin size={20} className="sm:w-5 md:w-6" />
                     </motion.a>
                     
                     <motion.a
@@ -905,7 +905,7 @@ export default function Portfolio() {
                       whileHover={{ scale: 1.2, y: -2 }}
                       className="text-foreground/60 hover:text-foreground transition-colors duration-300"
                     >
-                      <Mail size={20} className="sm:w-6 sm:h-6" />
+                      <Mail size={20} className="sm:w-5 md:w-6" />
                     </motion.a>
                   </div>
                 </motion.div>
