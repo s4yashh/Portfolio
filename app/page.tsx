@@ -446,7 +446,7 @@ function ContactSection({ contactRef }: { contactRef: React.RefObject<HTMLElemen
               LinkedIn Profile
             </Button>
           </Link>
-          <Link href="https://github.com/SUYASHSINGH7985" target="_blank">
+          <Link href="https://github.com/s4yashh" target="_blank">
             <Button variant="outline" className="text-white w-full justify-start">
               <Github size={18} className="mr-3" />
               GitHub Profile
