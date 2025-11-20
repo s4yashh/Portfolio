@@ -831,7 +831,7 @@ export default function Portfolio() {
                 </motion.div>
                 )}
 
-                {/* "Pushing ideas into reality" - appears last with stagger */}
+                {/* "Aspiring Software Engineer" - appears last with stagger */}
                 {preloaderComplete && (
                   <motion.div
                     initial={{ opacity: 0, x: -50 }}
@@ -840,7 +840,7 @@ export default function Portfolio() {
                     className="mb-8 sm:mb-10 md:mb-12"
                   >
                     <p className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-foreground/80 tracking-tight leading-snug whitespace-nowrap">
-                      Pushing <span style={{ color: "#880808", fontFamily: "Dancing Script, cursive", fontWeight: 600 }}>ideas</span> into <span style={{ color: "#880808", fontFamily: "Dancing Script, cursive", fontWeight: 600 }}>reality</span>
+                      Aspiring <span style={{ color: "#880808", fontFamily: "Dancing Script, cursive", fontWeight: 600 }}>Software</span> Engineer
                     </p>
                   </motion.div>
                 )}
