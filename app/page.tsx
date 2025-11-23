@@ -177,7 +177,7 @@ function ProjectsSection({
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
       >
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-light mb-6 sm:mb-8 tracking-tight">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-light mb-6 sm:mb-8 tracking-tight" style={{ fontFamily: "var(--font-inter)" }}>
           <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             Projects
           </span>
@@ -220,8 +220,8 @@ function ProjectsSection({
               transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
               className="border border-white/10 rounded-lg p-4 sm:p-6 hover:border-white/20 transition-all"
             >
-              <h3 className="text-lg sm:text-xl font-light mb-2 text-white">{project.title}</h3>
-              <p className="text-white/70 text-xs sm:text-sm mb-4 leading-relaxed">{project.description}</p>
+              <h3 className="text-lg sm:text-xl font-light mb-2 text-white" style={{ fontFamily: "var(--font-inter)" }}>{project.title}</h3>
+              <p className="text-white/70 text-xs sm:text-sm mb-4 leading-relaxed" style={{ fontFamily: "var(--font-inter)" }}>{project.description}</p>
               <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-4">
                 {project.tags.map((tag: string) => (
                   <Badge key={tag} className="bg-white/10 text-white/80 text-xs">
@@ -271,7 +271,7 @@ function ExperienceSection({ experienceRef, experiences }: { experienceRef: Reac
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
         transition={{ duration: 0.8, delay: 0.2 }}
       >
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-light mb-6 sm:mb-8 tracking-tight">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-light mb-6 sm:mb-8 tracking-tight" style={{ fontFamily: "var(--font-inter)" }}>
           <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             Experience
           </span>
@@ -298,10 +298,10 @@ function ExperienceSection({ experienceRef, experiences }: { experienceRef: Reac
                 <div className="relative z-10">
                   {/* Header: Role @ Company | Period • Location */}
                   <div className="mb-3 sm:mb-4">
-                    <h3 className="text-base sm:text-lg font-semibold text-white mb-1 sm:mb-2">
+                    <h3 className="text-base sm:text-lg font-semibold text-white mb-1 sm:mb-2" style={{ fontFamily: "var(--font-inter)" }}>
                       {exp.role} <span className="text-white/60 font-normal">@ {exp.company}</span>
                     </h3>
-                    <p className="text-xs sm:text-sm text-white/50 flex items-center gap-2 flex-wrap">
+                    <p className="text-xs sm:text-sm text-white/50 flex items-center gap-2 flex-wrap" style={{ fontFamily: "var(--font-inter)" }}>
                       <span>{exp.period}</span>
                       <span>•</span>
                       <span>{exp.location}</span>
@@ -309,7 +309,7 @@ function ExperienceSection({ experienceRef, experiences }: { experienceRef: Reac
                   </div>
 
                   {/* Bullets */}
-                  <ul className="space-y-1.5 sm:space-y-2 mb-3 sm:mb-4">
+                  <ul className="space-y-1.5 sm:space-y-2 mb-3 sm:mb-4" style={{ fontFamily: "var(--font-inter)" }}>
                     {exp.bullets.map((bullet: string, i: number) => (
                       <li key={i} className="text-xs sm:text-sm text-white/70 flex gap-2 sm:gap-3">
                         <span className="text-primary/80 mt-0.5 sm:mt-1 flex-shrink-0">▸</span>
@@ -319,7 +319,7 @@ function ExperienceSection({ experienceRef, experiences }: { experienceRef: Reac
                   </ul>
 
                   {/* Tech Stack Badges */}
-                  <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2" style={{ fontFamily: "var(--font-inter)" }}>
                     {exp.tech.map((tech: string) => (
                       <motion.div
                         key={tech}

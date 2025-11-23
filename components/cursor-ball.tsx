@@ -5,10 +5,10 @@ import { useState, useEffect, useRef } from "react"
 export function CursorBall() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
   const [ballPos, setBallPos] = useState({ x: 0, y: 0 })
-  const [isOverFooter, setIsOverFooter] = useState(false)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const animationRef = useRef<number>()
   const prevPosRef = useRef({ x: 0, y: 0 })
+  const footerRectRef = useRef<DOMRect | null>(null)
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -20,16 +20,10 @@ export function CursorBall() {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePos({ x: e.clientX, y: e.clientY })
 
-      // Check if cursor is over footer
+      // Get footer rect for use in animation
       const footer = document.querySelector("footer")
       if (footer) {
-        const rect = footer.getBoundingClientRect()
-        const isOverFooterArea =
-          e.clientX >= rect.left &&
-          e.clientX <= rect.right &&
-          e.clientY >= rect.top &&
-          e.clientY <= rect.bottom
-        setIsOverFooter(isOverFooterArea)
+        footerRectRef.current = footer.getBoundingClientRect()
       }
     }
 
@@ -65,11 +59,33 @@ export function CursorBall() {
       // Clear canvas
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-      // Draw cursor ball (main)
-      ctx.fillStyle = isOverFooter ? "white" : "#000000"
+      // Get footer bounds
+      const footer = footerRectRef.current
+      const ballRadius = 15
+
+      // Always draw the full ball first in black
+      ctx.fillStyle = "#000000"
       ctx.beginPath()
-      ctx.arc(ballPos.x, ballPos.y, 15, 0, Math.PI * 2)
+      ctx.arc(ballPos.x, ballPos.y, ballRadius, 0, Math.PI * 2)
       ctx.fill()
+
+      // If ball overlaps with footer, draw white part on top
+      if (footer && ballPos.x >= footer.left && ballPos.x <= footer.right) {
+        ctx.save()
+        
+        // Create clipping region for only the footer area
+        ctx.beginPath()
+        ctx.rect(footer.left, footer.top, footer.right - footer.left, footer.bottom - footer.top)
+        ctx.clip()
+        
+        // Draw white circle (only the part inside footer will be visible)
+        ctx.fillStyle = "white"
+        ctx.beginPath()
+        ctx.arc(ballPos.x, ballPos.y, ballRadius, 0, Math.PI * 2)
+        ctx.fill()
+        
+        ctx.restore()
+      }
 
       animationRef.current = requestAnimationFrame(animate)
     }
@@ -80,7 +96,7 @@ export function CursorBall() {
         cancelAnimationFrame(animationRef.current)
       }
     }
-  }, [mousePos, isOverFooter, ballPos])
+  }, [mousePos, ballPos])
 
   return (
     <>
