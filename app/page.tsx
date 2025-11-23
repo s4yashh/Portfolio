@@ -466,6 +466,7 @@ export default function Portfolio() {
   const [selectedFilter, setSelectedFilter] = useState("all")
   const [isAudioPlaying, setIsAudioPlaying] = useState(false)
   const [showMusicPlayer, setShowMusicPlayer] = useState(false)
+  const [footerHovered, setFooterHovered] = useState(false)
   const audioRef = useRef<HTMLAudioElement>(null)
 
   useEffect(() => {
@@ -975,10 +976,177 @@ export default function Portfolio() {
         onEnded={() => setIsAudioPlaying(false)}
       />
 
-      {/* Footer */}
-      <footer className="py-6 sm:py-8 px-4 sm:px-6 md:px-8 text-center border-t border-white/10">
-        <p className="text-xs sm:text-sm text-white/50">© {new Date().getFullYear()} Suyash Singh</p>
+      {/* Footer - 3/4 Page Height */}
+      <footer className="relative w-full bg-black overflow-hidden" style={{ height: "94vh", minHeight: "94vh" }}>
+        {/* Background gradient effect */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black via-black to-gray-900" />
+        
+        {/* Grid pattern overlay */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0 bg-white" style={{
+            backgroundImage: 'linear-gradient(0deg, transparent 24%, rgba(255,255,255,.1) 25%, rgba(255,255,255,.1) 26%, transparent 27%, transparent 74%, rgba(255,255,255,.1) 75%, rgba(255,255,255,.1) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(255,255,255,.1) 25%, rgba(255,255,255,.1) 26%, transparent 27%, transparent 74%, rgba(255,255,255,.1) 75%, rgba(255,255,255,.1) 76%, transparent 77%, transparent)',
+            backgroundSize: '50px 50px'
+          }} />
+        </div>
+
+        {/* Content Container */}
+        <div className="relative z-10 h-full flex flex-col items-center justify-between px-4 sm:px-6 md:px-8 py-20">
+          
+          {/* Main Thank You Text - Left and Mid positioned */}
+          <div className="w-full flex items-center justify-start h-full">
+            <div className="max-w-2xl">
+              <AnimatePresence mode="wait">
+                {!footerHovered ? (
+                  <motion.div
+                    key="thanks"
+                    initial={{ opacity: 0, x: -50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -50 }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
+                    className="cursor-pointer"
+                    onMouseEnter={() => setFooterHovered(true)}
+                    onTouchStart={() => setFooterHovered(true)}
+                  >
+                    <h2 
+                      style={{
+                        fontSize: "clamp(3rem, 12vw, 10rem)",
+                        fontWeight: 800,
+                        fontFamily: "Poppins, sans-serif",
+                        color: "#ffffff",
+                        textShadow: "2px 2px 8px rgba(0,0,0,0.5)",
+                        letterSpacing: "-0.02em",
+                        lineHeight: 1.1
+                      }}
+                    >
+                      Thanks!
+                    </h2>
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="message"
+                    initial={{ opacity: 0, x: -50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -50 }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
+                    className="cursor-pointer"
+                    onMouseLeave={() => setFooterHovered(false)}
+                    onTouchEnd={() => setFooterHovered(false)}
+                  >
+                    <h2 
+                      style={{
+                        fontSize: "clamp(2rem, 10vw, 8rem)",
+                        fontWeight: 800,
+                        fontFamily: "Poppins, sans-serif",
+                        color: "#ffffff",
+                        textShadow: "2px 2px 8px rgba(0,0,0,0.5)",
+                        letterSpacing: "-0.02em",
+                        lineHeight: 1.2
+                      }}
+                    >
+                      for visiting my
+                      <br />
+                      portfolio
+                    </h2>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </div>
+
+          {/* Social Links and CV - Bottom Right */}
+          <div className="w-full flex justify-end">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="flex flex-col items-end gap-8"
+            >
+            {/* Social Links */}
+            <div className="flex items-center gap-6 sm:gap-8 flex-wrap justify-end">
+              <motion.a
+                href="https://github.com/s4yashh"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.15, y: -5 }}
+                whileTap={{ scale: 0.95 }}
+                className="group relative"
+              >
+                <div className="absolute inset-0 bg-white/20 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="relative p-4 rounded-full bg-white/10 border border-white/20 hover:border-white/40 transition-all">
+                  <Github size={24} className="text-white" />
+                </div>
+              </motion.a>
+
+              <motion.a
+                href="https://linkedin.com/in/s4yashh"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.15, y: -5 }}
+                whileTap={{ scale: 0.95 }}
+                className="group relative"
+              >
+                <div className="absolute inset-0 bg-white/20 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="relative p-4 rounded-full bg-white/10 border border-white/20 hover:border-white/40 transition-all">
+                  <Linkedin size={24} className="text-white" />
+                </div>
+              </motion.a>
+
+              <motion.a
+                href="mailto:singhsuyash012@gmail.com"
+                whileHover={{ scale: 1.15, y: -5 }}
+                whileTap={{ scale: 0.95 }}
+                className="group relative"
+              >
+                <div className="absolute inset-0 bg-white/20 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="relative p-4 rounded-full bg-white/10 border border-white/20 hover:border-white/40 transition-all">
+                  <Mail size={24} className="text-white" />
+                </div>
+              </motion.a>
+
+              {/* CV Download Button */}
+              <motion.a
+                href="/Suyash_Resume 2.pdf"
+                download
+                whileHover={{ scale: 1.15, y: -5 }}
+                whileTap={{ scale: 0.95 }}
+                className="group relative"
+              >
+                <div className="absolute inset-0 bg-white/20 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="relative p-4 rounded-full bg-white/10 border border-white/20 hover:border-white/40 transition-all flex items-center justify-center">
+                  <Code size={24} className="text-white" />
+                </div>
+              </motion.a>
+            </div>
+
+            {/* Text labels for icons */}
+            <div className="flex gap-8 sm:gap-12 text-xs sm:text-sm text-white/60 flex-wrap justify-end mt-4">
+              <span>GitHub</span>
+              <span>LinkedIn</span>
+              <span>Email</span>
+              <span>Resume</span>
+            </div>
+            </motion.div>
+          </div>
+
+          {/* Copyright */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="absolute bottom-6 text-xs text-white/40 font-light"
+          >
+            © {new Date().getFullYear()} Suyash Singh. All rights reserved.
+          </motion.p>
+        </div>
       </footer>
+
+      {/* Prevent scrolling beyond footer */}
+      <style>{`
+        html, body {
+          max-height: 100vh;
+          overflow-x: hidden;
+        }
+      `}</style>
     </div>
   )
 }
