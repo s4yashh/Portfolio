@@ -466,7 +466,6 @@ export default function Portfolio() {
   const [selectedFilter, setSelectedFilter] = useState("all")
   const [isAudioPlaying, setIsAudioPlaying] = useState(false)
   const [showMusicPlayer, setShowMusicPlayer] = useState(false)
-  const [footerHovered, setFooterHovered] = useState(false)
   const audioRef = useRef<HTMLAudioElement>(null)
 
   useEffect(() => {
@@ -981,151 +980,81 @@ export default function Portfolio() {
         maxHeight: "94vh", 
         backgroundColor: "#000000",
         overflow: "hidden",
-        flexShrink: 0
+        flexShrink: 0,
+        position: "relative"
       }}>
 
         {/* Content Container */}
-        <div className="h-full flex flex-col items-start justify-center px-8 sm:px-12 md:px-16 lg:px-20 py-20">
+        <div className="h-full flex flex-col items-start justify-center px-8 sm:px-12 md:px-16 lg:px-20 py-20 relative">
           
-          {/* Main Thank You Text - Left and Mid positioned */}
-          <AnimatePresence mode="wait">
-            {!footerHovered ? (
-              <motion.div
-                key="thanks"
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -50 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
-                className="cursor-pointer w-full"
-                onMouseEnter={() => setFooterHovered(true)}
-                onTouchStart={() => setFooterHovered(true)}
-              >
-                <h2 style={{
-                  fontSize: "clamp(4rem, 15vw, 12rem)",
-                  fontWeight: 900,
-                  fontFamily: "Poppins, sans-serif",
-                  letterSpacing: "-0.03em",
-                  lineHeight: 0.9,
-                  margin: 0,
-                  color: "white",
-                  mixBlendMode: "normal",
-                  WebkitTextFillColor: "white"
-                }}>
-                  Thanks!
-                </h2>
-              </motion.div>
-            ) : (
-              <motion.div
-                key="message"
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -50 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
-                className="cursor-pointer w-full"
-                onMouseLeave={() => setFooterHovered(false)}
-                onTouchEnd={() => setFooterHovered(false)}
-              >
-                <h2 style={{
-                  fontSize: "clamp(2.5rem, 12vw, 9rem)",
-                  fontWeight: 900,
-                  fontFamily: "Poppins, sans-serif",
-                  letterSpacing: "-0.03em",
-                  lineHeight: 1.2,
-                  margin: 0,
-                  color: "white",
-                  mixBlendMode: "normal",
-                  WebkitTextFillColor: "white"
-                }}>
-                  for visiting my<br />portfolio
-                </h2>
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-          {/* Social Links and CV - Bottom Right */}
-          <div className="w-full flex justify-end">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="flex flex-col items-end gap-8"
-            >
-            {/* Social Links */}
-            <div className="flex items-center gap-6 sm:gap-8 flex-wrap justify-end">
-              <motion.a
-                href="https://github.com/s4yashh"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.15, y: -5 }}
-                whileTap={{ scale: 0.95 }}
-                className="group relative"
-              >
-                <div className="absolute inset-0 bg-white/20 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="relative p-4 rounded-full bg-white/10 border border-white/20 hover:border-white/40 transition-all">
-                  <Github size={24} className="text-white" />
-                </div>
-              </motion.a>
-
-              <motion.a
-                href="https://linkedin.com/in/s4yashh"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.15, y: -5 }}
-                whileTap={{ scale: 0.95 }}
-                className="group relative"
-              >
-                <div className="absolute inset-0 bg-white/20 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="relative p-4 rounded-full bg-white/10 border border-white/20 hover:border-white/40 transition-all">
-                  <Linkedin size={24} className="text-white" />
-                </div>
-              </motion.a>
-
-              <motion.a
-                href="mailto:singhsuyash012@gmail.com"
-                whileHover={{ scale: 1.15, y: -5 }}
-                whileTap={{ scale: 0.95 }}
-                className="group relative"
-              >
-                <div className="absolute inset-0 bg-white/20 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="relative p-4 rounded-full bg-white/10 border border-white/20 hover:border-white/40 transition-all">
-                  <Mail size={24} className="text-white" />
-                </div>
-              </motion.a>
-
-              {/* CV Download Button */}
-              <motion.a
-                href="/Suyash_Resume 2.pdf"
-                download
-                whileHover={{ scale: 1.15, y: -5 }}
-                whileTap={{ scale: 0.95 }}
-                className="group relative"
-              >
-                <div className="absolute inset-0 bg-white/20 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="relative p-4 rounded-full bg-white/10 border border-white/20 hover:border-white/40 transition-all flex items-center justify-center">
-                  <Code size={24} className="text-white" />
-                </div>
-              </motion.a>
-            </div>
-
-            {/* Text labels for icons */}
-            <div className="flex gap-8 sm:gap-12 text-xs sm:text-sm text-white/60 flex-wrap justify-end mt-4">
-              <span>GitHub</span>
-              <span>LinkedIn</span>
-              <span>Email</span>
-              <span>Resume</span>
-            </div>
-            </motion.div>
-          </div>
-
-          {/* Copyright */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="absolute bottom-6 text-xs text-white/40 font-light"
+          {/* Phone Number - Top Right */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="absolute top-8 right-8 sm:top-12 sm:right-12 md:top-16 md:right-16 flex items-center gap-2"
           >
-            © {new Date().getFullYear()} Suyash Singh. All rights reserved.
-          </motion.p>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+            <span style={{ color: "white", fontFamily: "Poppins, sans-serif", fontSize: "clamp(0.75rem, 2vw, 1rem)" }}>
+              +917985xxxxx
+            </span>
+          </motion.div>
+
+          {/* Main "SAY HI!" Heading */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="w-full"
+            style={{ marginLeft: "2rem", marginTop: "2rem" }}
+          >
+            <h2 style={{
+              fontSize: "clamp(5.5rem, 20vw, 16rem)",
+              fontWeight: 900,
+              fontFamily: "Poppins, sans-serif",
+              letterSpacing: "-0.02em",
+              lineHeight: 0.95,
+              margin: 0,
+              color: "white",
+              mixBlendMode: "normal",
+              WebkitTextFillColor: "white"
+            }}>
+              SAY HI!
+            </h2>
+          </motion.div>
+
+          {/* Description text - Below heading */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="mt-8 sm:mt-12 md:mt-16 max-w-2xl"
+          >
+            <p style={{
+              fontSize: "clamp(1rem, 3vw, 1.5rem)",
+              fontWeight: 400,
+              fontFamily: "Poppins, sans-serif",
+              lineHeight: 1.6,
+              margin: "0 0 16px 0",
+              color: "white",
+              opacity: 0.9
+            }}>
+              Tell us about your project.
+            </p>
+            <p style={{
+              fontSize: "clamp(1rem, 3vw, 1.5rem)",
+              fontWeight: 400,
+              fontFamily: "Poppins, sans-serif",
+              lineHeight: 1.6,
+              margin: 0,
+              color: "white",
+              opacity: 0.9
+            }}>
+              Let's collaborate and make great stuff.
+            </p>
+          </motion.div>
         </div>
       </footer>
     </div>
