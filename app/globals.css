@@ -3,6 +3,27 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  body {
+    color-scheme: dark;
+    height: 100%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #__next {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+  }
+
   button,
   a,
   [role="button"],

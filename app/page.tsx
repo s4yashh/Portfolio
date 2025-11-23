@@ -476,6 +476,30 @@ export default function Portfolio() {
   const { scrollY } = useScroll()
   const backgroundY = useTransform(scrollY, [0, 2000], [0, -500])
 
+  // Update active section based on scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ["home", "about", "projects", "resume", "contact"]
+      const scrollPosition = window.scrollY + 200
+
+      for (const section of sections) {
+        const element = document.getElementById(section)
+        if (element) {
+          const offsetTop = element.offsetTop
+          const offsetHeight = element.offsetHeight
+
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(section)
+            break
+          }
+        }
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
   const heroRef = useRef<HTMLElement>(null)
   const aboutRef = useRef<HTMLElement>(null)
   const projectsRef = useRef<HTMLElement>(null)
@@ -580,30 +604,8 @@ export default function Portfolio() {
   }
 
   useEffect(() => {
-    let scrollTimeout: NodeJS.Timeout
     let musicStarted = false
     
-    const handleScroll = () => {
-      clearTimeout(scrollTimeout)
-      scrollTimeout = setTimeout(() => {
-        const sections = ["home", "about", "projects", "resume", "contact"]
-        const scrollPosition = window.scrollY + 200
-
-        for (const section of sections) {
-          const element = document.getElementById(section)
-          if (element) {
-            const offsetTop = element.offsetTop
-            const offsetHeight = element.offsetHeight
-
-            if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-              setActiveSection(section)
-              break
-            }
-          }
-        }
-      }, 50)
-    }
-
     const startMusic = () => {
       // Start music on user tap/click
       if (!musicStarted && audioRef.current) {
@@ -630,13 +632,10 @@ export default function Portfolio() {
       }
     }
 
-    window.addEventListener("scroll", handleScroll)
     document.addEventListener("click", startMusic)
     document.addEventListener("touchstart", startMusic)
     
     return () => {
-      clearTimeout(scrollTimeout)
-      window.removeEventListener("scroll", handleScroll)
       document.removeEventListener("click", startMusic)
       document.removeEventListener("touchstart", startMusic)
     }
@@ -976,82 +975,72 @@ export default function Portfolio() {
         onEnded={() => setIsAudioPlaying(false)}
       />
 
-      {/* Footer - 3/4 Page Height */}
-      <footer className="relative w-full bg-black overflow-hidden" style={{ height: "94vh", minHeight: "94vh" }}>
-        {/* Background gradient effect */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black via-black to-gray-900" />
-        
-        {/* Grid pattern overlay */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0 bg-white" style={{
-            backgroundImage: 'linear-gradient(0deg, transparent 24%, rgba(255,255,255,.1) 25%, rgba(255,255,255,.1) 26%, transparent 27%, transparent 74%, rgba(255,255,255,.1) 75%, rgba(255,255,255,.1) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(255,255,255,.1) 25%, rgba(255,255,255,.1) 26%, transparent 27%, transparent 74%, rgba(255,255,255,.1) 75%, rgba(255,255,255,.1) 76%, transparent 77%, transparent)',
-            backgroundSize: '50px 50px'
-          }} />
-        </div>
+      {/* Footer - Exact 94vh, no scroll below this */}
+      <footer style={{ 
+        height: "94vh", 
+        maxHeight: "94vh", 
+        backgroundColor: "#000000",
+        overflow: "hidden",
+        flexShrink: 0
+      }}>
 
         {/* Content Container */}
-        <div className="relative z-10 h-full flex flex-col items-center justify-between px-4 sm:px-6 md:px-8 py-20">
+        <div className="h-full flex flex-col items-start justify-center px-8 sm:px-12 md:px-16 lg:px-20 py-20">
           
           {/* Main Thank You Text - Left and Mid positioned */}
-          <div className="w-full flex items-center justify-start h-full">
-            <div className="max-w-2xl">
-              <AnimatePresence mode="wait">
-                {!footerHovered ? (
-                  <motion.div
-                    key="thanks"
-                    initial={{ opacity: 0, x: -50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -50 }}
-                    transition={{ duration: 0.6, ease: "easeOut" }}
-                    className="cursor-pointer"
-                    onMouseEnter={() => setFooterHovered(true)}
-                    onTouchStart={() => setFooterHovered(true)}
-                  >
-                    <h2 
-                      style={{
-                        fontSize: "clamp(3rem, 12vw, 10rem)",
-                        fontWeight: 800,
-                        fontFamily: "Poppins, sans-serif",
-                        color: "#ffffff",
-                        textShadow: "2px 2px 8px rgba(0,0,0,0.5)",
-                        letterSpacing: "-0.02em",
-                        lineHeight: 1.1
-                      }}
-                    >
-                      Thanks!
-                    </h2>
-                  </motion.div>
-                ) : (
-                  <motion.div
-                    key="message"
-                    initial={{ opacity: 0, x: -50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -50 }}
-                    transition={{ duration: 0.6, ease: "easeOut" }}
-                    className="cursor-pointer"
-                    onMouseLeave={() => setFooterHovered(false)}
-                    onTouchEnd={() => setFooterHovered(false)}
-                  >
-                    <h2 
-                      style={{
-                        fontSize: "clamp(2rem, 10vw, 8rem)",
-                        fontWeight: 800,
-                        fontFamily: "Poppins, sans-serif",
-                        color: "#ffffff",
-                        textShadow: "2px 2px 8px rgba(0,0,0,0.5)",
-                        letterSpacing: "-0.02em",
-                        lineHeight: 1.2
-                      }}
-                    >
-                      for visiting my
-                      <br />
-                      portfolio
-                    </h2>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          </div>
+          <AnimatePresence mode="wait">
+            {!footerHovered ? (
+              <motion.div
+                key="thanks"
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -50 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+                className="cursor-pointer w-full"
+                onMouseEnter={() => setFooterHovered(true)}
+                onTouchStart={() => setFooterHovered(true)}
+              >
+                <h2 style={{
+                  fontSize: "clamp(4rem, 15vw, 12rem)",
+                  fontWeight: 900,
+                  fontFamily: "Poppins, sans-serif",
+                  letterSpacing: "-0.03em",
+                  lineHeight: 0.9,
+                  margin: 0,
+                  color: "white",
+                  mixBlendMode: "normal",
+                  WebkitTextFillColor: "white"
+                }}>
+                  Thanks!
+                </h2>
+              </motion.div>
+            ) : (
+              <motion.div
+                key="message"
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -50 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+                className="cursor-pointer w-full"
+                onMouseLeave={() => setFooterHovered(false)}
+                onTouchEnd={() => setFooterHovered(false)}
+              >
+                <h2 style={{
+                  fontSize: "clamp(2.5rem, 12vw, 9rem)",
+                  fontWeight: 900,
+                  fontFamily: "Poppins, sans-serif",
+                  letterSpacing: "-0.03em",
+                  lineHeight: 1.2,
+                  margin: 0,
+                  color: "white",
+                  mixBlendMode: "normal",
+                  WebkitTextFillColor: "white"
+                }}>
+                  for visiting my<br />portfolio
+                </h2>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           {/* Social Links and CV - Bottom Right */}
           <div className="w-full flex justify-end">
@@ -1139,14 +1128,6 @@ export default function Portfolio() {
           </motion.p>
         </div>
       </footer>
-
-      {/* Prevent scrolling beyond footer */}
-      <style>{`
-        html, body {
-          max-height: 100vh;
-          overflow-x: hidden;
-        }
-      `}</style>
     </div>
   )
 }
