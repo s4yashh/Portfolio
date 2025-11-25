@@ -2,6 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom Fonts */
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-900.woff2") format("woff2"),
+       url("/fonts/Poppins-900.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Verdana";
+  src: url("/fonts/Verdana.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -786,3 +804,57 @@ html {
   display: none; /* Chrome, Safari and Opera */
 }
 
+/* SAY HI! Heading Styles with Responsive Adjustments */
+.sayhi {
+  font-size: clamp(3rem, 15vw, 16rem);
+  font-weight: 900;
+  font-family: "Poppins", sans-serif;
+  color: white;
+  -webkit-text-fill-color: white;
+  letter-spacing: -0.02em;
+  line-height: 0.9;
+  margin: 0;
+  padding-right: 1rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+  word-break: break-word;
+  mix-blend-mode: normal;
+}
+
+/* Exclamation mark with circular dot */
+.bang {
+  font-family: "Verdana", sans-serif;
+  position: relative;
+  display: inline-block;
+  padding: 0 0.1em;
+}
+
+.bang::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -0.2em;
+  width: 0.3em;
+  height: 0.3em;
+  background: white;
+  border-radius: 50%;
+  z-index: 10;
+  box-shadow: 0 0 0.1em rgba(255, 255, 255, 0.5);
+}
+
+/* Responsive footer adjustments for different screen sizes */
+@media (max-width: 640px) {
+  .sayhi {
+    font-size: clamp(2.5rem, 12vw, 5rem);
+    padding-right: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .sayhi {
+    font-size: clamp(2rem, 10vw, 4rem);
+    padding-right: 0.3rem;
+  }
+}

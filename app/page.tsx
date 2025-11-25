@@ -985,7 +985,8 @@ export default function Portfolio() {
       }}>
 
         {/* Content Container */}
-        <div className="h-full flex flex-col items-start justify-center px-8 sm:px-12 md:px-16 lg:px-20 py-20 relative">
+        <div className="h-full flex flex-col items-start justify-center px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-8 sm:py-12 md:py-16 relative overflow-hidden">
+
           
           {/* Phone Number - Top Right */}
           <motion.div
@@ -1007,21 +1008,10 @@ export default function Portfolio() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="w-full"
-            style={{ marginLeft: "2rem", marginTop: "2rem" }}
+            className="w-full max-w-full ml-0 sm:ml-1 md:ml-2 mt-2 sm:mt-3 md:mt-4 overflow-hidden"
           >
-            <h2 style={{
-              fontSize: "clamp(5.5rem, 20vw, 16rem)",
-              fontWeight: 900,
-              fontFamily: "Poppins, sans-serif",
-              letterSpacing: "-0.02em",
-              lineHeight: 0.95,
-              margin: 0,
-              color: "white",
-              mixBlendMode: "normal",
-              WebkitTextFillColor: "white"
-            }}>
-              SAY HI!
+            <h2 className="sayhi">
+              THANKYOU
             </h2>
           </motion.div>
 
@@ -1039,7 +1029,9 @@ export default function Portfolio() {
               lineHeight: 1.6,
               margin: "0 0 16px 0",
               color: "white",
-              opacity: 0.9
+              WebkitTextFillColor: "white",
+              mixBlendMode: "normal",
+              opacity: 1
             }}>
               Tell us about your project.
             </p>
@@ -1050,9 +1042,12 @@ export default function Portfolio() {
               lineHeight: 1.6,
               margin: 0,
               color: "white",
-              opacity: 0.9
+              WebkitTextFillColor: "white",
+              mixBlendMode: "normal",
+              opacity: 1
             }}>
               Let's collaborate and make great stuff.
+
             </p>
           </motion.div>
         </div>
