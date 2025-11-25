@@ -806,7 +806,7 @@ html {
 
 /* SAY HI! Heading Styles with Responsive Adjustments */
 .sayhi {
-  font-size: clamp(3rem, 15vw, 16rem);
+  font-size: clamp(2.0rem, 11vw, 12rem);
   font-weight: 900;
   font-family: "Poppins", sans-serif;
   color: white;
