@@ -858,3 +858,47 @@ html {
     padding-right: 0.3rem;
   }
 }
+
+/* Responsive Footer Padding for all screen sizes */
+footer {
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+  padding-top: 2rem !important;
+  padding-bottom: 2rem !important;
+}
+
+@media (min-width: 640px) {
+  footer {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+}
+
+@media (min-width: 768px) {
+  footer {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  footer {
+    padding-left: 3rem !important;
+    padding-right: 3rem !important;
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  footer {
+    padding-left: 4rem !important;
+    padding-right: 4rem !important;
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
+  }
+}
