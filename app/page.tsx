@@ -45,7 +45,7 @@ function AboutSection({ aboutRef, skills }: { aboutRef: React.RefObject<HTMLElem
           transition={{ duration: 0.8, delay: 0.3 }}
           className="mb-8 sm:mb-10 md:mb-12 relative inline-block pb-0"
         >
-          <h2 className="text-[clamp(1.8rem,7vw,3.5rem)] font-semibold tracking-tighter leading-tight">
+          <h2 className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold tracking-tighter leading-tight">
             <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               About Me
             </span>
@@ -773,18 +773,17 @@ export default function Portfolio() {
 
       {/* Main Layout */}
       <div className="w-full pb-20">
-        {/* Hero Section */}
-        <div className="min-h-screen flex items-center pt-20 sm:pt-24 md:pt-28 relative">
-          <motion.div
-            className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-          >
-            {/* Main Content - Responsive Flex layout */}
-            <div className="w-full flex flex-col lg:flex-row items-center lg:items-start justify-between gap-8 lg:gap-12 relative">
-              {/* Left Side - Text Content */}
-              <div className="w-full lg:w-1/2 flex flex-col text-center lg:text-left">
+        {/* Hero Section - Bulletproof Fluid Padding Version */}
+        <section className="w-full bg-background pt-20 sm:pt-24 md:pt-32">
+          <div className="w-full px-4 sm:px-6 lg:px-8">
+            <motion.div
+              className="flex flex-col md:flex-row justify-between items-center gap-8 md:gap-12 lg:gap-16"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1 }}
+            >
+              {/* LEFT SECTION — TEXT CONTENT */}
+              <div className="w-full md:w-1/2 flex flex-col text-center md:text-left">
                 {/* "Hi" - appears first */}
                 {preloaderComplete && (
                   <motion.div
@@ -793,7 +792,7 @@ export default function Portfolio() {
                     transition={{ duration: 0.8, delay: 0 }}
                     className="mb-2 sm:mb-4 md:mb-6"
                   >
-                    <h1 className="text-[clamp(2.5rem,12vw,7rem)] font-light tracking-tighter leading-tight">
+                    <h1 className="text-6xl xs:text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] xl:text-[12rem] font-light tracking-tighter leading-tight">
                       <span className="bg-gradient-to-r from-primary via-purple-500 to-secondary bg-clip-text text-transparent">
                         Hi,
                       </span>
@@ -809,11 +808,11 @@ export default function Portfolio() {
                     transition={{ duration: 0.8, delay: 0.6 }}
                     className="mb-6 sm:mb-8 md:mb-12 relative inline-block"
                   >
-                  <h2 className="text-[clamp(2.2rem,11vw,7rem)] font-semibold tracking-tighter leading-tight relative whitespace-nowrap">
+                  <h2 className="text-5xl xs:text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-semibold tracking-tighter leading-tight relative whitespace-nowrap">
                     I'm{" "}
                     <span className="relative inline">
                       {/* Black text background */}
-                      <span className="relative z-10" style={{ color: "#0232B8" }}>
+                      <span className="text-black dark:text-black relative z-10" style={{ color: "#0232B8" }}>
                         Suyash
                       </span>
                       
@@ -838,7 +837,7 @@ export default function Portfolio() {
                     transition={{ duration: 0.8, delay: 1.2 }}
                     className="mb-8 sm:mb-10 md:mb-12"
                   >
-                    <p className="text-[clamp(1.1rem,4vw,3.2rem)] font-light text-foreground/80 tracking-tight leading-snug whitespace-nowrap">
+                    <p className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-foreground/80 tracking-tight leading-snug whitespace-nowrap">
                       Aspiring <span style={{ color: "#880808", fontFamily: "Dancing Script, cursive", fontWeight: 600 }}>Software</span> Engineer
                     </p>
                   </motion.div>
@@ -856,20 +855,17 @@ export default function Portfolio() {
                 )}
               </div>
 
-              {/* Right Side - Circular Photo with Let's Connect Below */}
+              {/* RIGHT SECTION — IMAGE WITH FLUID SAFE PADDING */}
               {preloaderComplete && (
-                <motion.div
-                  className="w-full lg:w-1/2 flex flex-col items-center lg:items-end justify-center gap-6 sm:gap-8"
-                  initial={{ opacity: 0, scale: 0.8, y: 30 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 1.8 }}
+                <div
+                  className="w-full md:w-1/2 flex justify-center md:justify-end"
+                  style={{ paddingRight: "clamp(0rem, 6vw, 8rem)" }}
                 >
-                  {/* Circular Photo */}
-                  <motion.div 
-                    className="relative w-52 sm:w-64 md:w-72 lg:w-80 aspect-square rounded-full overflow-hidden border-4 border-gradient-to-r from-primary to-secondary shadow-2xl hover:shadow-primary/30 transition-shadow duration-300"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 1.2, delay: 2.0, ease: "easeOut" }}
+                  <motion.div
+                    className="relative w-[clamp(220px,35vw,420px)] aspect-square rounded-full overflow-hidden border-4 border-gradient-to-r from-primary to-secondary shadow-2xl hover:shadow-primary/30 transition-shadow duration-300"
+                    initial={{ opacity: 0, scale: 0.8, y: 30 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 1.8 }}
                   >
                     <Image
                       src="/suyash1.png"
@@ -881,64 +877,18 @@ export default function Portfolio() {
                              50vw"
                       priority
                     />
-                  </motion.div>                {/* Let's Connect Section - Below Photo */}
-                <motion.div
-                  className="flex flex-col gap-3 sm:gap-4 md:gap-6 items-center"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={preloaderComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ duration: 0.8, delay: preloaderComplete ? 2.2 : 10 }}
-                >
-                  <h3 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl font-light text-foreground/80 whitespace-nowrap">
-                    Let's{" "}
-                    <span style={{ color: "#0232B8", fontFamily: "Dancing Script, cursive", fontWeight: 600, textDecoration: "underline", textDecorationColor: "#880808", textDecorationThickness: "2px", textUnderlineOffset: "4px" }}>
-                      Connect
-                    </span>
-                  </h3>
-                  
-                  {/* Social Icons */}
-                  <div className="flex items-center gap-3 sm:gap-4">
-                    <motion.a
-                      href="https://github.com/s4yashh"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.2, y: -2 }}
-                      className="text-foreground/60 hover:text-foreground transition-colors duration-300"
-                    >
-                      <Github size={20} className="sm:w-5 md:w-6" />
-                    </motion.a>
-                    
-                    <motion.a
-                      href="https://linkedin.com/in/s4yashh"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.2, y: -2 }}
-                      className="text-foreground/60 hover:text-foreground transition-colors duration-300"
-                    >
-                      <Linkedin size={20} className="sm:w-5 md:w-6" />
-                    </motion.a>
-                    
-                    <motion.a
-                      href="mailto:singhsuyash012@gmail.com"
-                      whileHover={{ scale: 1.2, y: -2 }}
-                      className="text-foreground/60 hover:text-foreground transition-colors duration-300"
-                    >
-                      <Mail size={20} className="sm:w-5 md:w-6" />
-                    </motion.a>
-                  </div>
-                </motion.div>
-              </motion.div>
+                  </motion.div>
+                </div>
               )}
-            </div>
-          </motion.div>
-        </div>
-
-        {/* About Section */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 pt-6 sm:pt-8 md:pt-10">
+            </motion.div>
+          </div>
+        </section>        {/* About Section */}
+        <div id="about" className="px-4 sm:px-6 md:px-8 lg:px-12 max-w-6xl pt-6 sm:pt-8 md:pt-10">
           <AboutSection aboutRef={aboutRef} skills={skills} />
         </div>
 
         {/* Projects Section */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+        <div className="px-4 sm:px-6 md:px-8 lg:px-12 max-w-6xl">
           <ProjectsSection
             projectsRef={projectsRef}
             projects={filteredProjects}
@@ -949,17 +899,17 @@ export default function Portfolio() {
         </div>
 
         {/* Experience Section */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+        <div className="px-4 sm:px-6 md:px-8 lg:px-12 max-w-6xl">
           <ExperienceSection experienceRef={experienceRef} experiences={experiences} />
         </div>
 
         {/* Resume Section */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+        <div className="px-4 sm:px-6 md:px-8 lg:px-12 max-w-6xl">
           <ResumeSection resumeRef={resumeRef} />
         </div>
 
         {/* Contact Section */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+        <div className="px-4 sm:px-6 md:px-8 lg:px-12 max-w-6xl">
           <ContactSection contactRef={contactRef} />
         </div>
       </div>
@@ -980,23 +930,13 @@ export default function Portfolio() {
         height: "94vh", 
         maxHeight: "94vh", 
         backgroundColor: "#000000",
-        overflow: "visible",
+        overflow: "hidden",
         flexShrink: 0,
-        position: "relative",
-        marginLeft: "calc(-50vw + 50%)",
-        marginRight: "calc(-50vw + 50%)",
-        paddingLeft: "calc(50vw - 50%)",
-        paddingRight: "calc(50vw - 50%)",
-        paddingTop: "0",
-        paddingBottom: "0",
-        boxSizing: "border-box",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center"
+        position: "relative"
       }}>
 
         {/* Content Container */}
-        <div className="h-full w-full flex flex-col items-start justify-center relative overflow-visible px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-8 sm:py-12 md:py-16">
+        <div className="h-full flex flex-col items-start justify-center px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-8 sm:py-12 md:py-16 relative overflow-hidden">
 
           {/* Social Links - Bottom Left */}
           <motion.div
@@ -1005,18 +945,18 @@ export default function Portfolio() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="absolute bottom-8 left-8 sm:bottom-12 sm:left-12 md:bottom-16 md:left-16 flex items-center gap-4"
           >
-            <a href="https://x.com/S4yash" target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition-opacity">
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition-opacity">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
                 <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2s9 5 20 5a9.5 9.5 0 00-9-5.5c4.75 2.25 7-7 7-7"></path>
               </svg>
             </a>
-            <a href="https://linkedin.com/in/s4yashh" target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition-opacity">
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition-opacity">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
                 <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
                 <circle cx="4" cy="4" r="2"></circle>
               </svg>
             </a>
-            <a href="https://github.com/s4yashh" target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition-opacity">
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition-opacity">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
                 <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v 3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
               </svg>
@@ -1035,12 +975,12 @@ export default function Portfolio() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex items-center gap-1 mb-2 sm:mb-3 md:mb-4 ml-auto mr-12 sm:mr-16 md:mr-80"
+              className="flex items-center gap-1 mb-2 sm:mb-3 md:mb-4 ml-auto mr-5"
             >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
               </svg>
-              <span style={{ color: "white", fontFamily: "Poppins, sans-serif", fontSize: "clamp(0.9rem, 2vw, 1.25rem)", fontWeight: 400 }}>
+              <span style={{ color: "white", fontFamily: "Poppins, sans-serif", fontSize: "clamp(0.7rem, 1.5vw, 0.95rem)", fontWeight: 400 }}>
                 +917985xxxxxx
               </span>
             </motion.div>
