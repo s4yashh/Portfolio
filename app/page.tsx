@@ -45,7 +45,7 @@ function AboutSection({ aboutRef, skills }: { aboutRef: React.RefObject<HTMLElem
           transition={{ duration: 0.8, delay: 0.3 }}
           className="mb-8 sm:mb-10 md:mb-12 relative inline-block pb-0"
         >
-          <h2 className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-7xl font-semibold tracking-tighter leading-tight">
+          <h2 className="text-[clamp(1.8rem,7vw,3.5rem)] font-semibold tracking-tighter leading-tight">
             <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               About Me
             </span>
@@ -774,17 +774,17 @@ export default function Portfolio() {
       {/* Main Layout */}
       <div className="w-full pb-20">
         {/* Hero Section */}
-        <div className="min-h-screen flex items-center px-4 sm:px-6 md:px-8 lg:px-12 pt-20 sm:pt-24 md:pt-28 relative">
+        <div className="min-h-screen flex items-center pt-20 sm:pt-24 md:pt-28 relative">
           <motion.div
-            className="w-full"
+            className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
           >
             {/* Main Content - Responsive Flex layout */}
-            <div className="w-full max-w-6xl flex flex-col lg:flex-row items-center lg:items-start justify-between gap-4 lg:gap-8 relative">
+            <div className="w-full flex flex-col lg:flex-row items-center lg:items-start justify-between gap-8 lg:gap-12 relative">
               {/* Left Side - Text Content */}
-              <div className="w-full lg:w-2/5 flex flex-col">
+              <div className="w-full lg:w-1/2 flex flex-col text-center lg:text-left">
                 {/* "Hi" - appears first */}
                 {preloaderComplete && (
                   <motion.div
@@ -793,7 +793,7 @@ export default function Portfolio() {
                     transition={{ duration: 0.8, delay: 0 }}
                     className="mb-2 sm:mb-4 md:mb-6"
                   >
-                    <h1 className="text-6xl xs:text-7xl sm:text-8xl md:text-9xl lg:text-[7rem] xl:text-[8rem] font-light tracking-tighter leading-tight">
+                    <h1 className="text-[clamp(2.5rem,12vw,7rem)] font-light tracking-tighter leading-tight">
                       <span className="bg-gradient-to-r from-primary via-purple-500 to-secondary bg-clip-text text-transparent">
                         Hi,
                       </span>
@@ -809,11 +809,11 @@ export default function Portfolio() {
                     transition={{ duration: 0.8, delay: 0.6 }}
                     className="mb-6 sm:mb-8 md:mb-12 relative inline-block"
                   >
-                  <h2 className="text-5xl xs:text-6xl sm:text-7xl md:text-8xl lg:text-8xl xl:text-[8rem] font-semibold tracking-tighter leading-tight relative whitespace-nowrap">
+                  <h2 className="text-[clamp(2.2rem,11vw,7rem)] font-semibold tracking-tighter leading-tight relative whitespace-nowrap">
                     I'm{" "}
                     <span className="relative inline">
                       {/* Black text background */}
-                      <span className="text-black dark:text-black relative z-10" style={{ color: "#0232B8" }}>
+                      <span className="relative z-10" style={{ color: "#0232B8" }}>
                         Suyash
                       </span>
                       
@@ -838,7 +838,7 @@ export default function Portfolio() {
                     transition={{ duration: 0.8, delay: 1.2 }}
                     className="mb-8 sm:mb-10 md:mb-12"
                   >
-                    <p className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-foreground/80 tracking-tight leading-snug whitespace-nowrap">
+                    <p className="text-[clamp(1.1rem,4vw,3.2rem)] font-light text-foreground/80 tracking-tight leading-snug whitespace-nowrap">
                       Aspiring <span style={{ color: "#880808", fontFamily: "Dancing Script, cursive", fontWeight: 600 }}>Software</span> Engineer
                     </p>
                   </motion.div>
@@ -859,28 +859,29 @@ export default function Portfolio() {
               {/* Right Side - Circular Photo with Let's Connect Below */}
               {preloaderComplete && (
                 <motion.div
-                  className="w-full lg:w-auto flex flex-col items-center gap-6 sm:gap-8 lg:absolute lg:right-[-350px] lg:top-0"
+                  className="w-full lg:w-1/2 flex flex-col items-center lg:items-end justify-center gap-6 sm:gap-8"
                   initial={{ opacity: 0, scale: 0.8, y: 30 }}
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 1.8 }}
                 >
                   {/* Circular Photo */}
                   <motion.div 
-                    className="relative w-64 sm:w-72 md:w-80 lg:w-96 h-64 sm:h-72 md:h-80 lg:h-96 rounded-full overflow-hidden border-4 border-gradient-to-r from-primary to-secondary shadow-2xl hover:shadow-primary/30 transition-shadow duration-300"
+                    className="relative w-52 sm:w-64 md:w-72 lg:w-80 aspect-square rounded-full overflow-hidden border-4 border-gradient-to-r from-primary to-secondary shadow-2xl hover:shadow-primary/30 transition-shadow duration-300"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 1.2, delay: 2.0, ease: "easeOut" }}
-                >
-                  <Image
-                    src="/suyash1.png"
-                    alt="Suyash Singh"
-                    fill
-                    className="object-cover"
-                    priority
-                  />
-                </motion.div>
-
-                {/* Let's Connect Section - Below Photo */}
+                  >
+                    <Image
+                      src="/suyash1.png"
+                      alt="Suyash Singh"
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 90vw,
+                             (max-width: 1024px) 60vw,
+                             50vw"
+                      priority
+                    />
+                  </motion.div>                {/* Let's Connect Section - Below Photo */}
                 <motion.div
                   className="flex flex-col gap-3 sm:gap-4 md:gap-6 items-center"
                   initial={{ opacity: 0, y: 20 }}
@@ -932,12 +933,12 @@ export default function Portfolio() {
         </div>
 
         {/* About Section */}
-        <div id="about" className="px-4 sm:px-6 md:px-8 lg:px-12 max-w-6xl pt-6 sm:pt-8 md:pt-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 pt-6 sm:pt-8 md:pt-10">
           <AboutSection aboutRef={aboutRef} skills={skills} />
         </div>
 
         {/* Projects Section */}
-        <div className="px-4 sm:px-6 md:px-8 lg:px-12 max-w-6xl">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
           <ProjectsSection
             projectsRef={projectsRef}
             projects={filteredProjects}
@@ -948,17 +949,17 @@ export default function Portfolio() {
         </div>
 
         {/* Experience Section */}
-        <div className="px-4 sm:px-6 md:px-8 lg:px-12 max-w-6xl">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
           <ExperienceSection experienceRef={experienceRef} experiences={experiences} />
         </div>
 
         {/* Resume Section */}
-        <div className="px-4 sm:px-6 md:px-8 lg:px-12 max-w-6xl">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
           <ResumeSection resumeRef={resumeRef} />
         </div>
 
         {/* Contact Section */}
-        <div className="px-4 sm:px-6 md:px-8 lg:px-12 max-w-6xl">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
           <ContactSection contactRef={contactRef} />
         </div>
       </div>

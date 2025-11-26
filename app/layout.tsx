@@ -6,11 +6,11 @@ import { ThemeProvider } from "@/components/theme-provider"
 import PreloaderWrapper from "@/components/preloader-wrapper"
 import SmoothScroll from "@/components/smooth-scroll"
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
-const robotoMono = Roboto_Mono({ subsets: ["latin"], variable: "--font-roboto-mono" })
-const playfairDisplay = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" })
-const dancingScript = Dancing_Script({ subsets: ["latin"], variable: "--font-dancing-script" })
-const nunito = Nunito({ subsets: ["latin"], variable: "--font-nunito" })
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter", weight: ["300", "400", "500", "600", "700"] })
+const robotoMono = Roboto_Mono({ subsets: ["latin"], variable: "--font-roboto-mono", weight: ["400", "700"] })
+const playfairDisplay = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair", weight: ["400", "700"] })
+const dancingScript = Dancing_Script({ subsets: ["latin"], variable: "--font-dancing-script", weight: ["700"] })
+const nunito = Nunito({ subsets: ["latin"], variable: "--font-nunito", weight: ["300", "400", "600", "700"] })
 
 export const metadata: Metadata = {
   title: "Suyash Singh - Developer",
@@ -18,6 +18,12 @@ export const metadata: Metadata = {
     "Portfolio of Suyash Singh, a developer specializing in web technologies. Explore my projects, skills, and experience.",
   icons: {
     icon: "/LOGO.png",
+  },
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 5,
+    userScalable: true,
   },
 }
 
@@ -27,8 +33,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} ${inter.variable} ${robotoMono.variable} ${playfairDisplay.variable} ${dancingScript.variable} ${nunito.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${robotoMono.variable} ${playfairDisplay.variable} ${dancingScript.variable} ${nunito.variable}`}>
+      <body className={`${inter.className}`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <PreloaderWrapper>
             <SmoothScroll>
