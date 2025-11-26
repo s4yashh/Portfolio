@@ -5,7 +5,6 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import PreloaderWrapper from "@/components/preloader-wrapper"
 import SmoothScroll from "@/components/smooth-scroll"
-import { CursorBall } from "@/components/cursor-ball"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 const robotoMono = Roboto_Mono({ subsets: ["latin"], variable: "--font-roboto-mono" })
@@ -30,7 +29,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} ${inter.variable} ${robotoMono.variable} ${playfairDisplay.variable} ${dancingScript.variable} ${nunito.variable}`}>
-        <CursorBall />
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <PreloaderWrapper>
             <SmoothScroll>

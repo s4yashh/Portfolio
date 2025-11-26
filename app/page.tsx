@@ -45,7 +45,7 @@ function AboutSection({ aboutRef, skills }: { aboutRef: React.RefObject<HTMLElem
           transition={{ duration: 0.8, delay: 0.3 }}
           className="mb-8 sm:mb-10 md:mb-12 relative inline-block pb-0"
         >
-          <h2 className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold tracking-tighter leading-tight">
+          <h2 className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-7xl font-semibold tracking-tighter leading-tight">
             <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               About Me
             </span>
@@ -793,7 +793,7 @@ export default function Portfolio() {
                     transition={{ duration: 0.8, delay: 0 }}
                     className="mb-2 sm:mb-4 md:mb-6"
                   >
-                    <h1 className="text-6xl xs:text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] xl:text-[12rem] font-light tracking-tighter leading-tight">
+                    <h1 className="text-6xl xs:text-7xl sm:text-8xl md:text-9xl lg:text-[7rem] xl:text-[8rem] font-light tracking-tighter leading-tight">
                       <span className="bg-gradient-to-r from-primary via-purple-500 to-secondary bg-clip-text text-transparent">
                         Hi,
                       </span>
@@ -809,7 +809,7 @@ export default function Portfolio() {
                     transition={{ duration: 0.8, delay: 0.6 }}
                     className="mb-6 sm:mb-8 md:mb-12 relative inline-block"
                   >
-                  <h2 className="text-5xl xs:text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-semibold tracking-tighter leading-tight relative whitespace-nowrap">
+                  <h2 className="text-5xl xs:text-6xl sm:text-7xl md:text-8xl lg:text-8xl xl:text-[8rem] font-semibold tracking-tighter leading-tight relative whitespace-nowrap">
                     I'm{" "}
                     <span className="relative inline">
                       {/* Black text background */}
@@ -979,18 +979,23 @@ export default function Portfolio() {
         height: "94vh", 
         maxHeight: "94vh", 
         backgroundColor: "#000000",
-        overflow: "hidden",
+        overflow: "visible",
         flexShrink: 0,
         position: "relative",
-        paddingLeft: "1rem",
-        paddingRight: "1rem",
-        paddingTop: "2rem",
-        paddingBottom: "2rem",
-        boxSizing: "border-box"
+        marginLeft: "calc(-50vw + 50%)",
+        marginRight: "calc(-50vw + 50%)",
+        paddingLeft: "calc(50vw - 50%)",
+        paddingRight: "calc(50vw - 50%)",
+        paddingTop: "0",
+        paddingBottom: "0",
+        boxSizing: "border-box",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"
       }}>
 
         {/* Content Container */}
-        <div className="h-full flex flex-col items-start justify-center relative overflow-hidden">
+        <div className="h-full w-full flex flex-col items-start justify-center relative overflow-visible px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-8 sm:py-12 md:py-16">
 
           {/* Social Links - Bottom Left */}
           <motion.div

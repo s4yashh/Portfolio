@@ -25,6 +25,7 @@
     scroll-behavior: smooth;
     height: 100%;
     overflow-y: auto;
+    background-color: #000000;
   }
 
   body {
@@ -33,6 +34,9 @@
     overflow-y: auto;
     display: flex;
     flex-direction: column;
+    background-color: #000000;
+    padding: 0;
+    margin: 0;
   }
 
   #__next {
@@ -40,6 +44,7 @@
     display: flex;
     flex-direction: column;
     height: auto;
+    background-color: #000000;
   }
 
   button,
@@ -806,7 +811,7 @@ html {
 
 /* SAY HI! Heading Styles with Responsive Adjustments */
 .sayhi {
-  font-size: clamp(2.0rem, 11vw, 12rem);
+  font-size: clamp(2.0rem, 11vw, 8rem);
   font-weight: 900;
   font-family: "Poppins", sans-serif;
   color: white;
@@ -822,26 +827,12 @@ html {
   mix-blend-mode: normal;
 }
 
-/* Exclamation mark with circular dot */
+/* Exclamation mark styling */
 .bang {
   font-family: "Verdana", sans-serif;
   position: relative;
   display: inline-block;
   padding: 0 0.1em;
-}
-
-.bang::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: -0.2em;
-  width: 0.3em;
-  height: 0.3em;
-  background: white;
-  border-radius: 50%;
-  z-index: 10;
-  box-shadow: 0 0 0.1em rgba(255, 255, 255, 0.5);
 }
 
 /* Responsive footer adjustments for different screen sizes */
@@ -900,5 +891,98 @@ footer {
     padding-right: 4rem !important;
     padding-top: 4rem !important;
     padding-bottom: 4rem !important;
+  }
+}
+
+/* ====== COMPREHENSIVE RESPONSIVE DESIGN ====== */
+
+/* Extra Small Devices (Mobile) - 320px to 375px */
+@media (max-width: 375px) {
+  body {
+    font-size: 14px;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    word-break: break-word;
+  }
+}
+
+/* Small Mobile - 376px to 480px */
+@media (min-width: 376px) and (max-width: 480px) {
+  body {
+    font-size: 15px;
+  }
+}
+
+/* Medium Mobile - 481px to 640px */
+@media (min-width: 481px) and (max-width: 640px) {
+  body {
+    font-size: 16px;
+  }
+}
+
+/* Tablets - 641px to 768px */
+@media (min-width: 641px) and (max-width: 768px) {
+  body {
+    font-size: 16px;
+  }
+}
+
+/* iPad & Medium Screens - 769px to 1024px */
+@media (min-width: 769px) and (max-width: 1024px) {
+  body {
+    font-size: 17px;
+  }
+}
+
+/* Desktop - 1025px to 1440px */
+@media (min-width: 1025px) and (max-width: 1440px) {
+  body {
+    font-size: 18px;
+  }
+}
+
+/* Large Desktop - 1441px and above */
+@media (min-width: 1441px) {
+  body {
+    font-size: 18px;
+  }
+}
+
+/* Image Responsiveness */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Prevent horizontal scroll */
+body, html {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Ensure all containers respect viewport */
+.container, div[class*="container"] {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Responsive spacing for small screens */
+@media (max-width: 768px) {
+  * {
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+}
+
+/* Safe area for notch devices - NO PADDING, keep black background */
+@supports (padding: max(0px)) {
+  body {
+    padding: 0;
+    margin: 0;
   }
 }
