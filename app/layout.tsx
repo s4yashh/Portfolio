@@ -32,7 +32,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <PreloaderWrapper>
             <SmoothScroll>
-              <div className="page-content">
+              <div className="page-content min-h-screen">
                 {children}
               </div>
             </SmoothScroll>

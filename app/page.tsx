@@ -20,6 +20,7 @@ import {
 import Image from "next/image"
 import Link from "next/link"
 import { motion, useScroll, useTransform, AnimatePresence, useInView } from "framer-motion"
+import { ExperienceStack } from "@/components/experience-stack"
 
 // About Section Component
 function AboutSection({ aboutRef, skills }: { aboutRef: React.RefObject<HTMLElement>; skills: any[] }) {
@@ -253,97 +254,7 @@ function ProjectsSection({
   )
 }
 
-// Experience Section Component
-function ExperienceSection({ experienceRef, experiences }: { experienceRef: React.RefObject<HTMLElement>; experiences: any[] }) {
-  const isInView = useInView(experienceRef, { once: true, margin: "-100px" })
 
-  return (
-    <motion.section
-      id="experience"
-      ref={experienceRef}
-      className="mb-16 sm:mb-20"
-      initial={{ opacity: 0 }}
-      animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-      transition={{ duration: 0.8 }}
-    >
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-      >
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-light mb-6 sm:mb-8 tracking-tight" style={{ fontFamily: "var(--font-inter)" }}>
-          <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-            Experience
-          </span>
-        </h2>
-
-        <div className="space-y-4 sm:space-y-6">
-          {experiences.map((exp: any, idx: number) => (
-            <motion.div
-              key={exp.id}
-              initial={{ opacity: 0, y: 10 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-              transition={{ duration: 0.6, delay: 0.1 + idx * 0.12 }}
-              className="group relative"
-            >
-              {/* Card */}
-              <div className="relative p-4 sm:p-6 rounded-lg border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm hover:border-white/20 transition-all duration-300 overflow-hidden">
-                
-                {/* Animated background on hover */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                />
-
-                {/* Content */}
-                <div className="relative z-10">
-                  {/* Header: Role @ Company | Period • Location */}
-                  <div className="mb-3 sm:mb-4">
-                    <h3 className="text-base sm:text-lg font-semibold text-white mb-1 sm:mb-2" style={{ fontFamily: "var(--font-inter)" }}>
-                      {exp.role} <span className="text-white/60 font-normal">@ {exp.company}</span>
-                    </h3>
-                    <p className="text-xs sm:text-sm text-white/50 flex items-center gap-2 flex-wrap" style={{ fontFamily: "var(--font-inter)" }}>
-                      <span>{exp.period}</span>
-                      <span>•</span>
-                      <span>{exp.location}</span>
-                    </p>
-                  </div>
-
-                  {/* Bullets */}
-                  <ul className="space-y-1.5 sm:space-y-2 mb-3 sm:mb-4" style={{ fontFamily: "var(--font-inter)" }}>
-                    {exp.bullets.map((bullet: string, i: number) => (
-                      <li key={i} className="text-xs sm:text-sm text-white/70 flex gap-2 sm:gap-3">
-                        <span className="text-primary/80 mt-0.5 sm:mt-1 flex-shrink-0">▸</span>
-                        <span>{bullet}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  {/* Tech Stack Badges */}
-                  <div className="flex flex-wrap gap-1.5 sm:gap-2" style={{ fontFamily: "var(--font-inter)" }}>
-                    {exp.tech.map((tech: string) => (
-                      <motion.div
-                        key={tech}
-                        whileHover={{ scale: 1.05 }}
-                        className="px-2 sm:px-3 py-0.5 sm:py-1 rounded-full bg-white/10 border border-white/20 text-xs text-white/80 font-light hover:border-primary/50 transition-colors duration-300"
-                      >
-                        {tech}
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Left accent bar */}
-                <motion.div
-                  className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                />
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
-    </motion.section>
-  )
-}
 
 // Resume Section Component
 function ResumeSection({ resumeRef }: { resumeRef: React.RefObject<HTMLElement> }) {
@@ -555,11 +466,7 @@ export default function Portfolio() {
       role: "Software Developer Intern",
       period: "Sep 2025 – Present",
       location: "Remote",
-      bullets: [
-        "Built AI-powered interview platform with real-time feedback system",
-        "Designed and optimized Supabase database schema for user authentication and interview data",
-        "Integrated Gemini API for advanced speech-to-text transcription and analysis",
-      ],
+      description: "Built AI-powered interview platform with real-time feedback system. Designed and optimized Supabase database schema for user authentication and interview data. Integrated Gemini API for advanced speech-to-text transcription and analysis.",
       tech: ["Next.js", "Supabase", "NextAuth.js", "Gemini API", "TypeScript"],
     },
     {
@@ -568,12 +475,26 @@ export default function Portfolio() {
       role: "Full Stack Web Development Intern",
       period: "Oct 2025 – Present",
       location: "Remote",
-      bullets: [
-        "Developed SuperMall marketplace platform with 15+ product management features",
-        "Created vendor dashboard with analytics and order management system",
-        "Implemented RESTful APIs and integrated payment gateway integration",
-      ],
+      description: "Developed SuperMall marketplace platform with 15+ product management features. Created vendor dashboard with analytics and order management system. Implemented RESTful APIs and integrated payment gateway integration.",
       tech: ["React", "Node.js", "MongoDB", "Express", "TypeScript"],
+    },
+    {
+      id: 3,
+      company: "Freelance",
+      role: "Web Developer",
+      period: "Jun 2024 – Aug 2025",
+      location: "Remote",
+      description: "Built custom websites and web applications for clients. Developed responsive landing pages, e-commerce solutions, and portfolio sites. Collaborated directly with clients to understand requirements and deliver high-quality solutions.",
+      tech: ["React", "Next.js", "Tailwind CSS", "Firebase", "Vercel"],
+    },
+    {
+      id: 4,
+      company: "VIT Vellore",
+      role: "Technical Lead - College Club",
+      period: "Jan 2024 – Present",
+      location: "Vellore, India",
+      description: "Leading technical initiatives and mentoring junior developers. Organized hackathons and coding workshops for 200+ students. Built and maintained club website and internal tools for event management.",
+      tech: ["React", "Node.js", "MongoDB", "Git", "Docker"],
     },
   ]
 
@@ -645,7 +566,7 @@ export default function Portfolio() {
   }
 
   return (
-    <div className="min-h-screen bg-background text-foreground transition-colors duration-300 overflow-x-hidden">
+    <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
       {/* Animated Background */}
       <motion.div className="fixed inset-0 -z-10" style={{ y: backgroundY }}>
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5" />
@@ -773,8 +694,8 @@ export default function Portfolio() {
 
       {/* Main Layout */}
       <div className="w-full pb-20">
-        {/* Hero Section - Bulletproof Fluid Padding Version */}
-        <section className="w-full bg-background pt-20 sm:pt-24 md:pt-32">
+        {/* Hero Section - Takes full viewport height so About is hidden initially */}
+        <section className="w-full bg-background pt-20 sm:pt-24 md:pt-32 min-h-screen flex items-center">
           <div className="w-full px-4 sm:px-6 lg:px-8">
             <motion.div
               className="flex flex-col md:flex-row justify-between items-center gap-8 md:gap-12 lg:gap-16"
@@ -923,7 +844,9 @@ export default function Portfolio() {
               )}
             </motion.div>
           </div>
-        </section>        {/* About Section */}
+        </section>
+
+        {/* About Section - Appears when scrolling */}
         <div id="about" className="px-4 sm:px-6 md:px-8 lg:px-12 max-w-6xl pt-6 sm:pt-8 md:pt-10">
           <AboutSection aboutRef={aboutRef} skills={skills} />
         </div>
@@ -941,7 +864,7 @@ export default function Portfolio() {
 
         {/* Experience Section */}
         <div className="px-4 sm:px-6 md:px-8 lg:px-12 max-w-6xl">
-          <ExperienceSection experienceRef={experienceRef} experiences={experiences} />
+          <ExperienceStack experiences={experiences} />
         </div>
 
         {/* Resume Section */}
@@ -971,13 +894,12 @@ export default function Portfolio() {
         height: "94vh", 
         maxHeight: "94vh", 
         backgroundColor: "#000000",
-        overflow: "hidden",
         flexShrink: 0,
         position: "relative"
       }}>
 
         {/* Content Container */}
-        <div className="h-full flex flex-col items-start justify-center px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-8 sm:py-12 md:py-16 relative overflow-hidden">
+        <div className="h-full flex flex-col items-start justify-center px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-8 sm:py-12 md:py-16 relative">
 
           {/* Social Links - Bottom Left */}
           <motion.div
