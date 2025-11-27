@@ -22,132 +22,6 @@ import Link from "next/link"
 import { motion, useScroll, useTransform, AnimatePresence, useInView } from "framer-motion"
 import { ExperienceStack } from "@/components/experience-stack"
 
-// About Section Component
-function AboutSection({ aboutRef, skills }: { aboutRef: React.RefObject<HTMLElement>; skills: any[] }) {
-  const isInView = useInView(aboutRef, { once: true, margin: "-100px" })
-
-  return (
-    <motion.section
-      id="about"
-      ref={aboutRef}
-      className="mb-20"
-      initial={{ opacity: 1 }}
-      animate={isInView ? { opacity: 1 } : { opacity: 1 }}
-      transition={{ duration: 0.8 }}
-    >
-      <motion.div
-        initial={{ opacity: 0, x: -50 }}
-        animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-      >
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="mb-8 sm:mb-10 md:mb-12 relative inline-block pb-0"
-        >
-          <h2 className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold tracking-tighter leading-tight">
-            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              About Me
-            </span>
-          </h2>
-          {/* Underline animation */}
-          <motion.div
-            className="absolute -bottom-1 left-0 h-1 bg-black"
-            initial={{ scaleX: 0, originX: 0 }}
-            animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
-            transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-            style={{ width: "100%" }}
-          />
-        </motion.div>
-                <motion.div
-          className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white/70 leading-relaxed max-w-3xl font-light" 
-          style={{ fontFamily: "var(--font-nunito)" }}
-        >
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 1, delay: 1.0, ease: "easeOut" }}
-            className="block mb-4"
-          >
-            I'm a <span style={{ color: "#880808", fontFamily: "var(--font-dancing-script)", fontWeight: 700, display: "inline" }}>2nd-year Computer Science student</span> at <span style={{ color: "#880808", fontFamily: "var(--font-dancing-script)", fontWeight: 700, display: "inline" }}>VIT Vellore</span> with a passion for building <span style={{ color: "#880808", fontFamily: "var(--font-dancing-script)", fontWeight: 700, display: "inline" }}>clean, scalable web apps</span> and solving <span style={{ color: "#880808", fontFamily: "var(--font-dancing-script)", fontWeight: 700, display: "inline" }}>real-world problems through code</span>.
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 1, delay: 1.6, ease: "easeOut" }}
-            className="block"
-          >
-            I actively work on <span style={{ color: "#880808", fontFamily: "var(--font-dancing-script)", fontWeight: 700, display: "inline" }}>personal projects</span>, regularly push my progress to <span style={{ color: "#880808", fontFamily: "var(--font-dancing-script)", fontWeight: 700, display: "inline" }}>GitHub</span>, and solve <span style={{ color: "#880808", fontFamily: "var(--font-dancing-script)", fontWeight: 700, display: "inline" }}>Data Structures & Algorithms (DSA)</span> problems on platforms like <span style={{ color: "#880808", fontFamily: "var(--font-dancing-script)", fontWeight: 700, display: "inline" }}>LeetCode</span> and <span style={{ color: "#880808", fontFamily: "var(--font-dancing-script)", fontWeight: 700, display: "inline" }}>Codeforces</span>.
-          </motion.div>
-        </motion.div>
-
-        <div className="mt-10 sm:mt-12 md:mt-16">
-          {/* Skills & Expertise Heading */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="mb-8 sm:mb-10 md:mb-12"
-          >
-            <h3 className="text-2xl sm:text-3xl md:text-4xl font-light tracking-tight">
-              <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                Skills & Expertise
-              </span>
-            </h3>
-          </motion.div>
-
-          {/* Skills Grid */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4 md:gap-5"
-          >
-            {skills.map((skill, index) => (
-              <motion.div
-                key={skill.name}
-                initial={{ opacity: 0, y: 10 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-                transition={{ duration: 0.6, delay: 0.5 + index * 0.05 }}
-                whileHover={{ y: -4 }}
-                className="group relative"
-              >
-                <div className="relative p-4 sm:p-5 md:p-6 rounded-lg border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm hover:border-white/20 transition-all duration-300 overflow-hidden h-full flex flex-col items-center justify-center gap-2 sm:gap-3">
-                  
-                  {/* Animated background on hover */}
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  />
-
-                  {/* Content */}
-                  <div className="relative z-10 flex flex-col items-center gap-2 text-center">
-                    <motion.div
-                      whileHover={{ scale: 1.2, rotate: 10 }}
-                      transition={{ duration: 0.3 }}
-                      className="text-white/70 group-hover:text-white transition-colors"
-                    >
-                      {skill.icon}
-                    </motion.div>
-                    <p className="text-xs sm:text-sm font-light text-white/80 group-hover:text-white transition-colors whitespace-nowrap">
-                      {skill.name}
-                    </p>
-                  </div>
-
-                  {/* Left accent bar */}
-                  <motion.div
-                    className="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  />
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </motion.div>
-    </motion.section>
-  )
-}
-
 // Projects Section Component
 function ProjectsSection({
   projectsRef,
@@ -249,70 +123,6 @@ function ProjectsSection({
             </motion.div>
           ))}
         </div>
-      </motion.div>
-    </motion.section>
-  )
-}
-
-
-
-// Resume Section Component
-function ResumeSection({ resumeRef }: { resumeRef: React.RefObject<HTMLElement> }) {
-  const isInView = useInView(resumeRef, { once: true, margin: "-100px" })
-
-  return (
-    <motion.section
-      id="resume"
-      ref={resumeRef}
-      className="mb-20"
-      initial={{ opacity: 1 }}
-      animate={isInView ? { opacity: 1 } : { opacity: 1 }}
-      transition={{ duration: 0.8 }}
-    >
-      <motion.div
-        initial={{ opacity: 1, y: 0 }}
-        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-      >
-        <h2 className="text-3xl sm:text-4xl font-light mb-8 tracking-tight">
-          <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-            Resume
-          </span>
-        </h2>
-
-        <motion.div
-          initial={{ opacity: 1, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 1, y: 20 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="space-y-4"
-        >
-          <p className="text-base sm:text-lg text-white/70 leading-relaxed font-light">
-            Download my complete resume to see my full background, projects, and qualifications.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4">
-            <a href="/Suyash_Resume 2.pdf" download target="_blank" rel="noopener noreferrer">
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white rounded-lg font-light transition-all hover:shadow-lg hover:shadow-primary/20"
-              >
-                <ExternalLink size={18} className="inline mr-3" />
-                Download PDF
-              </motion.button>
-            </a>
-
-            <a href="/Suyash_Resume 2.pdf" target="_blank" rel="noopener noreferrer">
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="w-full sm:w-auto px-8 py-4 border border-white/20 text-white rounded-lg font-light transition-all hover:border-white/40 hover:bg-white/5"
-              >
-                View in Browser
-              </motion.button>
-            </a>
-          </div>
-        </motion.div>
       </motion.div>
     </motion.section>
   )
@@ -480,12 +290,12 @@ export default function Portfolio() {
     },
     {
       id: 3,
-      company: "Freelance",
-      role: "Web Developer",
-      period: "Jun 2024 – Aug 2025",
+      company: "Hacktoberfest",
+      role: "Open Source Contributor",
+      period: "Oct 2025 – Oct 2025",
       location: "Remote",
-      description: "Built custom websites and web applications for clients. Developed responsive landing pages, e-commerce solutions, and portfolio sites. Collaborated directly with clients to understand requirements and deliver high-quality solutions.",
-      tech: ["React", "Next.js", "Tailwind CSS", "Firebase", "Vercel"],
+      description: "Successfully contributed to Hacktoberfest 2024 with 6 pull requests merged across cross-platform open-source repositories, fixing bugs, and solving issues.",
+     
     },
     {
       id: 4,
@@ -499,11 +309,8 @@ export default function Portfolio() {
   ]
 
   const navigationItems = [
-    { label: "About", id: "about" },
-    { label: "Projects", id: "projects" },
     { label: "Experience", id: "experience" },
-    { label: "Resume", id: "resume" },
-    { label: "Contact", id: "contact" },
+    { label: "Projects", id: "projects" },
   ]
 
   const allTechnologies = Array.from(new Set(projects.flatMap((project) => project.tags))).sort()
@@ -846,9 +653,9 @@ export default function Portfolio() {
           </div>
         </section>
 
-        {/* About Section - Appears when scrolling */}
-        <div id="about" className="px-4 sm:px-6 md:px-8 lg:px-12 max-w-6xl pt-6 sm:pt-8 md:pt-10">
-          <AboutSection aboutRef={aboutRef} skills={skills} />
+        {/* Experience Section */}
+        <div className="px-4 sm:px-6 md:px-8 lg:px-12 max-w-6xl">
+          <ExperienceStack experiences={experiences} />
         </div>
 
         {/* Projects Section */}
@@ -860,21 +667,6 @@ export default function Portfolio() {
             selectedFilter={selectedFilter}
             setSelectedFilter={setSelectedFilter}
           />
-        </div>
-
-        {/* Experience Section */}
-        <div className="px-4 sm:px-6 md:px-8 lg:px-12 max-w-6xl">
-          <ExperienceStack experiences={experiences} />
-        </div>
-
-        {/* Resume Section */}
-        <div className="px-4 sm:px-6 md:px-8 lg:px-12 max-w-6xl">
-          <ResumeSection resumeRef={resumeRef} />
-        </div>
-
-        {/* Contact Section */}
-        <div className="px-4 sm:px-6 md:px-8 lg:px-12 max-w-6xl">
-          <ContactSection contactRef={contactRef} />
         </div>
       </div>
 
@@ -908,18 +700,18 @@ export default function Portfolio() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="absolute bottom-8 left-8 sm:bottom-12 sm:left-12 md:bottom-16 md:left-16 flex items-center gap-4"
           >
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition-opacity">
+            <a href="https://twitter.com/S4yash" target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition-opacity">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
                 <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2s9 5 20 5a9.5 9.5 0 00-9-5.5c4.75 2.25 7-7 7-7"></path>
               </svg>
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition-opacity">
+            <a href="https://linkedin.com/in/suyashsingh-dev" target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition-opacity">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
                 <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
                 <circle cx="4" cy="4" r="2"></circle>
               </svg>
             </a>
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition-opacity">
+            <a href="https://github.com/s4yashh" target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition-opacity">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
                 <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v 3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
               </svg>
@@ -942,7 +734,7 @@ export default function Portfolio() {
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-              </svg>
+            </svg>
               <span style={{ color: "white", fontFamily: "Poppins, sans-serif", fontSize: "clamp(0.7rem, 1.5vw, 0.95rem)", fontWeight: 400 }}>
                 +917985xxxxxx
               </span>
