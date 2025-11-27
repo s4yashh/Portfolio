@@ -59,7 +59,7 @@ function AboutSection({ aboutRef, skills }: { aboutRef: React.RefObject<HTMLElem
             style={{ width: "100%" }}
           />
         </motion.div>
-                <motion.p 
+                <motion.div
           className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white/70 leading-relaxed max-w-3xl font-light" 
           style={{ fontFamily: "var(--font-nunito)" }}
         >
@@ -79,7 +79,7 @@ function AboutSection({ aboutRef, skills }: { aboutRef: React.RefObject<HTMLElem
           >
             I actively work on <span style={{ color: "#880808", fontFamily: "var(--font-dancing-script)", fontWeight: 700, display: "inline" }}>personal projects</span>, regularly push my progress to <span style={{ color: "#880808", fontFamily: "var(--font-dancing-script)", fontWeight: 700, display: "inline" }}>GitHub</span>, and solve <span style={{ color: "#880808", fontFamily: "var(--font-dancing-script)", fontWeight: 700, display: "inline" }}>Data Structures & Algorithms (DSA)</span> problems on platforms like <span style={{ color: "#880808", fontFamily: "var(--font-dancing-script)", fontWeight: 700, display: "inline" }}>LeetCode</span> and <span style={{ color: "#880808", fontFamily: "var(--font-dancing-script)", fontWeight: 700, display: "inline" }}>Codeforces</span>.
           </motion.div>
-        </motion.p>
+        </motion.div>
 
         <div className="mt-10 sm:mt-12 md:mt-16">
           {/* Skills & Expertise Heading */}
@@ -855,28 +855,69 @@ export default function Portfolio() {
                 )}
               </div>
 
-              {/* RIGHT SECTION — IMAGE WITH FLUID SAFE PADDING */}
+              {/* RIGHT SECTION — IMAGE + LET'S CONNECT */}
               {preloaderComplete && (
-                <div
-                  className="w-full md:w-1/2 flex justify-center md:justify-end"
-                  style={{ paddingRight: "clamp(0rem, 6vw, 8rem)" }}
-                >
-                  <motion.div
-                    className="relative w-[clamp(220px,35vw,420px)] aspect-square rounded-full overflow-hidden border-4 border-gradient-to-r from-primary to-secondary shadow-2xl hover:shadow-primary/30 transition-shadow duration-300"
-                    initial={{ opacity: 0, scale: 0.8, y: 30 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 1.8 }}
+                <div className="w-full md:w-1/2 flex flex-col items-center gap-6 sm:gap-8 md:gap-10">
+                  {/* Image */}
+                  <div
+                    className="w-full flex justify-center"
+                    style={{ paddingRight: "clamp(0rem, 6vw, 8rem)" }}
                   >
-                    <Image
-                      src="/suyash1.png"
-                      alt="Suyash Singh"
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 640px) 90vw,
-                             (max-width: 1024px) 60vw,
-                             50vw"
-                      priority
-                    />
+                    <motion.div
+                      className="relative w-[clamp(220px,35vw,420px)] aspect-square rounded-full overflow-hidden shadow-2xl hover:shadow-primary/30 transition-shadow duration-300"
+                      initial={{ opacity: 0, scale: 0.8, y: 30 }}
+                      animate={{ opacity: 1, scale: 1, y: 0 }}
+                      transition={{ duration: 0.8, delay: 1.8 }}
+                    >
+                      <Image
+                        src="/suyash1.png"
+                        alt="Suyash Singh"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 90vw,
+                               (max-width: 1024px) 60vw,
+                               50vw"
+                        priority
+                      />
+                    </motion.div>
+                  </div>
+
+                  {/* Let's Connect Section Below Image - Centered */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 2.2 }}
+                    className="flex flex-col items-center gap-3 sm:gap-4"
+                    style={{ paddingRight: "clamp(0rem, 6vw, 8rem)" }}
+                  >
+                    <p style={{ fontSize: "clamp(2rem, 2.5vw, 1.3rem)", fontWeight: 400, color: "white" }}>
+                      Let's <span style={{ fontFamily: "Dancing Script, cursive", fontWeight: 600, color: "#0232B8" }}>Connect-</span>
+                    </p>
+                    {/* Social Icons */}
+                    <div className="flex items-center gap-4 sm:gap-6">
+                      <a
+                        href="https://github.com/s4yashh"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-primary transition-colors duration-300"
+                      >
+                        <Github size={24} className="text-foreground/70 hover:text-foreground" />
+                      </a>
+                      <a
+                        href="https://linkedin.com/in/suyashsingh-dev"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-primary transition-colors duration-300"
+                      >
+                        <Linkedin size={24} className="text-foreground/70 hover:text-foreground" />
+                      </a>
+                      <a
+                        href="mailto:singhsuyash012@gmail.com"
+                        className="hover:text-primary transition-colors duration-300"
+                      >
+                        <Mail size={24} className="text-foreground/70 hover:text-foreground" />
+                      </a>
+                    </div>
                   </motion.div>
                 </div>
               )}
