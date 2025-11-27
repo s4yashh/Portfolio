@@ -7,16 +7,23 @@ import { motion } from "framer-motion"
  * Using CSS position:sticky with incrementing top values
  */
 export function ExperienceStack({ experiences = [] }: { experiences: any[] }) {
+  const logos = [
+    "/jolenergy.png",
+    "/unifiedmentor.jpeg",
+    "/hacktoberfest.png",
+    "/adg.jpeg", // Replace with the actual image name for the 4th experience
+  ];
+
   return (
     <section className="relative py-16 w-full overflow-visible">
       {/* Section Title - Left aligned */}
-      <div className="mb-8 flex flex-col md:flex-row md:items-center md:justify-between">
+      <div className="mb-8 flex flex-col md:flex-row md:items-center md:justify-between sticky" style={{ top: `calc(var(--header-height) + 80px)`, zIndex: 10, height: `calc(80px + ${experiences.length * 30}px)` }}>
         <div>
           <h2 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent">
             Experience
           </h2>
         </div>
-        <p className="text-white/60 text-sm md:text-base max-w-md leading-relaxed mt-2 md:mt-0 md:ml-8 text-right">
+        <p className="text-white/60 text-sm md:text-base max-w-md leading-relaxed mt-2 md:mt-0 text-right md:absolute md:top-0 md:right-0">
           A journey shaped by learning, building, and solving real problems. Each experience has helped me grow into a better engineer.
         </p>
       </div>
@@ -30,7 +37,7 @@ export function ExperienceStack({ experiences = [] }: { experiences: any[] }) {
           return (
             <div
               key={exp.id}
-              className="sticky w-full"
+              className="sticky w-full mb-8" // Added margin-bottom for spacing
               style={{
                 top: `${stickyTop}px`,
                 zIndex: i + 1,
@@ -41,7 +48,7 @@ export function ExperienceStack({ experiences = [] }: { experiences: any[] }) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4 }}
-                className="relative p-6 md:p-10 rounded-2xl bg-white group w-full"
+                className="relative p-6 md:p-10 rounded-2xl bg-gray-200 group w-full"
               >
                 {/* Card Number - Large faded */}
                 <div className="absolute top-4 right-6 text-white text-7xl font-bold pointer-events-none">
@@ -88,6 +95,20 @@ export function ExperienceStack({ experiences = [] }: { experiences: any[] }) {
                     ))}
                   </div>
                 </div>
+
+                {/* Company Logo */}
+                {logos[i] && (
+                  <div
+                    className="absolute top-1/2 right-[-400px] transform -translate-y-1/2 "
+                  >
+                
+                    <img
+                      src={logos[i]}
+                      alt={`${exp.company} logo`}
+                      className="w-52 h-52 md:w-70 md:h-70 object-contain"
+                    />
+                  </div>
+                )}
               </motion.div>
             </div>
           )
