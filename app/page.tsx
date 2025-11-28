@@ -299,12 +299,12 @@ export default function Portfolio() {
     },
     {
       id: 4,
-      company: "VIT Vellore",
-      role: "Technical Lead - College Club",
+      company: "ADG-VIT",
+      role: "Junior Core Member",
       period: "Jan 2024 – Present",
       location: "Vellore, India",
-      description: "Leading technical initiatives and mentoring junior developers. Organized hackathons and coding workshops for 200+ students. Built and maintained club website and internal tools for event management.",
-      tech: ["React", "Node.js", "MongoDB", "Git", "Docker"],
+      description: "Organized hackathons and coding workshops for 100+ students. Built and maintained club website and internal tools for event management.",
+      tech: [],
     },
   ]
 
