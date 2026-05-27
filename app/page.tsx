@@ -632,7 +632,7 @@ export default function Portfolio() {
                         <Github size={24} className="text-foreground/70 hover:text-foreground" />
                       </a>
                       <a
-                        href="https://linkedin.com/in/suyashsingh-dev"
+                        href="https://www.linkedin.com/in/s4yashh/"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="hover:text-primary transition-colors duration-300"
