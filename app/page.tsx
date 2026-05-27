@@ -566,7 +566,7 @@ export default function Portfolio() {
                     className="mb-8 sm:mb-10 md:mb-12"
                   >
                     <p className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-foreground/80 tracking-tight leading-snug whitespace-nowrap">
-                      Aspiring <span style={{ color: "#880808", fontFamily: "Dancing Script, cursive", fontWeight: 600 }}>Software</span> Engineer
+                   <span style={{ color: "#880808", fontFamily: "Dancing Script, cursive", fontWeight: 600 }}>Full Stack Developer</span> 
                     </p>
                   </motion.div>
                 )}
