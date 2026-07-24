@@ -90,7 +90,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              {/* Audio Text */}
+              {/* Identity label */}
               <motion.p
                 style={{
                   color: "#F5F5F5",
@@ -107,7 +107,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
               >
-                THIS SITE SOUNDS BETTER WITH AUDIO
+                Suyash Singh — Developer
               </motion.p>
 
               {/* Filling Progress Line - Static container, filling inside */}
