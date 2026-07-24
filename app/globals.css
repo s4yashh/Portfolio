@@ -809,7 +809,7 @@ html {
   position: relative;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.78);
-  border-radius: 9999px;
+  border-radius: 0;
   background: rgba(250, 249, 246, 0.74);
   box-shadow: 0 14px 38px rgba(30, 35, 43, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.92), inset 0 -1px 0 rgba(42, 47, 54, 0.05);
   backdrop-filter: blur(24px) saturate(1.35);
