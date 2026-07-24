@@ -20,7 +20,7 @@ import {
 } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import { motion, useScroll, useTransform, AnimatePresence, useInView } from "framer-motion"
+import { motion, useScroll, useTransform, AnimatePresence, useInView, useReducedMotion } from "framer-motion"
 import { ExperienceStack } from "@/components/experience-stack"
 
 // Projects Section Component
@@ -188,12 +188,20 @@ export default function Portfolio() {
   const [activeSection, setActiveSection] = useState("home")
   const [selectedFilter, setSelectedFilter] = useState("all")
   const [isAudioPlaying, setIsAudioPlaying] = useState(false)
-  const [showMusicPlayer, setShowMusicPlayer] = useState(false)
+  const [roleIndex, setRoleIndex] = useState(0)
   const audioRef = useRef<HTMLAudioElement>(null)
+  const reduceMotion = useReducedMotion()
+  const rotatingRoles = ["Developer", "Learner", "Creator"]
 
   useEffect(() => {
     setMounted(true)
   }, [])
+
+  useEffect(() => {
+    if (reduceMotion) return
+    const interval = window.setInterval(() => setRoleIndex((current) => (current + 1) % rotatingRoles.length), 4000)
+    return () => window.clearInterval(interval)
+  }, [reduceMotion])
 
   const { scrollY } = useScroll()
   const backgroundY = useTransform(scrollY, [0, 2000], [0, -500])
@@ -333,44 +341,6 @@ export default function Portfolio() {
     }
   }
 
-  useEffect(() => {
-    let musicStarted = false
-    
-    const startMusic = () => {
-      // Start music on user tap/click
-      if (!musicStarted && audioRef.current) {
-        const playPromise = audioRef.current.play()
-        if (playPromise !== undefined) {
-          playPromise
-            .then(() => {
-              // Audio playback started successfully
-              setIsAudioPlaying(true)
-              musicStarted = true
-            })
-            .catch((error) => {
-              // Autoplay was prevented or error occurred
-              console.log("Playback error:", error)
-            })
-        } else {
-          // Older browsers
-          setIsAudioPlaying(true)
-          musicStarted = true
-        }
-        // Remove listener after first successful attempt
-        document.removeEventListener("click", startMusic)
-        document.removeEventListener("touchstart", startMusic)
-      }
-    }
-
-    document.addEventListener("click", startMusic)
-    document.addEventListener("touchstart", startMusic)
-    
-    return () => {
-      document.removeEventListener("click", startMusic)
-      document.removeEventListener("touchstart", startMusic)
-    }
-  }, [])
-
   if (!mounted) {
     return null
   }
@@ -393,111 +363,38 @@ export default function Portfolio() {
       </motion.div>
 
       {/* Horizontal Navigation Bar */}
-      <nav className="sticky top-0 left-0 right-0 z-40 px-3 py-3 sm:px-6 sm:py-4">
-        <div className="liquid-glass mx-auto flex w-full max-w-5xl items-center justify-between gap-3 p-1.5">
-          <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.96 }} onClick={() => scrollToSection("home")} aria-label="Back to top" className="hidden h-9 w-9 shrink-0 items-center justify-center rounded-full bg-foreground text-sm font-semibold tracking-tight text-background shadow-lg sm:flex">SS</motion.button>
-          {/* Left Navigation Items */}
-          <div className="flex min-w-0 items-center gap-1 overflow-x-auto rounded-full p-1">
+      <nav className="portfolio-nav fixed inset-x-0 top-0 z-40 px-3 py-3 sm:px-6 sm:py-4" aria-label="Primary navigation">
+        <div className="liquid-glass mx-auto flex w-full max-w-5xl items-center justify-between gap-2 p-1.5 sm:gap-4">
+          <button onClick={() => scrollToSection("home")} className="nav-identity min-w-0 px-3 py-2 text-left" aria-label="Back to top">
+            <span className="block font-[family-name:var(--font-space)] text-sm font-semibold tracking-tight text-foreground sm:text-base">Suyash</span>
+            <span className="relative block h-4 overflow-hidden text-[10px] font-medium tracking-[0.12em] text-foreground/55 uppercase sm:text-[11px]">
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.span key={rotatingRoles[roleIndex]} initial={reduceMotion ? false : { y: 14, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={reduceMotion ? undefined : { y: -14, opacity: 0 }} transition={{ duration: 0.28, ease: "easeOut" }} className="absolute inset-x-0 top-0">
+                  {rotatingRoles[roleIndex]}
+                </motion.span>
+              </AnimatePresence>
+            </span>
+          </button>
+
+          <div className="nav-sections relative flex min-w-0 items-center rounded-full p-1">
             {navigationItems.map((item) => (
-              <motion.button
-                key={item.id}
-                whileHover={{ scale: 1.08, y: -1 }}
-                whileTap={{ scale: 0.96 }}
-                onClick={() => scrollToSection(item.id)}
-                className={`relative whitespace-nowrap rounded-full px-3 py-1.5 text-xs font-medium tracking-wide transition-all duration-300 sm:px-4 sm:text-sm ${
-                  activeSection === item.id
-                    ? "bg-foreground text-background shadow-lg"
-                    : "text-foreground/65 hover:bg-background/50 hover:text-foreground"
-                }`}
-              >
+              <button key={item.id} onClick={() => scrollToSection(item.id)} className={`relative z-10 whitespace-nowrap rounded-full px-2.5 py-2 text-[11px] font-medium transition-colors sm:px-4 sm:text-sm ${activeSection === item.id ? "text-foreground" : "text-foreground/58 hover:text-foreground"}`}>
+                {activeSection === item.id && <motion.span layoutId="active-navigation" transition={{ type: "spring", bounce: 0.18, duration: 0.45 }} className="absolute inset-0 -z-10 rounded-full border border-foreground/10 bg-white/70 shadow-sm" />}
                 {item.label}
-              </motion.button>
+              </button>
             ))}
           </div>
 
-          {/* Right Side Controls */}
-          <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
-            {/* Music Player - Dots when paused, Equalizer when playing with Song Name */}
-            <motion.button
-              type="button"
-              aria-label={isAudioPlaying ? "Pause music" : "Play music"}
-              className="liquid-glass-control flex h-9 items-center gap-2 rounded-full px-3 text-foreground"
-              onClick={() => {
-                if (audioRef.current) {
-                  if (isAudioPlaying) {
-                    audioRef.current.pause()
-                    setIsAudioPlaying(false)
-                  } else {
-                    audioRef.current.play()
-                    setIsAudioPlaying(true)
-                  }
-                }
-              }}
-              whileHover={{ scale: 1.12, y: -1 }}
-              whileTap={{ scale: 0.96 }}
-            >
-              <AnimatePresence mode="wait">
-                {isAudioPlaying ? (
-                  // Equalizer Bars when playing with Song Name
-                  <motion.div
-                    key="equalizer-group"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.4 }}
-                    className="flex items-center gap-2"
-                  >
-                    {/* Equalizer Bars */}
-                    <div className="flex items-center gap-1">
-                      {[0, 1, 2].map((i) => (
-                        <motion.div
-                          key={i}
-                          className="w-1 rounded-full"
-                          style={{ backgroundColor: "#001085" }}
-                          animate={{
-                            height: ["4px", "12px", "8px", "12px", "4px"]
-                          }}
-                          transition={{
-                            duration: 0.5,
-                            repeat: Number.POSITIVE_INFINITY,
-                            delay: i * 0.1,
-                            ease: "easeInOut"
-                          }}
-                        />
-                      ))}
-                    </div>
-                    {/* Song Name */}
-                    <motion.span
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -10 }}
-                      transition={{ duration: 0.5, ease: "easeOut" }}
-                      className="text-xs font-light text-white/80 whitespace-nowrap"
-                    >
-                      ≪Lose My Mind≫
-                    </motion.span>
-                  </motion.div>
-                ) : (
-                  // Three Dots when paused (stationary, no color change)
-                  <motion.div
-                    key="dots"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.4 }}
-                    className="flex items-center gap-1.5"
-                  >
-                    {[0, 1, 2].map((i) => (
-                      <motion.div
-                        key={i}
-                        className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-primary to-secondary"
-                      />
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.button>
-          </div>
+          <motion.button type="button" aria-label={isAudioPlaying ? "Pause background music" : "Play background music"} aria-pressed={isAudioPlaying} className={`music-control flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${isAudioPlaying ? "is-playing" : ""}`} onClick={() => {
+            if (!audioRef.current) return
+            if (isAudioPlaying) audioRef.current.pause()
+            else void audioRef.current.play()
+          }} whileHover={reduceMotion ? undefined : { scale: 1.06 }} whileTap={{ scale: 0.94 }}>
+            <span className="sr-only">{isAudioPlaying ? "Pause music" : "Play music"}</span>
+            <span className="music-orb" aria-hidden="true">
+              {[0, 1, 2].map((bar) => <motion.i key={bar} animate={isAudioPlaying && !reduceMotion ? { scaleY: [0.45, 1, 0.6, 0.9, 0.45] } : { scaleY: 0.45 }} transition={{ duration: 0.72, repeat: isAudioPlaying && !reduceMotion ? Infinity : 0, delay: bar * 0.11, ease: "easeInOut" }} />)}
+            </span>
+          </motion.button>
         </div>
       </nav>
 

@@ -1,16 +1,15 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter, Roboto_Mono, Playfair_Display, Dancing_Script, Nunito } from "next/font/google"
+import { Inter, Playfair_Display, Dancing_Script, Space_Grotesk } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import PreloaderWrapper from "@/components/preloader-wrapper"
 import SmoothScroll from "@/components/smooth-scroll"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
-const robotoMono = Roboto_Mono({ subsets: ["latin"], variable: "--font-roboto-mono" })
 const playfairDisplay = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" })
 const dancingScript = Dancing_Script({ subsets: ["latin"], variable: "--font-dancing-script" })
-const nunito = Nunito({ subsets: ["latin"], variable: "--font-nunito" })
+const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space" })
 
 export const metadata: Metadata = {
   title: "Suyash Singh - Developer",
@@ -28,7 +27,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} ${inter.variable} ${robotoMono.variable} ${playfairDisplay.variable} ${dancingScript.variable} ${nunito.variable}`}>
+      <body className={`${inter.className} ${inter.variable} ${playfairDisplay.variable} ${dancingScript.variable} ${spaceGrotesk.variable}`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <PreloaderWrapper>
             <SmoothScroll>
