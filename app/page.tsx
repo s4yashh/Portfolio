@@ -364,7 +364,7 @@ export default function Portfolio() {
 
       {/* Horizontal Navigation Bar */}
       <nav className="portfolio-nav fixed inset-x-0 top-0 z-40 px-3 py-3 sm:px-6 sm:py-4" aria-label="Primary navigation">
-        <div className="liquid-glass mx-auto flex w-full max-w-5xl items-center justify-between gap-2 p-1.5 sm:gap-4">
+        <div className="liquid-glass mx-3 sm:mx-6 flex w-full items-center justify-between gap-2 p-1.5 sm:gap-4 rounded-xl">
           <button onClick={() => scrollToSection("home")} className="nav-identity min-w-0 px-3 py-2 text-left" aria-label="Back to top">
             <span className="block font-[family-name:var(--font-space)] text-sm font-semibold tracking-tight text-foreground sm:text-base">Suyash</span>
             <span className="relative block  text-[10px] font-medium tracking-[0.12em] text-foreground/55 uppercase sm:text-[11px]">
