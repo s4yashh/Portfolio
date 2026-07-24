@@ -102,23 +102,23 @@ function ProjectsSection({
               className={`project-showcase group overflow-hidden rounded-3xl ${index === 0 ? "md:col-span-2" : ""}`}
             >
               <div className={`grid h-full ${index === 0 ? "md:grid-cols-[1.1fr_0.9fr]" : ""}`}>
-                <div className={`relative min-h-44 overflow-hidden border-b border-background/10 bg-background/5 ${index === 0 ? "md:order-2 md:min-h-full md:border-b-0 md:border-l" : ""}`}>
+                <div className={`relative min-h-44 overflow-hidden border-b border-foreground/10 bg-foreground/[0.03] ${index === 0 ? "md:order-2 md:min-h-full md:border-b-0 md:border-l" : ""}`}>
                   <Image src={`/${project.image}`} alt={`${project.title} preview`} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes={index === 0 ? "(max-width: 768px) 100vw, 50vw" : "(max-width: 768px) 100vw, 50vw"} />
-                  <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-foreground/20 via-transparent to-transparent" />
                 </div>
                 <div className={`flex flex-col p-5 sm:p-6 ${index === 0 ? "md:order-1 md:p-8" : ""}`}>
                   <div className="mb-4 flex items-start justify-between gap-4">
-                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-background/55">0{index + 1} / {project.category}</p>
-                    <Link href={project.demo} target="_blank" aria-label={`Visit ${project.title}`} className="rounded-full border border-background/15 bg-background/[0.06] p-2 text-background/70 transition-colors hover:scale-110 hover:bg-background hover:text-foreground"><ArrowUpRight className="h-4 w-4" /></Link>
+                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-foreground/48">0{index + 1} / {project.category}</p>
+                    <Link href={project.demo} target="_blank" aria-label={`Visit ${project.title}`} className="rounded-full border border-foreground/10 bg-white p-2 text-foreground/70 shadow-sm transition-colors hover:scale-110 hover:bg-foreground hover:text-background"><ArrowUpRight className="h-4 w-4" /></Link>
                   </div>
-                  <h3 className="text-xl font-semibold tracking-tight text-background sm:text-2xl">{project.title}</h3>
-                  <p className="mt-3 text-sm leading-7 text-background/70">{project.description}</p>
+                  <h3 className="font-[family-name:var(--font-space)] text-xl font-semibold tracking-tight text-foreground sm:text-2xl">{project.title}</h3>
+                  <p className="mt-3 text-sm leading-7 text-foreground/67">{project.description}</p>
                   <div className="mt-5 flex flex-wrap gap-1.5">
-                    {project.tags.map((tag: string) => <Badge key={tag} variant="outline" className="border-background/15 bg-background/[0.08] px-2 py-0.5 text-[11px] font-medium text-background/75">{tag}</Badge>)}
+                    {project.tags.map((tag: string) => <Badge key={tag} variant="outline" className="border-foreground/10 bg-foreground/[0.035] px-2 py-0.5 text-[11px] font-medium text-foreground/65">{tag}</Badge>)}
                   </div>
                   <div className="mt-6 flex items-center gap-3">
-                    <Link href={project.link} target="_blank" className="inline-flex items-center gap-2 text-sm font-medium text-background transition-colors hover:text-background/65"><Github size={15} />Code</Link>
-                    <Link href={project.demo} target="_blank" className="inline-flex items-center gap-2 text-sm font-medium text-background/65 transition-colors hover:text-background"><ExternalLink size={15} />Live preview</Link>
+                    <Link href={project.link} target="_blank" className="inline-flex items-center gap-2 rounded-full bg-foreground px-3.5 py-2 text-sm font-medium text-background transition-colors hover:bg-foreground/82"><Github size={15} />Code</Link>
+                    <Link href={project.demo} target="_blank" className="inline-flex items-center gap-2 rounded-full border border-foreground/14 px-3.5 py-2 text-sm font-medium text-foreground/72 transition-colors hover:border-foreground/30 hover:text-foreground"><ExternalLink size={15} />Live preview</Link>
                   </div>
                 </div>
               </div>
