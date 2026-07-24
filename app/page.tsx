@@ -7,6 +7,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { usePreloaderContext } from "@/components/preloader-wrapper"
 
+
 import {
   Github,
   Linkedin,
@@ -229,6 +230,25 @@ export default function Portfolio() {
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+  useEffect(() => {
+  const glass = document.querySelector(".liquid-glass") as HTMLElement | null;
+
+  if (!glass) return;
+
+  const handleMove = (e: MouseEvent) => {
+    const rect = glass.getBoundingClientRect();
+
+    glass.style.setProperty("--x", `${e.clientX - rect.left}px`);
+    glass.style.setProperty("--y", `${e.clientY - rect.top}px`);
+  };
+
+  glass.addEventListener("mousemove", handleMove);
+
+  return () => {
+    glass.removeEventListener("mousemove", handleMove);
+  };
+}, []);
+
 
   const heroRef = useRef<HTMLElement>(null)
   const aboutRef = useRef<HTMLElement>(null)
@@ -364,7 +384,10 @@ export default function Portfolio() {
 
       {/* Horizontal Navigation Bar */}
       <nav className="portfolio-nav fixed inset-x-0 top-0 z-40" aria-label="Primary navigation">
-        <div className="liquid-glass flex w-full items-center justify-between gap-2 p-2 sm:p-3 sm:gap-4">
+        <div
+  className="liquid-glass flex w-full items-center justify-between gap-2 p-2 sm:p-3 sm:gap-4"
+  id="liquidGlass"
+>
           <button onClick={() => scrollToSection("home")} className="nav-identity min-w-0 px-3 py-2 text-left" aria-label="Back to top">
             <span className="block font-[family-name:var(--font-space)] text-sm font-semibold tracking-tight text-foreground sm:text-base">Suyash</span>
             <span className="relative block  text-[10px] font-medium tracking-[0.12em] text-foreground/55 uppercase sm:text-[11px]">
@@ -376,7 +399,7 @@ export default function Portfolio() {
             </span>
           </button>
 
-          <div className="nav-sections relative flex min-w-0 items-center rounded-full p-1">
+          <div className="relative flex min-w-0 items-center gap-2">
             {navigationItems.map((item) => (
               <button key={item.id} onClick={() => scrollToSection(item.id)} className={`relative z-10 whitespace-nowrap rounded-full px-2.5 py-2 text-[11px] font-medium transition-colors sm:px-4 sm:text-sm ${activeSection === item.id ? "text-foreground" : "text-foreground/58 hover:text-foreground"}`}>
                 {activeSection === item.id && <motion.span layoutId="active-navigation" transition={{ type: "spring", bounce: 0.18, duration: 0.45 }} className="absolute inset-0 -z-10 rounded-full border border-foreground/10 bg-white/70 shadow-sm" />}

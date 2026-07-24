@@ -2,15 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom Fonts */
-@font-face {
-  font-family: "Poppins";
-  src: url("/fonts/Poppins-900.woff2") format("woff2"),
-       url("/fonts/Poppins-900.ttf") format("truetype");
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
-}
 
 @font-face {
   font-family: "Verdana";
@@ -313,14 +304,7 @@ header nav button {
   /* will-change removed: it breaks position:fixed on child elements like the nav */
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-}
+
 
 /* Light Mode Text Color Overrides - ALL text becomes dark/visible */
 .light {
@@ -540,7 +524,7 @@ header nav button {
 @layer utilities {
   .line-clamp-3 {
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+   
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
@@ -808,25 +792,58 @@ html {
 .liquid-glass {
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.78);
-  border-radius: 0;
-  background: rgba(250, 249, 246, 0.74);
-  box-shadow: 0 14px 38px rgba(30, 35, 43, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.92), inset 0 -1px 0 rgba(42, 47, 54, 0.05);
-  backdrop-filter: blur(24px) saturate(1.35);
-  -webkit-backdrop-filter: blur(24px) saturate(1.35);
+
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+
+  border: 1px solid rgba(255,255,255,.22);
+
+  box-shadow:
+    inset 0 1px rgba(255,255,255,.45),
+    inset 0 -1px rgba(255,255,255,.08),
+    0 20px 60px rgba(0,0,0,.18);
 }
 
-.liquid-glass::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: linear-gradient(108deg, rgba(255, 255, 255, 0.68), transparent 27%, transparent 64%, rgba(202, 219, 236, 0.36));
+.liquid-glass::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+
+    background:
+    radial-gradient(
+        260px circle at var(--x,50%) var(--y,50%),
+        rgba(255,255,255,.45),
+        transparent 70%
+    );
 }
 
-.liquid-glass > * {
-  position: relative;
-  z-index: 1;
+.liquid-glass::before{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+        radial-gradient(circle at 20% 20%,
+        rgba(255,255,255,.45),
+        transparent 45%);
+
+    pointer-events:none;
+
+}
+
+.liquid-glass::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:inherit;
+
+    box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.2),
+        inset 0 20px 30px rgba(255,255,255,.08);
+
+    pointer-events:none;
 }
 
 .liquid-glass-control {
