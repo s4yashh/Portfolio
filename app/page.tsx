@@ -98,26 +98,27 @@ function ProjectsSection({
               initial={{ opacity: 1, y: 0 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
-              className={`group overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 ${index === 0 ? "md:col-span-2" : ""}`}
+              whileHover={{ y: -6, scale: 1.01 }}
+              className={`project-showcase group overflow-hidden rounded-3xl ${index === 0 ? "md:col-span-2" : ""}`}
             >
               <div className={`grid h-full ${index === 0 ? "md:grid-cols-[1.1fr_0.9fr]" : ""}`}>
-                <div className={`relative min-h-44 overflow-hidden border-b border-border bg-muted/40 ${index === 0 ? "md:order-2 md:min-h-full md:border-b-0 md:border-l" : ""}`}>
+                <div className={`relative min-h-44 overflow-hidden border-b border-background/10 bg-background/5 ${index === 0 ? "md:order-2 md:min-h-full md:border-b-0 md:border-l" : ""}`}>
                   <Image src={`/${project.image}`} alt={`${project.title} preview`} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes={index === 0 ? "(max-width: 768px) 100vw, 50vw" : "(max-width: 768px) 100vw, 50vw"} />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 via-transparent to-transparent" />
                 </div>
                 <div className={`flex flex-col p-5 sm:p-6 ${index === 0 ? "md:order-1 md:p-8" : ""}`}>
                   <div className="mb-4 flex items-start justify-between gap-4">
-                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary/70">0{index + 1} / {project.category}</p>
-                    <Link href={project.demo} target="_blank" aria-label={`Visit ${project.title}`} className="rounded-full border border-border p-2 text-foreground/65 transition-colors hover:border-primary/40 hover:bg-primary hover:text-primary-foreground"><ArrowUpRight className="h-4 w-4" /></Link>
+                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-background/55">0{index + 1} / {project.category}</p>
+                    <Link href={project.demo} target="_blank" aria-label={`Visit ${project.title}`} className="rounded-full border border-background/15 bg-background/[0.06] p-2 text-background/70 transition-colors hover:scale-110 hover:bg-background hover:text-foreground"><ArrowUpRight className="h-4 w-4" /></Link>
                   </div>
-                  <h3 className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">{project.title}</h3>
-                  <p className="mt-3 text-sm leading-7 text-foreground/70">{project.description}</p>
+                  <h3 className="text-xl font-semibold tracking-tight text-background sm:text-2xl">{project.title}</h3>
+                  <p className="mt-3 text-sm leading-7 text-background/70">{project.description}</p>
                   <div className="mt-5 flex flex-wrap gap-1.5">
-                    {project.tags.map((tag: string) => <Badge key={tag} variant="outline" className="border-border bg-muted/35 px-2 py-0.5 text-[11px] font-medium text-foreground/70">{tag}</Badge>)}
+                    {project.tags.map((tag: string) => <Badge key={tag} variant="outline" className="border-background/15 bg-background/[0.08] px-2 py-0.5 text-[11px] font-medium text-background/75">{tag}</Badge>)}
                   </div>
                   <div className="mt-6 flex items-center gap-3">
-                    <Link href={project.link} target="_blank" className="inline-flex items-center gap-2 text-sm font-medium text-foreground transition-colors hover:text-primary"><Github size={15} />Code</Link>
-                    <Link href={project.demo} target="_blank" className="inline-flex items-center gap-2 text-sm font-medium text-foreground/65 transition-colors hover:text-primary"><ExternalLink size={15} />Live preview</Link>
+                    <Link href={project.link} target="_blank" className="inline-flex items-center gap-2 text-sm font-medium text-background transition-colors hover:text-background/65"><Github size={15} />Code</Link>
+                    <Link href={project.demo} target="_blank" className="inline-flex items-center gap-2 text-sm font-medium text-background/65 transition-colors hover:text-background"><ExternalLink size={15} />Live preview</Link>
                   </div>
                 </div>
               </div>
@@ -392,20 +393,21 @@ export default function Portfolio() {
       </motion.div>
 
       {/* Horizontal Navigation Bar */}
-      <nav className="sticky top-0 left-0 right-0 z-40 border-b border-border/70 bg-background/80 backdrop-blur-xl transition-colors duration-300">
-        <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
-          <button onClick={() => scrollToSection("home")} aria-label="Back to top" className="hidden h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border bg-card text-sm font-semibold tracking-tight text-foreground transition-colors hover:border-primary/40 hover:bg-primary hover:text-primary-foreground sm:flex">SS</button>
+      <nav className="sticky top-0 left-0 right-0 z-40 px-3 py-3 sm:px-6 sm:py-4">
+        <div className="liquid-glass mx-auto flex w-full max-w-5xl items-center justify-between gap-3 p-1.5">
+          <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.96 }} onClick={() => scrollToSection("home")} aria-label="Back to top" className="hidden h-9 w-9 shrink-0 items-center justify-center rounded-full bg-foreground text-sm font-semibold tracking-tight text-background shadow-lg sm:flex">SS</motion.button>
           {/* Left Navigation Items */}
-          <div className="flex min-w-0 items-center gap-1 overflow-x-auto rounded-full border border-border bg-card/80 p-1">
+          <div className="flex min-w-0 items-center gap-1 overflow-x-auto rounded-full p-1">
             {navigationItems.map((item) => (
               <motion.button
                 key={item.id}
-                whileHover={{ y: -1 }}
+                whileHover={{ scale: 1.08, y: -1 }}
+                whileTap={{ scale: 0.96 }}
                 onClick={() => scrollToSection(item.id)}
                 className={`relative whitespace-nowrap rounded-full px-3 py-1.5 text-xs font-medium tracking-wide transition-all duration-300 sm:px-4 sm:text-sm ${
                   activeSection === item.id
-                    ? "bg-primary text-primary-foreground shadow-sm"
-                    : "text-foreground/65 hover:text-foreground"
+                    ? "bg-foreground text-background shadow-lg"
+                    : "text-foreground/65 hover:bg-background/50 hover:text-foreground"
                 }`}
               >
                 {item.label}
@@ -419,7 +421,7 @@ export default function Portfolio() {
             <motion.button
               type="button"
               aria-label={isAudioPlaying ? "Pause music" : "Play music"}
-              className="flex h-9 items-center gap-2 rounded-full border border-border bg-card px-3 text-foreground transition-colors hover:border-primary/40"
+              className="liquid-glass-control flex h-9 items-center gap-2 rounded-full px-3 text-foreground"
               onClick={() => {
                 if (audioRef.current) {
                   if (isAudioPlaying) {
@@ -431,7 +433,8 @@ export default function Portfolio() {
                   }
                 }
               }}
-              whileHover={{ scale: 1.1 }}
+              whileHover={{ scale: 1.12, y: -1 }}
+              whileTap={{ scale: 0.96 }}
             >
               <AnimatePresence mode="wait">
                 {isAudioPlaying ? (
