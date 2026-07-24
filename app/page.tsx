@@ -200,7 +200,7 @@ export default function Portfolio() {
   // Update active section based on scroll position
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["home", "about", "projects", "resume", "contact"]
+      const sections = ["home", "experience", "projects"]
       const scrollPosition = window.scrollY + 200
 
       for (const section of sections) {
@@ -310,6 +310,7 @@ export default function Portfolio() {
   ]
 
   const navigationItems = [
+    { label: "Home", id: "home" },
     { label: "Experience", id: "experience" },
     { label: "Projects", id: "projects" },
   ]
@@ -391,28 +392,23 @@ export default function Portfolio() {
       </motion.div>
 
       {/* Horizontal Navigation Bar */}
-      <nav className="sticky top-0 left-0 right-0 z-40 bg-background/60 backdrop-blur-md transition-colors duration-300">
-        <div className="flex items-center justify-between w-full px-3 sm:px-4 md:px-6 lg:px-8 py-3 sm:py-4 gap-4 sm:gap-6 md:gap-8">
+      <nav className="sticky top-0 left-0 right-0 z-40 border-b border-border/70 bg-background/80 backdrop-blur-xl transition-colors duration-300">
+        <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
+          <button onClick={() => scrollToSection("home")} aria-label="Back to top" className="hidden h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border bg-card text-sm font-semibold tracking-tight text-foreground transition-colors hover:border-primary/40 hover:bg-primary hover:text-primary-foreground sm:flex">SS</button>
           {/* Left Navigation Items */}
-          <div className="flex items-center gap-3 sm:gap-4 md:gap-6 lg:gap-8 overflow-x-auto scrollbar-hide">
+          <div className="flex min-w-0 items-center gap-1 overflow-x-auto rounded-full border border-border bg-card/80 p-1">
             {navigationItems.map((item) => (
               <motion.button
                 key={item.id}
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ y: -1 }}
                 onClick={() => scrollToSection(item.id)}
-                className={`font-light text-xs sm:text-sm md:text-base tracking-wide transition-all duration-300 pb-2 relative group whitespace-nowrap ${
+                className={`relative whitespace-nowrap rounded-full px-3 py-1.5 text-xs font-medium tracking-wide transition-all duration-300 sm:px-4 sm:text-sm ${
                   activeSection === item.id
-                    ? "text-foreground"
-                    : "text-foreground/70 hover:text-foreground"
+                    ? "bg-primary text-primary-foreground shadow-sm"
+                    : "text-foreground/65 hover:text-foreground"
                 }`}
               >
                 {item.label}
-                <motion.div
-                  layoutId="underline"
-                  className={`absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary to-secondary ${
-                    activeSection === item.id ? "block" : "hidden"
-                  }`}
-                />
               </motion.button>
             ))}
           </div>
@@ -420,8 +416,10 @@ export default function Portfolio() {
           {/* Right Side Controls */}
           <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
             {/* Music Player - Dots when paused, Equalizer when playing with Song Name */}
-            <motion.div 
-              className="flex items-center gap-2 h-6 cursor-pointer"
+            <motion.button
+              type="button"
+              aria-label={isAudioPlaying ? "Pause music" : "Play music"}
+              className="flex h-9 items-center gap-2 rounded-full border border-border bg-card px-3 text-foreground transition-colors hover:border-primary/40"
               onClick={() => {
                 if (audioRef.current) {
                   if (isAudioPlaying) {
@@ -495,7 +493,7 @@ export default function Portfolio() {
                   </motion.div>
                 )}
               </AnimatePresence>
-            </motion.div>
+            </motion.button>
           </div>
         </div>
       </nav>
@@ -503,7 +501,7 @@ export default function Portfolio() {
       {/* Main Layout */}
       <div className="w-full pb-20">
         {/* Hero Section - Takes full viewport height so About is hidden initially */}
-        <section className="w-full bg-background pt-20 sm:pt-24 md:pt-32 min-h-screen flex items-center">
+        <section id="home" className="w-full scroll-mt-20 bg-background pt-20 sm:pt-24 md:pt-32 min-h-screen flex items-center">
           <div className="w-full px-4 sm:px-6 lg:px-8">
             <motion.div
               className="flex flex-col md:flex-row justify-between items-center gap-8 md:gap-12 lg:gap-16"
