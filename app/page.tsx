@@ -399,7 +399,7 @@ export default function Portfolio() {
       </nav>
 
       {/* Main Layout */}
-      <div className="w-full pb-20">
+      <div className="w-full">
         {/* Hero Section - Takes full viewport height so About is hidden initially */}
         <section id="home" className="w-full scroll-mt-20 bg-background pt-20 sm:pt-24 md:pt-32 min-h-screen flex items-center">
           <div className="w-full px-4 sm:px-6 lg:px-8">
