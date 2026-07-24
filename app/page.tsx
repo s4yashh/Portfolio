@@ -12,6 +12,7 @@ import {
   Linkedin,
   Mail,
   ExternalLink,
+  ArrowUpRight,
   Code,
   Smartphone,
   Globe,
@@ -42,7 +43,7 @@ function ProjectsSection({
     <motion.section
       id="projects"
       ref={projectsRef}
-      className="mb-16 sm:mb-20"
+      className="scroll-mt-28 py-12 sm:py-16"
       initial={{ opacity: 1 }}
       animate={isInView ? { opacity: 1 } : { opacity: 1 }}
       transition={{ duration: 0.8 }}
@@ -52,33 +53,37 @@ function ProjectsSection({
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
       >
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-light mb-6 sm:mb-8 tracking-tight" style={{ fontFamily: "var(--font-inter)" }}>
-          <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-            Projects
-          </span>
-        </h2>
+        <div className="mb-8 flex flex-col gap-4 sm:mb-10 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.24em] text-primary/70">Selected work</p>
+            <h2 className="text-4xl font-semibold tracking-tight text-foreground sm:text-5xl md:text-6xl">
+              Projects
+            </h2>
+          </div>
+          <p className="max-w-md text-sm leading-7 text-foreground/65 lg:text-right">A selection of product-focused work across web and iOS, built with performance and usability in mind.</p>
+        </div>
 
-        <div className="flex flex-wrap gap-2 mb-8 sm:mb-12">
+        <div className="mb-8 flex gap-2 overflow-x-auto pb-2 sm:mb-10">
           <motion.button
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ y: -1 }}
             onClick={() => setSelectedFilter("all")}
-            className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg font-light text-xs sm:text-sm transition-all ${
+            className={`shrink-0 rounded-full border px-3.5 py-2 text-xs font-medium transition-all ${
               selectedFilter === "all"
-                ? "bg-white/20 text-white"
-                : "bg-white/5 text-white/70 hover:bg-white/10"
+                ? "border-primary bg-primary text-primary-foreground shadow-sm"
+                : "border-border bg-card text-foreground/65 hover:border-primary/35 hover:text-foreground"
             }`}
           >
             All
           </motion.button>
-          {allTechnologies.map((tech) => (
+          {allTechnologies.slice(0, 6).map((tech) => (
             <motion.button
               key={tech}
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ y: -1 }}
               onClick={() => setSelectedFilter(tech)}
-              className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg font-light text-xs sm:text-sm transition-all ${
+              className={`shrink-0 rounded-full border px-3.5 py-2 text-xs font-medium transition-all ${
                 selectedFilter === tech
-                  ? "bg-white/20 text-white"
-                  : "bg-white/5 text-white/70 hover:bg-white/10"
+                  ? "border-primary bg-primary text-primary-foreground shadow-sm"
+                  : "border-border bg-card text-foreground/65 hover:border-primary/35 hover:text-foreground"
               }`}
             >
               {tech}
@@ -86,39 +91,35 @@ function ProjectsSection({
           ))}
         </div>
 
-        <div className="space-y-6 sm:space-y-8">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
           {projects.map((project, index) => (
             <motion.div
               key={project.id}
               initial={{ opacity: 1, y: 0 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
-              className="border border-white/10 rounded-lg p-4 sm:p-6 hover:border-white/20 transition-all"
+              className={`group overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 ${index === 0 ? "md:col-span-2" : ""}`}
             >
-              <h3 className="text-lg sm:text-xl font-light mb-2 text-white" style={{ fontFamily: "var(--font-inter)" }}>{project.title}</h3>
-              <p className="text-white/70 text-xs sm:text-sm mb-4 leading-relaxed" style={{ fontFamily: "var(--font-inter)" }}>{project.description}</p>
-              <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-4">
-                {project.tags.map((tag: string) => (
-                  <Badge key={tag} className="bg-white/10 text-white/80 text-xs">
-                    {tag}
-                  </Badge>
-                ))}
-              </div>
-              <div className="flex gap-2 sm:gap-3">
-                <Link href={project.link} target="_blank">
-                  <Button size="sm" className="bg-white/10 hover:bg-white/20 text-white text-xs">
-                    <Github size={14} className="mr-1 sm:mr-2" />
-                    <span className="hidden sm:inline">Code</span>
-                    <span className="sm:hidden">Code</span>
-                  </Button>
-                </Link>
-                <Link href={project.demo} target="_blank">
-                  <Button size="sm" variant="outline" className="text-white text-xs">
-                    <ExternalLink size={14} className="mr-1 sm:mr-2" />
-                    <span className="hidden sm:inline">Demo</span>
-                    <span className="sm:hidden">Demo</span>
-                  </Button>
-                </Link>
+              <div className={`grid h-full ${index === 0 ? "md:grid-cols-[1.1fr_0.9fr]" : ""}`}>
+                <div className={`relative min-h-44 overflow-hidden border-b border-border bg-muted/40 ${index === 0 ? "md:order-2 md:min-h-full md:border-b-0 md:border-l" : ""}`}>
+                  <Image src={`/${project.image}`} alt={`${project.title} preview`} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes={index === 0 ? "(max-width: 768px) 100vw, 50vw" : "(max-width: 768px) 100vw, 50vw"} />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent" />
+                </div>
+                <div className={`flex flex-col p-5 sm:p-6 ${index === 0 ? "md:order-1 md:p-8" : ""}`}>
+                  <div className="mb-4 flex items-start justify-between gap-4">
+                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary/70">0{index + 1} / {project.category}</p>
+                    <Link href={project.demo} target="_blank" aria-label={`Visit ${project.title}`} className="rounded-full border border-border p-2 text-foreground/65 transition-colors hover:border-primary/40 hover:bg-primary hover:text-primary-foreground"><ArrowUpRight className="h-4 w-4" /></Link>
+                  </div>
+                  <h3 className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">{project.title}</h3>
+                  <p className="mt-3 text-sm leading-7 text-foreground/70">{project.description}</p>
+                  <div className="mt-5 flex flex-wrap gap-1.5">
+                    {project.tags.map((tag: string) => <Badge key={tag} variant="outline" className="border-border bg-muted/35 px-2 py-0.5 text-[11px] font-medium text-foreground/70">{tag}</Badge>)}
+                  </div>
+                  <div className="mt-6 flex items-center gap-3">
+                    <Link href={project.link} target="_blank" className="inline-flex items-center gap-2 text-sm font-medium text-foreground transition-colors hover:text-primary"><Github size={15} />Code</Link>
+                    <Link href={project.demo} target="_blank" className="inline-flex items-center gap-2 text-sm font-medium text-foreground/65 transition-colors hover:text-primary"><ExternalLink size={15} />Live preview</Link>
+                  </div>
+                </div>
               </div>
             </motion.div>
           ))}
@@ -242,7 +243,7 @@ export default function Portfolio() {
       id: 2,
       title: "Amazon Clone App",
       description: "Developed an iOS e-commerce app with SwiftUI, Firebase auth, real-time DB, cart, checkout, and order tracking.",
-      image: "Screenshot 2025-07-30 at 2.56.51 PM.png",
+      image: "Screenshot 2025-07-30 at 2.56.51 PM.png",
       tags: ["Swift", "SwiftUI", "HealthKit", "Core Data", "iOS"],
       category: "ios",
       link: "https://github.com/SUYASHSINGH7985/Amazon-Clone",
