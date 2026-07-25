@@ -280,7 +280,7 @@ export default function Portfolio() {
       image: "amide.png",
       tags: ["Svelte", "Tailwind CSS", "Flask", "Supabase", "Cybersecurity"],
       category: "ios",
-      link: "https://github.com/SUYASHSINGH7985/Amazon-Clone",
+      link: "https://github.com/SUYASHSINGH7985/Amide",
       demo: "https://drive.google.com/file/d/1x1QwaK2j2Xg_4MJdXbX5CWN9Cll9cI3_/view",
     },
     {
