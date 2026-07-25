@@ -264,7 +264,7 @@ export default function Portfolio() {
       description: "Built a web dashboard to search GitHub organizations and explore their repositories using the GitHub API.
       Focused on efficient API usage with caching to minimize redundant requests and improve performance.
       Implemented graceful handling of empty states, loading states, and API errors for a smooth user experience.",
-      image: "image.png",
+      image: "gitorg.png",
       tags: ["React", "Node.js", "MongoDB", "Stripe", "TypeScript"],
       category: "web",
       link: "https://github.com/SUYASHSINGH7985/SEED",
