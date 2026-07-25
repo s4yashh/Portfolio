@@ -273,7 +273,7 @@ export default function Portfolio() {
     {
       id: 2,
       title: "Amide",
-      description: "Developed an iOS e-commerce app with SwiftUI, Firebase auth, real-time DB, cart, checkout, and order tracking.",
+      description: "Built a cybersecurity system detecting attacks in encrypted network traffic without payload decryption.",
       image: "Screenshot 2025-07-30 at 2.56.51 PM.png",
       tags: ["Swift", "SwiftUI", "HealthKit", "Core Data", "iOS"],
       category: "ios",
