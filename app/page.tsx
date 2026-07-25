@@ -61,7 +61,7 @@ function ProjectsSection({
               Projects
             </h2>
           </div>
-          <p className="max-w-md text-sm leading-7 text-foreground/65 lg:text-right">A selection of product-focused work across web and iOS, built with performance and usability in mind.</p>
+          <p className="max-w-md text-sm leading-7 text-foreground/65 lg:text-right">A selection of product-focused work across web and mobile, built with performance and usability in mind.</p>
         </div>
 
         <div className="mb-8 flex gap-2 overflow-x-auto pb-2 sm:mb-10">
