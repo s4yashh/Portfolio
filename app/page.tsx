@@ -277,7 +277,7 @@ export default function Portfolio() {
       Developed a responsive Svelte + Tailwind frontend for real-time dashboards.
       Implemented Flask backend services to analyze traffic metadata and detect anomalies.
       Integrated Supabase for authentication, storage, and secure API communication.",
-      image: "Screenshot 2025-07-30 at 2.56.51 PM.png",
+      image: "amide.png",
       tags: ["Swift", "SwiftUI", "HealthKit", "Core Data", "iOS"],
       category: "ios",
       link: "https://github.com/SUYASHSINGH7985/Amazon-Clone",
