@@ -291,7 +291,7 @@ export default function Portfolio() {
       Added social features including activity feeds and habit streaks.
       Designed a modern responsive UI using Tailwind CSS and shadcn/ui.
       Deployed on Vercel with cloud-hosted PostgreSQL (Supabase/Railway).",
-      image: "image.png",
+      image: "habit-tracker.png",
       tags: ["React", "Socket.io", "Node.js"],
       category: "web",
       link: "https://github.com/SUYASHSINGH7985/APPLE-LandingPage-",
