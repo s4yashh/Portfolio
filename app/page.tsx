@@ -281,7 +281,7 @@ export default function Portfolio() {
       tags: ["Svelte", "Tailwind CSS", "Flask", "Supabase", "Cybersecurity"],
       category: "ios",
       link: "https://github.com/SUYASHSINGH7985/Amide",
-      demo: "https://drive.google.com/file/d/1x1QwaK2j2Xg_4MJdXbX5CWN9Cll9cI3_/view",
+      demo: "https://amide-dashboard.vercel.app",
     },
     {
       id: 3,
