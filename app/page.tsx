@@ -292,10 +292,10 @@ category: "web",
       Designed a modern responsive UI using Tailwind CSS and shadcn/ui.
       Deployed on Vercel with cloud-hosted PostgreSQL (Supabase/Railway).",
       image: "habit-tracker.png",
-      tags: ["Next.js 14", "Tailwind CSS", "PostgreSQL", "Prisma"],
+      tags: ["Next.js 14", "Tailwind CSS", "PostgreSQL", "Prisma", "JWT", "shadcn/ui"],
       category: "web",
-      link: "https://github.com/SUYASHSINGH7985/APPLE-LandingPage-",
-      demo: "https://suyashsingh7985.github.io/APPLE-LandingPage-/",
+      link: "https://habit-tracker.vercel.app",
+      demo: "https://habit-tracker.vercel.app",
     },
   ]
 
