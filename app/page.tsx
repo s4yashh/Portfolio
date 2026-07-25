@@ -285,7 +285,7 @@ export default function Portfolio() {
     },
     {
       id: 3,
-      title: "Apple Futuristic Landing Page",
+      title: "Habit Tracker Web App",
       description: "Crafted a modern Apple-style landing page with 3D product visuals using Three.js and smooth animations for seamless UX.",
       image: "image.png",
       tags: ["React", "Socket.io", "Node.js"],
