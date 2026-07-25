@@ -272,7 +272,7 @@ export default function Portfolio() {
     },
     {
       id: 2,
-      title: "Amazon Clone App",
+      title: "Amide",
       description: "Developed an iOS e-commerce app with SwiftUI, Firebase auth, real-time DB, cart, checkout, and order tracking.",
       image: "Screenshot 2025-07-30 at 2.56.51 PM.png",
       tags: ["Swift", "SwiftUI", "HealthKit", "Core Data", "iOS"],
