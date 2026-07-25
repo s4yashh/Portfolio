@@ -268,7 +268,7 @@ export default function Portfolio() {
       tags: ["Web Dashboard", "GitHub API", "API Caching", "Performance"],
       category: "web",
       link: "https://github.com/SUYASHSINGH7985/GitOrg",
-      demo: "https://thecompanyseed.vercel.app/",
+      demo: "https://gitorg.vercel.app",
     },
     {
       id: 2,
