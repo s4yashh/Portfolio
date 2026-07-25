@@ -279,8 +279,8 @@ export default function Portfolio() {
       Integrated Supabase for authentication, storage, and secure API communication.",
       image: "amide.png",
       tags: ["Svelte", "Tailwind CSS", "Flask", "Supabase", "Cybersecurity"],
-      category: "ios",
-      link: "https://github.com/SUYASHSINGH7985/Amide",
+category: "web",
+       link: "https://github.com/SUYASHSINGH7985/Amide",
       demo: "https://amide-dashboard.vercel.app",
     },
     {
