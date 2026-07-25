@@ -265,7 +265,7 @@ export default function Portfolio() {
       Focused on efficient API usage with caching to minimize redundant requests and improve performance.
       Implemented graceful handling of empty states, loading states, and API errors for a smooth user experience.",
       image: "gitorg.png",
-      tags: ["React", "Node.js", "MongoDB", "Stripe", "TypeScript"],
+      tags: ["Web Dashboard"],
       category: "web",
       link: "https://github.com/SUYASHSINGH7985/SEED",
       demo: "https://thecompanyseed.vercel.app/",
