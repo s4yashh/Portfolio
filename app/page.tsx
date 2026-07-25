@@ -261,9 +261,7 @@ export default function Portfolio() {
     {
       id: 1,
       title: "GitOrg",
-      description: "Built a web dashboard to search GitHub organizations and explore their repositories using the GitHub API.
-      Focused on efficient API usage with caching to minimize redundant requests and improve performance.
-      Implemented graceful handling of empty states, loading states, and API errors for a smooth user experience.",
+      description: "Built a web dashboard to search GitHub organizations and explore their repositories using the GitHub API. Focused on efficient API usage with caching to minimize redundant requests and improve performance. Implemented graceful handling of empty states, loading states, and API errors for a smooth user experience.",
       image: "gitorg.png",
       tags: ["Web Dashboard", "GitHub API", "API Caching", "Performance"],
       category: "web",
@@ -273,29 +271,32 @@ export default function Portfolio() {
     {
       id: 2,
       title: "Amide",
-      description: "Built a cybersecurity system detecting attacks in encrypted network traffic without payload decryption.
-      Developed a responsive Svelte + Tailwind frontend for real-time dashboards.
-      Implemented Flask backend services to analyze traffic metadata and detect anomalies.
-      Integrated Supabase for authentication, storage, and secure API communication.",
+      description: "Built a cybersecurity system detecting attacks in encrypted network traffic without payload decryption. Developed a responsive Svelte + Tailwind frontend for real-time dashboards. Implemented Flask backend services to analyze traffic metadata and detect anomalies. Integrated Supabase for authentication, storage, and secure API communication.",
       image: "amide.png",
       tags: ["Svelte", "Tailwind CSS", "Flask", "Supabase", "Cybersecurity"],
-category: "web",
-       link: "https://github.com/SUYASHSINGH7985/Amide",
+      category: "web",
+      link: "https://github.com/SUYASHSINGH7985/Amide",
       demo: "https://amide-dashboard.vercel.app",
     },
     {
       id: 3,
       title: "Habit Tracker Web App",
-      description: "Built a full-stack habit tracking application with daily and weekly check-ins.
-      Implemented JWT-based authentication and protected routes.
-      Added social features including activity feeds and habit streaks.
-      Designed a modern responsive UI using Tailwind CSS and shadcn/ui.
-      Deployed on Vercel with cloud-hosted PostgreSQL (Supabase/Railway).",
+      description: "Built a full-stack habit tracking application with daily and weekly check-ins. Implemented JWT-based authentication and protected routes. Added social features including activity feeds and habit streaks. Designed a modern responsive UI using Tailwind CSS and shadcn/ui. Deployed on Vercel with cloud-hosted PostgreSQL.",
       image: "habit-tracker.png",
       tags: ["Next.js 14", "Tailwind CSS", "PostgreSQL", "Prisma", "JWT", "shadcn/ui"],
       category: "web",
       link: "https://habit-tracker.vercel.app",
       demo: "https://habit-tracker.vercel.app",
+    },
+    {
+      id: 4,
+      title: "Rvidia",
+      description: "Built a distributed system that allows multiple computers to share processing power to improve performance of slow systems. Designed task-splitting logic to divide heavy workloads into smaller chunks and distribute them across connected machines. Optimized execution of compute-intensive programs such as AI models and simulations using combined CPU resources.",
+      image: "rvidia.png",
+      tags: ["Node.js", "Python", "Docker", "Distributed Systems"],
+      category: "web",
+      link: "https://github.com/SUYASHSINGH7985/Rvidia",
+      demo: "",
     },
   ]
 
