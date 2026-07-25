@@ -274,7 +274,8 @@ export default function Portfolio() {
       id: 2,
       title: "Amide",
       description: "Built a cybersecurity system detecting attacks in encrypted network traffic without payload decryption.
-      Developed a responsive Svelte + Tailwind frontend for real-time dashboards.",
+      Developed a responsive Svelte + Tailwind frontend for real-time dashboards.
+      Implemented Flask backend services to analyze traffic metadata and detect anomalies.",
       image: "Screenshot 2025-07-30 at 2.56.51 PM.png",
       tags: ["Swift", "SwiftUI", "HealthKit", "Core Data", "iOS"],
       category: "ios",
