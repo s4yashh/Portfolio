@@ -260,7 +260,7 @@ export default function Portfolio() {
   const projects = [
     {
       id: 1,
-      title: "SEED (Frontend Developer)",
+      title: "GitOrg",
       description: "Built a responsive startup platform with chatbot UI, dynamic listings, internship features, and seamless navigation.",
       image: "image.png",
       tags: ["React", "Node.js", "MongoDB", "Stripe", "TypeScript"],
