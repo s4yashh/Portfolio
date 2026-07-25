@@ -278,7 +278,7 @@ export default function Portfolio() {
       Implemented Flask backend services to analyze traffic metadata and detect anomalies.
       Integrated Supabase for authentication, storage, and secure API communication.",
       image: "amide.png",
-      tags: ["Svelte", "Tailwind CSS"],
+      tags: ["Svelte", "Tailwind CSS", "Flask"],
       category: "ios",
       link: "https://github.com/SUYASHSINGH7985/Amazon-Clone",
       demo: "https://drive.google.com/file/d/1x1QwaK2j2Xg_4MJdXbX5CWN9Cll9cI3_/view",
