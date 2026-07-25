@@ -288,7 +288,9 @@ export default function Portfolio() {
       title: "Habit Tracker Web App",
       description: "Built a full-stack habit tracking application with daily and weekly check-ins.
       Implemented JWT-based authentication and protected routes.
-      Added social features including activity feeds and habit streaks.",
+      Added social features including activity feeds and habit streaks.
+      Designed a modern responsive UI using Tailwind CSS and shadcn/ui.
+      Deployed on Vercel with cloud-hosted PostgreSQL (Supabase/Railway).",
       image: "image.png",
       tags: ["React", "Socket.io", "Node.js"],
       category: "web",
