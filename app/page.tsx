@@ -287,7 +287,8 @@ export default function Portfolio() {
       id: 3,
       title: "Habit Tracker Web App",
       description: "Built a full-stack habit tracking application with daily and weekly check-ins.
-      Implemented JWT-based authentication and protected routes.",
+      Implemented JWT-based authentication and protected routes.
+      Added social features including activity feeds and habit streaks.",
       image: "image.png",
       tags: ["React", "Socket.io", "Node.js"],
       category: "web",
