@@ -30,15 +30,14 @@ function TerminalHeader() {
   return (
     <div className="mb-10 sm:mb-14">
       <p
-        className="mb-4 text-sm sm:text-base tracking-widest uppercase"
-        style={{ fontFamily: "var(--font-vt323), monospace", color: "#00F5C3" }}
+      className="mb-4 text-sm sm:text-base tracking-widest uppercase"
+      style={{ color: "#00F5C3" }}
       >
         &#47;&#47; terminal v1.0
       </p>
       <div className="flex items-center gap-3">
         <h2
           className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-normal tracking-wide text-white"
-          style={{ fontFamily: "var(--font-vt323), monospace" }}
         >
           PROJECTS
         </h2>
@@ -77,7 +76,6 @@ function ProjectTitle({ title, size = "md" }: { title: string; size?: "sm" | "md
   return (
     <span
       className={`${sizeClasses[size]} font-normal tracking-wide inline-block`}
-      style={{ fontFamily: "var(--font-vt323), monospace" }}
     >
       <span className="terminal-title-block">{`\u2588\u2588\u2588\u2588 ${title} \u2588\u2588\u2588\u2588`}</span>
     </span>
@@ -89,7 +87,6 @@ function TechTag({ tag }: { tag: string }) {
     <span
       className="inline-block px-3 py-1 text-base sm:text-lg md:text-xl tracking-wide"
       style={{
-        fontFamily: "var(--font-vt323), monospace",
         color: "#00F5C3",
         border: "1px solid rgba(0, 245, 195, 0.25)",
         background: "rgba(0, 245, 195, 0.05)",
@@ -125,7 +122,7 @@ function ActionButton({
       target="_blank"
       rel="noopener noreferrer"
       className={`${base} ${variant === "primary" ? primary : outline}`}
-      style={{ fontFamily: "var(--font-vt323), monospace", ...borderStyle }}
+      style={{ ...borderStyle }}
     >
       {icon}
       {label}
@@ -169,7 +166,7 @@ function ProjectAccordionItem({
               <span
                 key={tag}
                 className="text-xs sm:text-sm tracking-wide opacity-50"
-                style={{ fontFamily: "var(--font-vt323), monospace", color: "#00F5C3" }}
+                style={{ color: "#00F5C3" }}
               >
                 {tag}
               </span>
@@ -177,7 +174,7 @@ function ProjectAccordionItem({
             {project.tags.length > 3 && (
               <span
                 className="text-xs sm:text-sm tracking-wide opacity-40"
-                style={{ fontFamily: "var(--font-vt323), monospace", color: "#00F5C3" }}
+                style={{ color: "#00F5C3" }}
               >
                 +{project.tags.length - 3}
               </span>
@@ -217,7 +214,7 @@ function ProjectAccordionItem({
                 <div className="flex items-center gap-3 mb-4">
                   <span
                     className="text-sm tracking-widest uppercase opacity-50"
-                    style={{ fontFamily: "var(--font-vt323), monospace", color: "#00F5C3" }}
+                    style={{ color: "#00F5C3" }}
                   >
                     0{index + 1} / {project.category}
                   </span>
@@ -227,7 +224,6 @@ function ProjectAccordionItem({
 
                 <p
                   className="mt-5 text-base sm:text-lg md:text-xl leading-relaxed text-white/70"
-                  style={{ fontFamily: "var(--font-vt323), monospace" }}
                 >
                   {displayText}
                 </p>
@@ -239,7 +235,7 @@ function ProjectAccordionItem({
                       setReadMore(!readMore)
                     }}
                     className="mt-2 text-sm sm:text-base tracking-wide transition-colors duration-200 hover:opacity-100 opacity-70"
-                    style={{ fontFamily: "var(--font-vt323), monospace", color: "#00F5C3" }}
+                    style={{ color: "#00F5C3" }}
                   >
                     [{readMore ? "read less" : "read more"}]
                   </button>
@@ -351,7 +347,7 @@ export function ProjectsSection({ projectsRef, projects }: ProjectsSectionProps)
           <div className="h-px flex-1" style={{ backgroundColor: "#00F5C3" }} />
           <span
             className="text-sm tracking-widest"
-            style={{ fontFamily: "var(--font-vt323), monospace", color: "#00F5C3" }}
+            style={{ color: "#00F5C3" }}
           >
             end of projects
           </span>
