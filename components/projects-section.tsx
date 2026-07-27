@@ -324,7 +324,7 @@ export function ProjectsSection({ projectsRef, projects }: ProjectsSectionProps)
       <div className="relative z-10 px-4 sm:px-6 md:px-8 lg:px-12 max-w-6xl mx-auto py-12 sm:py-16 md:py-20">
         <TerminalHeader />
 
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-4">
           {projects.map((project, index) => (
             <motion.div
               key={project.id}
