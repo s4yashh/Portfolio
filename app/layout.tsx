@@ -28,7 +28,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} ${inter.variable} ${playfairDisplay.variable} ${dancingScript.variable} ${spaceGrotesk.variable} ${vt323.variable}`}>
+      <body className={`${inter.className} ${inter.variable} ${playfairDisplay.variable} ${dancingScript.variable} ${spaceGrotesk.variable} ${vt323.variable} ${vt323.className}`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <PreloaderWrapper>
             <SmoothScroll>
