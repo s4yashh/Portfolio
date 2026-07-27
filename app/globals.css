@@ -916,7 +916,7 @@ html {
 
 /* Exclamation mark with circular dot */
 .bang {
-  font-family: "Verdana", sans-serif;
+  font-family: var(--font-vt323), monospace;
   position: relative;
   display: inline-block;
   padding: 0 0.1em;
