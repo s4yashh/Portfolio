@@ -858,7 +858,7 @@ html {
   background: color-mix(in srgb, hsl(var(--background)) 72%, transparent);
 }
 
-.portfolio-nav { font-family: var(--font-inter), sans-serif; }
+.portfolio-nav { font-family: var(--font-vt323), monospace; }
 .nav-identity { border-radius: 1rem; transition: background-color 180ms ease; }
 .nav-identity:hover { background: rgba(255, 255, 255, 0.54); }
 .nav-sections { background: rgba(71, 80, 90, 0.06); border: 1px solid rgba(43, 50, 57, 0.07); }
