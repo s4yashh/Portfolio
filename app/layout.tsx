@@ -1,12 +1,11 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Dancing_Script, Space_Grotesk, VT323 } from "next/font/google"
+import { Space_Grotesk, VT323 } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import PreloaderWrapper from "@/components/preloader-wrapper"
 import SmoothScroll from "@/components/smooth-scroll"
 
-const dancingScript = Dancing_Script({ subsets: ["latin"], variable: "--font-dancing-script" })
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space" })
 const vt323 = VT323({ subsets: ["latin"], weight: "400", variable: "--font-vt323" })
 
@@ -26,7 +25,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${dancingScript.variable} ${spaceGrotesk.variable} ${vt323.variable} ${vt323.className}`}>
+      <body className={`${spaceGrotesk.variable} ${vt323.variable} ${vt323.className}`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <PreloaderWrapper>
             <SmoothScroll>
