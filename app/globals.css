@@ -37,12 +37,12 @@
     /* Dark mode as default */
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 16%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 16%;
-    --primary: 0 0% 5%;
-    --primary-foreground: 0 0% 97%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 84% 4.9%;
     --secondary: 0 0% 35%;
     --secondary-foreground: 0 0% 100%;
     --muted: 0 0% 60%;
