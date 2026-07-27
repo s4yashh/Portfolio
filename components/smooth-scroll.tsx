@@ -18,6 +18,8 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       infinite: false,
     })
 
+    lenis.on("scroll", () => {})
+
     function raf(time: number) {
       lenis.raf(time)
       requestAnimationFrame(raf)

@@ -284,7 +284,6 @@ header nav button {
 * {
   scrollbar-width: thick;
   scrollbar-color: #d4d4d4 transparent;
-  transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out, border-color 0.5s ease-in-out;
 }
 
 #smooth-content {
