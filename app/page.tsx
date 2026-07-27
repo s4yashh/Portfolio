@@ -315,7 +315,7 @@ export default function Portfolio() {
       {/* Main Layout */}
       <div className="w-full">
         {/* Hero Section - Takes full viewport height so About is hidden initially */}
-        <section id="home" className="w-full scroll-mt-20 bg-background pt-20 sm:pt-24 md:pt-32 min-h-screen flex items-center">
+        <section id="home" className="w-full scroll-mt-20 bg-white pt-20 sm:pt-24 md:pt-32 min-h-screen flex items-center">
           <div className="w-full px-4 sm:px-6 lg:px-8">
             <motion.div
               className="flex flex-col md:flex-row justify-between items-center gap-8 md:gap-12 lg:gap-16"
