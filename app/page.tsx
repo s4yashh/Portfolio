@@ -289,8 +289,8 @@ export default function Portfolio() {
   id="liquidGlass"
 >
           <button onClick={() => scrollToSection("home")} className="nav-identity min-w-0 px-3 py-2 text-left" aria-label="Back to top">
-            <span className="block text-sm font-semibold tracking-tight text-foreground sm:text-base">Suyash</span>
-            <span className="relative block  text-[10px] font-medium tracking-[0.12em] text-foreground/55 uppercase sm:text-[11px]">
+            <span className={`block text-sm font-semibold tracking-tight sm:text-base transition-colors duration-300 ${isScrolled ? "text-white" : "text-black"}`}>Suyash</span>
+            <span className={`relative block text-[10px] font-medium tracking-[0.12em] uppercase sm:text-[11px] transition-colors duration-300 ${isScrolled ? "text-white/55" : "text-black/55"}`}>
               <AnimatePresence mode="wait" initial={false}>
                 <motion.span key={rotatingRoles[roleIndex]} initial={reduceMotion ? false : { y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={reduceMotion ? undefined : { y: -20, opacity: 0 }} transition={{ duration: 0.28, ease: "easeOut" }} className="absolute inset-x-0 top-0">
                   {rotatingRoles[roleIndex]}
