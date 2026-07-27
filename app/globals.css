@@ -194,9 +194,9 @@ h3 {
 
 /* Header Navigation Styles */
 header nav button {
-  font-family: var(--font-playfair, Georgia, 'Times New Roman', serif);
+  font-family: var(--font-vt323), monospace;
   font-size: 1.125rem;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 /* Custom Scrollbar Styling - Hide scrollbar globally */
