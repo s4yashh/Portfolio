@@ -387,7 +387,7 @@ export default function Portfolio() {
                 {/* Subtitle with smooth entry */}
                 {preloaderComplete && (
                   <motion.p
-                    className="text-lg sm:text-xl text-foreground/60 mb-12 max-w-2xl leading-relaxed"
+                    className="text-lg sm:text-xl text-black/60 mb-12 max-w-2xl leading-relaxed"
                     initial={{ opacity: 0, x: -50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, delay: 1.6 }}
