@@ -442,7 +442,7 @@ export default function Portfolio() {
                         rel="noopener noreferrer"
                         className="hover:text-primary transition-colors duration-300"
                       >
-                        <Github size={24} className="text-foreground/70 hover:text-foreground" />
+                        <Github size={24} className="text-black/70 hover:text-black" />
                       </a>
                       <a
                         href="https://www.linkedin.com/in/s4yashh/"
@@ -450,13 +450,13 @@ export default function Portfolio() {
                         rel="noopener noreferrer"
                         className="hover:text-primary transition-colors duration-300"
                       >
-                        <Linkedin size={24} className="text-foreground/70 hover:text-foreground" />
+                        <Linkedin size={24} className="text-black/70 hover:text-black" />
                       </a>
                       <a
                         href="mailto:singhsuyash012@gmail.com"
                         className="hover:text-primary transition-colors duration-300"
                       >
-                        <Mail size={24} className="text-foreground/70 hover:text-foreground" />
+                        <Mail size={24} className="text-black/70 hover:text-black" />
                       </a>
                     </div>
                   </motion.div>
