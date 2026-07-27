@@ -152,7 +152,7 @@ function ProjectAccordionItem({
       : project.description.slice(0, descriptionLimit) + "..."
 
   return (
-    <div className="terminal-border rounded-2xl overflow-hidden shadow-[0_8px_30px_rgba(30,35,43,0.06)] relative" style={{ background: "rgba(2, 50, 184, 0.02)" }}>
+    <div className="terminal-border rounded-2xl overflow-hidden shadow-[0_8px_30px_rgba(30,35,43,0.06)] relative transition-shadow duration-300 hover:shadow-[0_12px_40px_rgba(30,35,43,0.1)]" style={{ background: "rgba(2, 50, 184, 0.02)" }}>
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#0232B8]/15 to-transparent z-10" />
       {/* Collapsed row — always visible */}
       <button
