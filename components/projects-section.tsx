@@ -344,7 +344,7 @@ export function ProjectsSection({ projectsRef, projects }: ProjectsSectionProps)
         </div>
 
         {/* Footer decoration */}
-        <div className="mt-10 flex items-center gap-3 opacity-30">
+        <div className="mt-12 flex items-center gap-3 opacity-30">
           <div className="h-px flex-1" style={{ backgroundColor: "#0232B8" }} />
           <span
             className="text-sm tracking-widest"
