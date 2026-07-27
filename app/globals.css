@@ -284,15 +284,14 @@ header nav button {
   overflow: visible;
   width: 100%;
   background-image: linear-gradient(
-      rgba(255, 255, 255, 0.07) 2px,
+      rgba(255, 255, 255, 0.03) 2px,
       transparent 2px
     ),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.07) 2px, transparent 2px),
-    linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 2px, transparent 2px),
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
   background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
   background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
-  /* will-change removed: it breaks position:fixed on child elements like the nav */
 }
 
 
