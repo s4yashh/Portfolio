@@ -564,7 +564,7 @@ export default function Portfolio() {
             <p style={{
               fontSize: "clamp(1rem, 3vw, 1.5rem)",
               fontWeight: 700,
-              fontFamily: "Poppins, sans-serif",
+              fontFamily: "var(--font-vt323), monospace",
               lineHeight: 1.6,
               margin: "0 0 4px 0",
               color: "white",
@@ -577,7 +577,7 @@ export default function Portfolio() {
             <p style={{
               fontSize: "clamp(1rem, 3vw, 1.5rem)",
               fontWeight: 400,
-              fontFamily: "Poppins, sans-serif",
+              fontFamily: "var(--font-vt323), monospace",
               lineHeight: 1.6,
               margin: "0 0 4px 0",
               color: "white",
