@@ -862,10 +862,10 @@ html {
 }
 
 .portfolio-nav { font-family: var(--font-vt323), monospace; }
-.nav-identity { border-radius: 1rem; transition: background-color 180ms ease; }
-.nav-identity:hover { background: rgba(255, 255, 255, 0.54); }
+.nav-identity { border-radius: 1rem; transition: background-color 180ms ease; cursor: pointer; }
+.nav-identity:hover { background: rgba(128, 128, 128, 0.15); }
 .nav-sections { background: rgba(71, 80, 90, 0.06); border: 1px solid rgba(43, 50, 57, 0.07); }
-.music-control { border: 1px solid rgba(44, 51, 58, 0.09); background: rgba(255, 255, 255, 0.5); color: hsl(var(--foreground)); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8); transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease; }
+.music-control { border: 1px solid rgba(44, 51, 58, 0.09); background: rgba(255, 255, 255, 0.5); color: hsl(var(--foreground)); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8); transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease; cursor: pointer; }
 .music-control:hover { background: rgba(255, 255, 255, 0.82); border-color: rgba(44, 51, 58, 0.18); }
 .music-control.is-playing { background: hsl(var(--foreground)); color: hsl(var(--background)); box-shadow: 0 6px 16px rgba(30, 35, 43, 0.17); }
 .music-orb { display: flex; align-items: center; gap: 2px; height: 14px; }

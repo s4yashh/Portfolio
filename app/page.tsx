@@ -440,7 +440,7 @@ export default function Portfolio() {
                         href="https://github.com/s4yashh"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="hover:text-primary transition-colors duration-300"
+                        className="cursor-pointer hover:text-primary transition-all duration-300 hover:scale-110"
                       >
                         <Github size={24} className="text-foreground/70 hover:text-foreground" />
                       </a>
@@ -448,13 +448,13 @@ export default function Portfolio() {
                         href="https://www.linkedin.com/in/s4yashh/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="hover:text-primary transition-colors duration-300"
+                        className="cursor-pointer hover:text-primary transition-all duration-300 hover:scale-110"
                       >
                         <Linkedin size={24} className="text-foreground/70 hover:text-foreground" />
                       </a>
                       <a
                         href="mailto:singhsuyash012@gmail.com"
-                        className="hover:text-primary transition-colors duration-300"
+                        className="cursor-pointer hover:text-primary transition-all duration-300 hover:scale-110"
                       >
                         <Mail size={24} className="text-foreground/70 hover:text-foreground" />
                       </a>
