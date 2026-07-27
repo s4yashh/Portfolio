@@ -317,9 +317,9 @@ export function ProjectsSection({ projectsRef, projects }: ProjectsSectionProps)
       id="projects"
       ref={projectsRef}
       className="scroll-mt-28 crt-section"
-      initial={{ opacity: 0, y: 30 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-      transition={{ duration: 0.7, ease: "easeOut" }}
+      initial={{ opacity: 0, y: 28 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
     >
       <div className="relative z-10 px-4 sm:px-6 md:px-8 lg:px-12 max-w-6xl mx-auto py-12 sm:py-16 md:py-20">
         <TerminalHeader />
@@ -328,9 +328,9 @@ export function ProjectsSection({ projectsRef, projects }: ProjectsSectionProps)
           {projects.map((project, index) => (
             <motion.div
               key={project.id}
-              initial={{ opacity: 0, y: 16 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-              transition={{ duration: 0.5, delay: 0.15 + index * 0.08 }}
+              initial={{ opacity: 0, y: 28 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
+              transition={{ duration: 0.5, delay: index * 0.06 }}
             >
               <ProjectAccordionItem
                 project={project}
