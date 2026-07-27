@@ -301,8 +301,8 @@ export default function Portfolio() {
 
           <div className="relative flex min-w-0 items-center gap-2">
             {navigationItems.map((item) => (
-              <button key={item.id} onClick={() => scrollToSection(item.id)} className={`relative z-10 whitespace-nowrap rounded-full px-2.5 py-2 text-[11px] font-medium transition-colors sm:px-4 sm:text-sm ${activeSection === item.id ? "text-foreground" : "text-foreground/58 hover:text-foreground"}`}>
-                {activeSection === item.id && <motion.span layoutId="active-navigation" transition={{ type: "spring", bounce: 0.18, duration: 0.45 }} className="absolute inset-0 -z-10 rounded-full border border-foreground/10 bg-white/70 shadow-sm" />}
+              <button key={item.id} onClick={() => scrollToSection(item.id)} className={`relative z-10 whitespace-nowrap rounded-full px-2.5 py-2 text-[11px] font-medium transition-colors sm:px-4 sm:text-sm ${activeSection === item.id ? (isScrolled ? "text-white" : "text-black") : (isScrolled ? "text-white/58 hover:text-white" : "text-black/58 hover:text-black")}`}>
+                {activeSection === item.id && <motion.span layoutId="active-navigation" transition={{ type: "spring", bounce: 0.18, duration: 0.45 }} className={`absolute inset-0 -z-10 rounded-full border shadow-sm ${isScrolled ? "border-white/10 bg-white/10" : "border-black/10 bg-black/10"}`} />}
                 {item.label}
               </button>
             ))}
