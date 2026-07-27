@@ -34,9 +34,9 @@
   }
 
   :root {
-    /* Light mode as default (Neria Katz style) */
-    --background: 0 0% 97%;
-    --foreground: 0 0% 16%;
+    /* Dark mode as default */
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
     --card: 0 0% 100%;
     --card-foreground: 0 0% 16%;
     --popover: 0 0% 100%;
