@@ -109,7 +109,7 @@ function ActionButton({
   variant?: "primary" | "outline"
 }) {
   const base =
-    "inline-flex items-center gap-2 px-5 py-2.5 text-base sm:text-lg tracking-wide transition-all duration-200"
+    "inline-flex items-center gap-2 px-5 py-2.5 text-base sm:text-lg tracking-wide transition-all duration-200 hover:scale-105 cursor-pointer"
   const primary =
     "bg-[#0232B8] text-white hover:bg-[#0228a0] hover:shadow-[0_0_16px_rgba(2,50,184,0.35)]"
   const outline =
@@ -234,7 +234,7 @@ function ProjectAccordionItem({
                       e.stopPropagation()
                       setReadMore(!readMore)
                     }}
-                    className="mt-2 text-sm sm:text-base tracking-wide transition-colors duration-200 hover:opacity-100 opacity-70"
+                    className="mt-2 text-sm sm:text-base tracking-wide transition-colors duration-200 hover:opacity-100 opacity-70 cursor-pointer"
                     style={{ color: "#0232B8" }}
                   >
                     [{readMore ? "read less" : "read more"}]
