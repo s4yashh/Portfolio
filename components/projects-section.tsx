@@ -156,7 +156,7 @@ function ProjectAccordionItem({
       {/* Collapsed row — always visible */}
       <button
         onClick={onToggle}
-        className="flex w-full items-center px-4 py-4 sm:px-6 sm:py-5 md:px-8 md:py-6 text-left transition-colors duration-200 hover:bg-[rgba(2,50,184,0.04)]"
+        className="flex w-full items-center px-4 py-4 sm:px-6 sm:py-5 md:px-8 md:py-6 text-left transition-all duration-200 hover:bg-[rgba(2,50,184,0.04)] cursor-pointer"
       >
         <ProjectNumber index={index} />
         <div className="min-w-0 flex-1">
