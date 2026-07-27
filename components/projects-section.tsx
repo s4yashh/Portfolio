@@ -31,24 +31,24 @@ function TerminalHeader() {
     <div className="mb-10 sm:mb-14">
       <p
       className="mb-4 text-sm sm:text-base tracking-widest uppercase"
-      style={{ color: "#00F5C3" }}
+      style={{ color: "#0232B8" }}
       >
         &#47;&#47; terminal v1.0
       </p>
       <div className="flex items-center gap-3">
         <h2
-          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-normal tracking-wide text-white"
+          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-normal tracking-wide text-black"
         >
           PROJECTS
         </h2>
         <span
           className="cursor-blink inline-block h-[1em] w-[3px] sm:h-[1.1em] sm:w-[4px] -mt-1"
-          style={{ backgroundColor: "#00F5C3" }}
+          style={{ backgroundColor: "#0232B8" }}
         />
       </div>
       <div
         className="mt-4 h-px w-full opacity-20"
-        style={{ backgroundColor: "#00F5C3" }}
+        style={{ backgroundColor: "#0232B8" }}
       />
     </div>
   )
@@ -59,7 +59,7 @@ function ProjectNumber({ index }: { index: number }) {
   return (
     <span
       className="mr-4 sm:mr-6 text-lg sm:text-xl md:text-2xl shrink-0 terminal-glow"
-      style={{ color: "#00F5C3" }}
+      style={{ color: "#0232B8" }}
     >
       {num}
     </span>
@@ -87,9 +87,9 @@ function TechTag({ tag }: { tag: string }) {
     <span
       className="inline-block px-3 py-1 text-base sm:text-lg md:text-xl tracking-wide"
       style={{
-        color: "#00F5C3",
-        border: "1px solid rgba(0, 245, 195, 0.25)",
-        background: "rgba(0, 245, 195, 0.05)",
+        color: "#0232B8",
+        border: "1px solid rgba(2, 50, 184, 0.25)",
+        background: "rgba(2, 50, 184, 0.05)",
       }}
     >
       {tag}
@@ -111,10 +111,10 @@ function ActionButton({
   const base =
     "inline-flex items-center gap-2 px-5 py-2.5 text-base sm:text-lg tracking-wide transition-all duration-200"
   const primary =
-    "bg-[#00F5C3] text-black hover:bg-[#00d9a8] hover:shadow-[0_0_16px_rgba(0,245,195,0.35)]"
+    "bg-[#0232B8] text-white hover:bg-[#0228a0] hover:shadow-[0_0_16px_rgba(2,50,184,0.35)]"
   const outline =
-    "text-[#00F5C3] hover:bg-[rgba(0,245,195,0.08)] hover:shadow-[0_0_12px_rgba(0,245,195,0.15)]"
-  const borderStyle = variant === "outline" ? { border: "1px solid rgba(0, 245, 195, 0.4)" } : {}
+    "text-[#0232B8] hover:bg-[rgba(2,50,184,0.08)] hover:shadow-[0_0_12px_rgba(2,50,184,0.15)]"
+    const borderStyle = variant === "outline" ? { border: "1px solid rgba(2, 50, 184, 0.4)" } : {}
 
   return (
     <a
@@ -152,11 +152,11 @@ function ProjectAccordionItem({
       : project.description.slice(0, descriptionLimit) + "..."
 
   return (
-    <div className="terminal-border" style={{ background: "rgba(0, 245, 195, 0.02)" }}>
+    <div className="terminal-border" style={{ background: "rgba(2, 50, 184, 0.02)" }}>
       {/* Collapsed row — always visible */}
       <button
         onClick={onToggle}
-        className="flex w-full items-center px-4 py-4 sm:px-6 sm:py-5 md:px-8 md:py-6 text-left transition-colors duration-200 hover:bg-[rgba(0,245,195,0.04)]"
+        className="flex w-full items-center px-4 py-4 sm:px-6 sm:py-5 md:px-8 md:py-6 text-left transition-colors duration-200 hover:bg-[rgba(2,50,184,0.04)]"
       >
         <ProjectNumber index={index} />
         <div className="min-w-0 flex-1">
@@ -166,7 +166,7 @@ function ProjectAccordionItem({
               <span
                 key={tag}
                 className="text-xs sm:text-sm tracking-wide opacity-50"
-                style={{ color: "#00F5C3" }}
+                style={{ color: "#0232B8" }}
               >
                 {tag}
               </span>
@@ -174,7 +174,7 @@ function ProjectAccordionItem({
             {project.tags.length > 3 && (
               <span
                 className="text-xs sm:text-sm tracking-wide opacity-40"
-                style={{ color: "#00F5C3" }}
+                style={{ color: "#0232B8" }}
               >
                 +{project.tags.length - 3}
               </span>
@@ -188,7 +188,7 @@ function ProjectAccordionItem({
         >
           <ChevronRight
             size={20}
-            style={{ color: "#00F5C3" }}
+            style={{ color: "#0232B8" }}
           />
         </motion.div>
       </button>
@@ -206,7 +206,7 @@ function ProjectAccordionItem({
           >
             <div
               className="h-px w-full opacity-15"
-              style={{ backgroundColor: "#00F5C3" }}
+          style={{ backgroundColor: "#0232B8" }}
             />
             <div className="grid grid-cols-1 md:grid-cols-[1fr_0.85fr] gap-0">
               {/* Left — Content */}
@@ -214,7 +214,7 @@ function ProjectAccordionItem({
                 <div className="flex items-center gap-3 mb-4">
                   <span
                     className="text-sm tracking-widest uppercase opacity-50"
-                    style={{ color: "#00F5C3" }}
+                    style={{ color: "#0232B8" }}
                   >
                     0{index + 1} / {project.category}
                   </span>
@@ -223,7 +223,7 @@ function ProjectAccordionItem({
                 <ProjectTitle title={project.title} size="md" />
 
                 <p
-                  className="mt-5 text-base sm:text-lg md:text-xl leading-relaxed text-white/70"
+                  className="mt-5 text-base sm:text-lg md:text-xl leading-relaxed text-black/70"
                 >
                   {displayText}
                 </p>
@@ -235,7 +235,7 @@ function ProjectAccordionItem({
                       setReadMore(!readMore)
                     }}
                     className="mt-2 text-sm sm:text-base tracking-wide transition-colors duration-200 hover:opacity-100 opacity-70"
-                    style={{ color: "#00F5C3" }}
+                    style={{ color: "#0232B8" }}
                   >
                     [{readMore ? "read less" : "read more"}]
                   </button>
@@ -271,7 +271,7 @@ function ProjectAccordionItem({
               <div className="relative mx-4 mb-4 mt-2 aspect-video overflow-hidden md:mx-0 md:mr-8 md:my-8 md:aspect-auto md:min-h-[320px]">
                 <div
                   className="absolute inset-0 z-10 pointer-events-none"
-                  style={{ border: "1px solid rgba(0, 245, 195, 0.15)" }}
+                  style={{ border: "1px solid rgba(2, 50, 184, 0.15)" }}
                 />
                 <motion.div
                   className="relative w-full h-full"
@@ -290,7 +290,7 @@ function ProjectAccordionItem({
                 <div
                   className="absolute inset-0 pointer-events-none z-20"
                   style={{
-                    boxShadow: "inset 0 0 60px rgba(0, 245, 195, 0.04), inset 0 0 120px rgba(0, 0, 0, 0.5)",
+                    boxShadow: "inset 0 0 60px rgba(2, 50, 184, 0.03), inset 0 0 120px rgba(255, 255, 255, 0.3)",
                   }}
                 />
               </div>
@@ -344,14 +344,14 @@ export function ProjectsSection({ projectsRef, projects }: ProjectsSectionProps)
 
         {/* Footer decoration */}
         <div className="mt-10 flex items-center gap-3 opacity-30">
-          <div className="h-px flex-1" style={{ backgroundColor: "#00F5C3" }} />
+          <div className="h-px flex-1" style={{ backgroundColor: "#0232B8" }} />
           <span
             className="text-sm tracking-widest"
-            style={{ color: "#00F5C3" }}
+            style={{ color: "#0232B8" }}
           >
             end of projects
           </span>
-          <div className="h-px flex-1" style={{ backgroundColor: "#00F5C3" }} />
+          <div className="h-px flex-1" style={{ backgroundColor: "#0232B8" }} />
         </div>
       </div>
     </motion.section>

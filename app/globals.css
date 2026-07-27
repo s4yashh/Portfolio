@@ -948,7 +948,7 @@ html {
 
 .crt-section {
   position: relative;
-  background: #000000;
+  background: #FFFFFF;
   overflow: hidden;
 }
 
@@ -963,8 +963,8 @@ html {
     0deg,
     transparent,
     transparent 2px,
-    rgba(255, 255, 255, 0.015) 2px,
-    rgba(255, 255, 255, 0.015) 4px
+    rgba(0, 0, 0, 0.02) 2px,
+    rgba(0, 0, 0, 0.02) 4px
   );
 }
 
@@ -982,18 +982,18 @@ html {
 
 .terminal-glow {
   text-shadow:
-    0 0 8px rgba(0, 245, 195, 0.45),
-    0 0 20px rgba(0, 245, 195, 0.15);
+    0 0 8px rgba(2, 50, 184, 0.25),
+    0 0 20px rgba(2, 50, 184, 0.08);
 }
 
 .terminal-title-block {
   display: inline;
-  background: #00F5C3;
-  color: #000000;
+  background: #0232B8;
+  color: #FFFFFF;
   padding: 0.1em 0.35em;
   box-shadow:
-    0 0 12px rgba(0, 245, 195, 0.25),
-    0 0 30px rgba(0, 245, 195, 0.08);
+    0 0 12px rgba(2, 50, 184, 0.15),
+    0 0 30px rgba(2, 50, 184, 0.05);
 }
 
 @keyframes cursor-blink {
@@ -1006,11 +1006,11 @@ html {
 }
 
 .terminal-border {
-  border: 1px solid rgba(0, 245, 195, 0.25);
+  border: 1px solid rgba(2, 50, 184, 0.15);
 }
 
 .terminal-border-strong {
-  border: 1px solid rgba(0, 245, 195, 0.5);
+  border: 1px solid rgba(2, 50, 184, 0.35);
 }
 
 .terminal-scrollbar::-webkit-scrollbar {
@@ -1018,14 +1018,14 @@ html {
 }
 
 .terminal-scrollbar::-webkit-scrollbar-track {
-  background: rgba(0, 245, 195, 0.05);
+  background: rgba(2, 50, 184, 0.05);
 }
 
 .terminal-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(0, 245, 195, 0.3);
+  background: rgba(2, 50, 184, 0.25);
   border-radius: 2px;
 }
 
 .terminal-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 245, 195, 0.5);
+  background: rgba(2, 50, 184, 0.4);
 }
