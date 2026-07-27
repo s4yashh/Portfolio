@@ -297,51 +297,7 @@ header nav button {
 
 
 
-/* Light Mode Text Color Overrides - ALL text becomes dark/visible */
-.light {
-  --foreground: 0 0% 16%;
-}
-
-.light .text-white {
-  color: #1a1a1a !important;
-}
-
-.light .text-white\/50 {
-  color: #606060 !important;
-}
-
-.light .text-white\/60 {
-  color: #4a4a4a !important;
-}
-
-.light .text-white\/70 {
-  color: #3a3a3a !important;
-}
-
-.light .text-white\/80 {
-  color: #2a2a2a !important;
-}
-
-.light .text-white\/90 {
-  color: #1a1a1a !important;
-}
-
-.light p {
-  color: #404040 !important;
-}
-
-.light strong {
-  color: #1a1a1a !important;
-}
-
-.light h1, .light h2, .light h3, .light h4, .light h5, .light h6 {
-  color: #1a1a1a !important;
-}
-
-/* Light Mode - Allow gradient text to work */
-.light .bg-clip-text {
-  color: unset !important;
-}
+/* Light Mode Overrides - disabled for dark default theme */
 
 /* Light Mode Background Overrides */
 .light .bg-black\/40 {
