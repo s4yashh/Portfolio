@@ -167,8 +167,8 @@ body {
 
 /* Elegant serif fonts for headings */
 h1, h2, h3, .h1, .h2, .h3 {
-  font-family: var(--font-playfair, Georgia, 'Times New Roman', serif);
-  font-weight: 600;
+  font-family: var(--font-vt323), monospace;
+  font-weight: 400;
   letter-spacing: -0.5px;
 }
 
