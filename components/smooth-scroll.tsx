@@ -2,9 +2,12 @@
 
 import { useEffect, useRef } from "react"
 import Lenis from "@studio-freight/lenis"
+import { usePreloaderContext } from "./preloader-wrapper"
 
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
   const contentRef = useRef<HTMLDivElement>(null)
+  const lenisRef = useRef<Lenis | null>(null)
+  const { preloaderComplete } = usePreloaderContext()
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -18,7 +21,12 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       infinite: false,
     })
 
-    lenis.on("scroll", () => {})
+    lenisRef.current = lenis
+    ;(window as any).__lenis = lenis
+
+    if (!preloaderComplete) {
+      lenis.stop()
+    }
 
     function raf(time: number) {
       lenis.raf(time)
@@ -27,13 +35,18 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
 
     requestAnimationFrame(raf)
 
-    ;(window as any).__lenis = lenis
-
     return () => {
       lenis.destroy()
       delete (window as any).__lenis
+      lenisRef.current = null
     }
   }, [])
+
+  useEffect(() => {
+    if (preloaderComplete && lenisRef.current) {
+      lenisRef.current.start()
+    }
+  }, [preloaderComplete])
 
   return (
     <div id="smooth-content" ref={contentRef}>
