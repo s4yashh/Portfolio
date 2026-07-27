@@ -308,7 +308,7 @@ export default function Portfolio() {
             ))}
           </div>
 
-          <motion.button type="button" aria-label={isAudioPlaying ? "Pause background music" : "Play background music"} aria-pressed={isAudioPlaying} className={`music-control flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${isAudioPlaying ? "is-playing" : ""}`} onClick={() => {
+          <motion.button type="button" aria-label={isAudioPlaying ? "Pause background music" : "Play background music"} aria-pressed={isAudioPlaying} className={`music-control flex h-10 w-10 shrink-0 items-center justify-center rounded-full transition-colors duration-300 ${isAudioPlaying ? "is-playing" : ""} ${isScrolled ? "" : "bg-black/10 hover:bg-black/20 text-black border border-black/10"}`} onClick={() => {
             if (!audioRef.current) return
             if (isAudioPlaying) audioRef.current.pause()
             else void audioRef.current.play()
