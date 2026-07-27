@@ -15,6 +15,9 @@ const config: Config = {
   		screens: {
   			'xs': '375px',
   		},
+  		fontFamily: {
+  			sans: ['var(--font-vt323)', 'monospace'],
+  		},
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
