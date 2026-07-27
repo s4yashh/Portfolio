@@ -96,7 +96,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
                   color: "#F5F5F5",
                   fontSize: "1rem",
                   fontWeight: "500",
-                  fontFamily: "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                  fontFamily: "var(--font-vt323), monospace",
                   letterSpacing: "0.08em",
                   margin: 0,
                   marginBottom: "-1rem",
