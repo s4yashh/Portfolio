@@ -299,60 +299,6 @@ header nav button {
 
 /* Light Mode Overrides - disabled for dark default theme */
 
-/* Light Mode Background Overrides */
-.light .bg-black\/40 {
-  background-color: rgba(200, 200, 200, 0.3) !important;
-}
-
-.light .bg-white\/5 {
-  background-color: rgba(0, 0, 0, 0.03) !important;
-}
-
-.light .bg-white\/10 {
-  background-color: rgba(0, 0, 0, 0.05) !important;
-}
-
-.light .bg-white\/20 {
-  background-color: rgba(0, 0, 0, 0.08) !important;
-}
-
-/* Light Mode Border Overrides */
-.light .border-white\/10 {
-  border-color: rgba(0, 0, 0, 0.1) !important;
-}
-
-.light .border-white\/20 {
-  border-color: rgba(0, 0, 0, 0.15) !important;
-}
-
-.light .border-white\/30 {
-  border-color: rgba(0, 0, 0, 0.2) !important;
-}
-
-.light .hover\:border-white\/20:hover {
-  border-color: rgba(0, 0, 0, 0.15) !important;
-}
-
-.light .hover\:border-white\/30:hover {
-  border-color: rgba(0, 0, 0, 0.2) !important;
-}
-
-.light .hover\:bg-black\/40:hover {
-  background-color: rgba(0, 0, 0, 0.1) !important;
-}
-
-.light .hover\:bg-black\/50:hover {
-  background-color: rgba(0, 0, 0, 0.12) !important;
-}
-
-.light .hover\:bg-white\/10:hover {
-  background-color: rgba(0, 0, 0, 0.05) !important;
-}
-
-.light .hover\:bg-white\/20:hover {
-  background-color: rgba(0, 0, 0, 0.08) !important;
-}
-
 /* Enhanced Glassmorphism Styles */
 .glass-nav {
   background: rgba(255, 255, 255, 0.1);
