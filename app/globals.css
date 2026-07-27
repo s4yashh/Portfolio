@@ -29,7 +29,17 @@
   a,
   [role="button"],
   input[type="button"],
-  input[type="submit"] {
+  input[type="submit"],
+  [role="tab"],
+  [role="menuitem"],
+  label[for],
+  select,
+  textarea:focus,
+  input:focus {
+    cursor: pointer;
+  }
+
+  a[href] {
     cursor: pointer;
   }
 
