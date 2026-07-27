@@ -152,7 +152,7 @@ function ProjectAccordionItem({
       : project.description.slice(0, descriptionLimit) + "..."
 
   return (
-    <div className="terminal-border" style={{ background: "rgba(2, 50, 184, 0.02)" }}>
+    <div className="terminal-border rounded-2xl overflow-hidden" style={{ background: "rgba(2, 50, 184, 0.02)" }}>
       {/* Collapsed row — always visible */}
       <button
         onClick={onToggle}
