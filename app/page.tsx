@@ -475,6 +475,9 @@ export default function Portfolio() {
           </div>
         </section>
 
+        {/* Smooth transition gradient from white hero to dark sections */}
+        <div className="h-24 bg-gradient-to-b from-white to-[#0a0e1a]" />
+
         {/* Experience Section */}
         <div className="px-4 sm:px-6 md:px-8 lg:px-12 max-w-6xl">
           <ExperienceStack experiences={experiences} />
