@@ -28,16 +28,16 @@ interface ProjectsSectionProps {
 
 function TerminalHeader() {
   return (
-    <div className="mb-10 sm:mb-14">
+    <div className="mb-8 sm:mb-10">
       <p
-      className="mb-4 text-sm sm:text-base tracking-widest uppercase"
+      className="mb-3 text-xs sm:text-sm tracking-widest uppercase"
       style={{ color: "#0232B8" }}
       >
         &#47;&#47; terminal v1.0
       </p>
       <div className="flex items-center gap-3">
         <h2
-          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-normal tracking-wide text-black"
+          className="text-3xl sm:text-4xl md:text-5xl font-normal tracking-wide text-black"
         >
           PROJECTS
         </h2>
