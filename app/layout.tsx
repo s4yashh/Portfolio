@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 const playfairDisplay = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" })
 const dancingScript = Dancing_Script({ subsets: ["latin"], variable: "--font-dancing-script" })
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space" })
-const vt323 = VT323({ subsets: ["latin"], variable: "--font-vt323" })
+const vt323 = VT323({ subsets: ["latin"], weight: "400", variable: "--font-vt323" })
 
 export const metadata: Metadata = {
   title: "Suyash Singh - Developer",
