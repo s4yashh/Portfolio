@@ -34,7 +34,7 @@ export function ExperienceStack({ experiences = [] }: { experiences: any[] }) {
               transition={{ duration: 0.5, delay: index * 0.06 }}
               className="group relative min-h-[330px] overflow-hidden rounded-3xl border border-foreground/10 bg-card p-6 text-foreground shadow-[0_18px_45px_rgba(30,35,43,0.08)] sm:p-8 md:min-h-[380px] md:p-10"
             >
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_90%_0%,rgba(218,229,239,0.7),transparent_32%)]" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_90%_0%,rgba(59,130,246,0.15),transparent_32%)]" />
               <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-foreground/15 to-transparent" />
 
               <div className="relative flex h-full min-h-[282px] flex-col">
