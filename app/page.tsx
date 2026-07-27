@@ -334,7 +334,7 @@ export default function Portfolio() {
                     className="mb-2 sm:mb-4 md:mb-6"
                   >
                     <h1 className="text-6xl xs:text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] xl:text-[12rem] font-light tracking-tighter leading-tight">
-                      <span className="bg-gradient-to-r from-primary via-purple-500 to-secondary bg-clip-text text-transparent">
+                      <span className="bg-gradient-to-r from-[#0232B8] via-purple-500 to-[#0232B8] bg-clip-text text-transparent">
                         Hi,
                       </span>
                     </h1>
