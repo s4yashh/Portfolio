@@ -78,6 +78,7 @@ export default function Portfolio() {
   const { preloaderComplete } = usePreloaderContext()
   const [mounted, setMounted] = useState(false)
   const [activeSection, setActiveSection] = useState("home")
+  const [isScrolled, setIsScrolled] = useState(false)
   const [isAudioPlaying, setIsAudioPlaying] = useState(false)
   const [roleIndex, setRoleIndex] = useState(0)
   const audioRef = useRef<HTMLAudioElement>(null)
