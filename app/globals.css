@@ -35,7 +35,9 @@
   label[for],
   select,
   textarea:focus,
-  input:focus {
+  input:focus,
+  .terminal-border,
+  .terminal-border button {
     cursor: pointer;
   }
 
