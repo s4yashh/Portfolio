@@ -283,9 +283,9 @@ export default function Portfolio() {
       </motion.div>
 
       {/* Horizontal Navigation Bar */}
-      <nav className="portfolio-nav fixed inset-x-0 top-0 z-40" aria-label="Primary navigation">
+      <nav className={`portfolio-nav fixed inset-x-0 top-0 z-40 transition-all duration-300 ${isScrolled ? "py-1" : "py-2"}`} aria-label="Primary navigation">
         <div
-  className="liquid-glass flex w-full items-center justify-between gap-2 p-2 sm:p-3 sm:gap-4"
+  className={`liquid-glass flex w-full items-center justify-between gap-2 p-2 sm:p-3 sm:gap-4 transition-all duration-300 ${isScrolled ? "bg-black/60 backdrop-blur-xl border-white/10" : "bg-white/30 backdrop-blur-xl border-black/5"}`}
   id="liquidGlass"
 >
           <button onClick={() => scrollToSection("home")} className="nav-identity min-w-0 px-3 py-2 text-left" aria-label="Back to top">
