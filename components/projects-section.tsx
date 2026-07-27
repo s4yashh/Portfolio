@@ -59,7 +59,7 @@ function ProjectNumber({ index }: { index: number }) {
   return (
     <span
       className="mr-4 sm:mr-6 text-lg sm:text-xl md:text-2xl shrink-0 terminal-glow"
-      style={{ fontFamily: "var(--font-vt323), monospace", color: "#00F5C3" }}
+      style={{ color: "#00F5C3" }}
     >
       {num}
     </span>
