@@ -900,7 +900,7 @@ html {
 .sayhi {
   font-size: clamp(2.0rem, 11vw, 12rem);
   font-weight: 900;
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-vt323), monospace;
   color: white;
   -webkit-text-fill-color: white;
   letter-spacing: -0.02em;
