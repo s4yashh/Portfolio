@@ -247,7 +247,12 @@ export default function Portfolio() {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
+      const lenis = (window as any).__lenis
+      if (lenis) {
+        lenis.scrollTo(element, { offset: 0, duration: 1.5 })
+      } else {
+        element.scrollIntoView({ behavior: "smooth" })
+      }
       setActiveSection(sectionId)
     }
   }

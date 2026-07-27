@@ -24,8 +24,11 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
 
     requestAnimationFrame(raf)
 
+    ;(window as any).__lenis = lenis
+
     return () => {
       lenis.destroy()
+      delete (window as any).__lenis
     }
   }, [])
 
