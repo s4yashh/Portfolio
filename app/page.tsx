@@ -90,6 +90,14 @@ export default function Portfolio() {
   }, [])
 
   useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 80)
+    }
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  useEffect(() => {
     if (reduceMotion) return
     const interval = window.setInterval(() => setRoleIndex((current) => (current + 1) % rotatingRoles.length), 4000)
     return () => window.clearInterval(interval)
