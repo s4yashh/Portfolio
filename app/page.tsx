@@ -3,8 +3,6 @@
 import type React from "react"
 import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import { usePreloaderContext } from "@/components/preloader-wrapper"
 
 
@@ -13,7 +11,6 @@ import {
   Linkedin,
   Mail,
   ExternalLink,
-  ArrowUpRight,
   Code,
   Smartphone,
   Globe,
@@ -23,113 +20,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { motion, useScroll, useTransform, AnimatePresence, useInView, useReducedMotion } from "framer-motion"
 import { ExperienceStack } from "@/components/experience-stack"
-
-// Projects Section Component
-function ProjectsSection({
-  projectsRef,
-  projects,
-  allTechnologies,
-  selectedFilter,
-  setSelectedFilter,
-}: {
-  projectsRef: React.RefObject<HTMLElement>
-  projects: any[]
-  allTechnologies: string[]
-  selectedFilter: string
-  setSelectedFilter: (filter: string) => void
-}) {
-  const isInView = useInView(projectsRef, { once: true, margin: "-100px" })
-
-  return (
-    <motion.section
-      id="projects"
-      ref={projectsRef}
-      className="scroll-mt-28 py-12 sm:py-16"
-      initial={{ opacity: 1 }}
-      animate={isInView ? { opacity: 1 } : { opacity: 1 }}
-      transition={{ duration: 0.8 }}
-    >
-      <motion.div
-        initial={{ opacity: 1, y: 0 }}
-        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-      >
-        <div className="mb-8 flex flex-col gap-4 sm:mb-10 lg:flex-row lg:items-end lg:justify-between">
-          <div>
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.24em] text-primary/70">Selected work</p>
-            <h2 className="text-4xl font-semibold tracking-tight text-foreground sm:text-5xl md:text-6xl">
-              Projects
-            </h2>
-          </div>
-          <p className="max-w-md text-sm leading-7 text-foreground/65 lg:text-right">A selection of product-focused work across web and mobile, built with performance and usability in mind.</p>
-        </div>
-
-        <div className="mb-8 flex gap-2 overflow-x-auto pb-2 sm:mb-10">
-          <motion.button
-            whileHover={{ y: -1 }}
-            onClick={() => setSelectedFilter("all")}
-            className={`shrink-0 rounded-full border px-3.5 py-2 text-xs font-medium transition-all ${
-              selectedFilter === "all"
-                ? "border-primary bg-primary text-primary-foreground shadow-sm"
-                : "border-border bg-card text-foreground/65 hover:border-primary/35 hover:text-foreground"
-            }`}
-          >
-            All
-          </motion.button>
-          {allTechnologies.slice(0, 6).map((tech) => (
-            <motion.button
-              key={tech}
-              whileHover={{ y: -1 }}
-              onClick={() => setSelectedFilter(tech)}
-              className={`shrink-0 rounded-full border px-3.5 py-2 text-xs font-medium transition-all ${
-                selectedFilter === tech
-                  ? "border-primary bg-primary text-primary-foreground shadow-sm"
-                  : "border-border bg-card text-foreground/65 hover:border-primary/35 hover:text-foreground"
-              }`}
-            >
-              {tech}
-            </motion.button>
-          ))}
-        </div>
-
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-          {projects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 1, y: 0 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
-              whileHover={{ y: -6, scale: 1.01 }}
-              className={`project-showcase group overflow-hidden rounded-3xl ${index === 0 ? "md:col-span-2" : ""}`}
-            >
-              <div className={`grid h-full ${index === 0 ? "md:grid-cols-[1.1fr_0.9fr]" : ""}`}>
-                <div className={`relative min-h-44 overflow-hidden border-b border-foreground/10 bg-foreground/[0.03] ${index === 0 ? "md:order-2 md:min-h-full md:border-b-0 md:border-l" : ""}`}>
-                  <Image src={`/${project.image}`} alt={`${project.title} preview`} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes={index === 0 ? "(max-width: 768px) 100vw, 50vw" : "(max-width: 768px) 100vw, 50vw"} />
-                  <div className="absolute inset-0 bg-gradient-to-t from-foreground/20 via-transparent to-transparent" />
-                </div>
-                <div className={`flex flex-col p-5 sm:p-6 ${index === 0 ? "md:order-1 md:p-8" : ""}`}>
-                  <div className="mb-4 flex items-start justify-between gap-4">
-                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-foreground/48">0{index + 1} / {project.category}</p>
-                    <Link href={project.demo} target="_blank" aria-label={`Visit ${project.title}`} className="rounded-full border border-foreground/10 bg-white p-2 text-foreground/70 shadow-sm transition-colors hover:scale-110 hover:bg-foreground hover:text-background"><ArrowUpRight className="h-4 w-4" /></Link>
-                  </div>
-                  <h3 className="font-[family-name:var(--font-space)] text-xl font-semibold tracking-tight text-foreground sm:text-2xl">{project.title}</h3>
-                  <p className="mt-3 text-sm leading-7 text-foreground/67">{project.description}</p>
-                  <div className="mt-5 flex flex-wrap gap-1.5">
-                    {project.tags.map((tag: string) => <Badge key={tag} variant="outline" className="border-foreground/10 bg-foreground/[0.035] px-2 py-0.5 text-[11px] font-medium text-foreground/65">{tag}</Badge>)}
-                  </div>
-                  <div className="mt-6 flex items-center gap-3">
-                    <Link href={project.link} target="_blank" className="inline-flex items-center gap-2 rounded-full bg-foreground px-3.5 py-2 text-sm font-medium text-background transition-colors hover:bg-foreground/82"><Github size={15} />Code</Link>
-                    <Link href={project.demo} target="_blank" className="inline-flex items-center gap-2 rounded-full border border-foreground/14 px-3.5 py-2 text-sm font-medium text-foreground/72 transition-colors hover:border-foreground/30 hover:text-foreground"><ExternalLink size={15} />Live preview</Link>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
-    </motion.section>
-  )
-}
+import { ProjectsSection } from "@/components/projects-section"
 
 // Contact Section Component
 function ContactSection({ contactRef }: { contactRef: React.RefObject<HTMLElement> }) {
@@ -187,7 +78,6 @@ export default function Portfolio() {
   const { preloaderComplete } = usePreloaderContext()
   const [mounted, setMounted] = useState(false)
   const [activeSection, setActiveSection] = useState("home")
-  const [selectedFilter, setSelectedFilter] = useState("all")
   const [isAudioPlaying, setIsAudioPlaying] = useState(false)
   const [roleIndex, setRoleIndex] = useState(0)
   const audioRef = useRef<HTMLAudioElement>(null)
@@ -353,15 +243,6 @@ export default function Portfolio() {
     { label: "Experience", id: "experience" },
     { label: "Projects", id: "projects" },
   ]
-
-  const allTechnologies = Array.from(new Set(projects.flatMap((project) => project.tags))).sort()
-
-  const filteredProjects =
-    selectedFilter === "all"
-      ? projects
-      : projects.filter((project) =>
-          project.tags.some((tag) => tag.toLowerCase().includes(selectedFilter.toLowerCase())),
-        )
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
@@ -591,15 +472,10 @@ export default function Portfolio() {
         </div>
 
         {/* Projects Section */}
-        <div className="px-4 sm:px-6 md:px-8 lg:px-12 max-w-6xl">
-          <ProjectsSection
-            projectsRef={projectsRef}
-            projects={filteredProjects}
-            allTechnologies={allTechnologies}
-            selectedFilter={selectedFilter}
-            setSelectedFilter={setSelectedFilter}
-          />
-        </div>
+        <ProjectsSection
+          projectsRef={projectsRef}
+          projects={projects}
+        />
       </div>
 
       {/* Audio Element */}
