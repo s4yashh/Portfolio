@@ -353,7 +353,7 @@ export default function Portfolio() {
                     I'm{" "}
                     <span className="relative inline">
                       {/* Black text background */}
-                      <span className="text-black dark:text-black relative z-10" style={{ color: "#0232B8" }}>
+                      <span className="relative z-10" style={{ color: "#0232B8" }}>
                         Suyash
                       </span>
                       
