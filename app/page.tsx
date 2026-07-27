@@ -432,7 +432,7 @@ export default function Portfolio() {
                     style={{ paddingRight: "clamp(0rem, 6vw, 8rem)" }}
                   >
                     <p style={{ fontSize: "clamp(2rem, 2.5vw, 1.3rem)", fontWeight: 400, color: "white" }}>
-                      Let's <span style={{ fontFamily: "Dancing Script, cursive", fontWeight: 600, color: "#0232B8" }}>Connect-</span>
+                      Let's <span style={{ fontFamily: "var(--font-vt323), monospace", fontWeight: 400, color: "#0232B8" }}>Connect-</span>
                     </p>
                     {/* Social Icons */}
                     <div className="flex items-center gap-4 sm:gap-6">
