@@ -321,7 +321,7 @@ export function ProjectsSection({ projectsRef, projects }: ProjectsSectionProps)
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
       transition={{ duration: 0.7, ease: "easeOut" }}
     >
-      <div className="relative z-10 px-4 sm:px-6 md:px-8 lg:px-12 max-w-6xl mx-auto py-16 sm:py-20 md:py-24">
+      <div className="relative z-10 px-4 sm:px-6 md:px-8 lg:px-12 max-w-6xl mx-auto py-12 sm:py-16 md:py-20">
         <TerminalHeader />
 
         <div className="flex flex-col gap-3">
