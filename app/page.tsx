@@ -78,7 +78,6 @@ export default function Portfolio() {
   const { preloaderComplete } = usePreloaderContext()
   const [mounted, setMounted] = useState(false)
   const [activeSection, setActiveSection] = useState("home")
-  const [isScrolled, setIsScrolled] = useState(false)
   const [isAudioPlaying, setIsAudioPlaying] = useState(false)
   const [roleIndex, setRoleIndex] = useState(0)
   const audioRef = useRef<HTMLAudioElement>(null)
@@ -87,14 +86,6 @@ export default function Portfolio() {
 
   useEffect(() => {
     setMounted(true)
-  }, [])
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 80)
-    }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
   useEffect(() => {
@@ -271,26 +262,26 @@ export default function Portfolio() {
       <motion.div className="fixed inset-0 -z-10" style={{ y: backgroundY }}>
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5" />
         <motion.div
-          className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/15 rounded-full blur-3xl"
+          className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl"
           animate={{ x: [0, 100, 0], y: [0, -100, 0] }}
           transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "linear", repeatType: "loop" }}
         />
         <motion.div
-          className="absolute top-3/4 right-1/4 w-96 h-96 bg-secondary/15 rounded-full blur-3xl"
+          className="absolute top-3/4 right-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-3xl"
           animate={{ x: [0, -100, 0], y: [0, 100, 0] }}
           transition={{ duration: 25, repeat: Number.POSITIVE_INFINITY, ease: "linear", repeatType: "loop" }}
         />
       </motion.div>
 
       {/* Horizontal Navigation Bar */}
-      <nav className={`portfolio-nav fixed inset-x-0 top-0 z-40 transition-all duration-300 ${isScrolled ? "py-1" : "py-2"}`} aria-label="Primary navigation">
+      <nav className="portfolio-nav fixed inset-x-0 top-0 z-40" aria-label="Primary navigation">
         <div
-  className={`liquid-glass flex w-full items-center justify-between gap-2 p-2 sm:p-3 sm:gap-4 transition-all duration-300 ${isScrolled ? "bg-black/60 backdrop-blur-xl border-white/10" : "bg-white/30 backdrop-blur-xl border-black/5"}`}
+  className="liquid-glass flex w-full items-center justify-between gap-2 p-2 sm:p-3 sm:gap-4"
   id="liquidGlass"
 >
           <button onClick={() => scrollToSection("home")} className="nav-identity min-w-0 px-3 py-2 text-left" aria-label="Back to top">
-            <span className={`block text-sm font-semibold tracking-tight sm:text-base transition-colors duration-300 ${isScrolled ? "text-white" : "text-black"}`}>Suyash</span>
-            <span className={`relative block text-[10px] font-medium tracking-[0.12em] uppercase sm:text-[11px] transition-colors duration-300 ${isScrolled ? "text-white/55" : "text-black/55"}`}>
+            <span className="block text-sm font-semibold tracking-tight text-foreground sm:text-base">Suyash</span>
+            <span className="relative block  text-[10px] font-medium tracking-[0.12em] text-foreground/55 uppercase sm:text-[11px]">
               <AnimatePresence mode="wait" initial={false}>
                 <motion.span key={rotatingRoles[roleIndex]} initial={reduceMotion ? false : { y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={reduceMotion ? undefined : { y: -20, opacity: 0 }} transition={{ duration: 0.28, ease: "easeOut" }} className="absolute inset-x-0 top-0">
                   {rotatingRoles[roleIndex]}
@@ -301,14 +292,14 @@ export default function Portfolio() {
 
           <div className="relative flex min-w-0 items-center gap-2">
             {navigationItems.map((item) => (
-              <button key={item.id} onClick={() => scrollToSection(item.id)} className={`relative z-10 whitespace-nowrap rounded-full px-2.5 py-2 text-[11px] font-medium transition-colors sm:px-4 sm:text-sm ${activeSection === item.id ? (isScrolled ? "text-white" : "text-black") : (isScrolled ? "text-white/58 hover:text-white" : "text-black/58 hover:text-black")}`}>
-                {activeSection === item.id && <motion.span layoutId="active-navigation" transition={{ type: "spring", bounce: 0.18, duration: 0.45 }} className={`absolute inset-0 -z-10 rounded-full border shadow-sm ${isScrolled ? "border-white/10 bg-white/10" : "border-black/10 bg-black/10"}`} />}
+              <button key={item.id} onClick={() => scrollToSection(item.id)} className={`relative z-10 whitespace-nowrap rounded-full px-2.5 py-2 text-[11px] font-medium transition-colors sm:px-4 sm:text-sm ${activeSection === item.id ? "text-foreground" : "text-foreground/58 hover:text-foreground"}`}>
+                {activeSection === item.id && <motion.span layoutId="active-navigation" transition={{ type: "spring", bounce: 0.18, duration: 0.45 }} className="absolute inset-0 -z-10 rounded-full border border-foreground/10 bg-white/70 shadow-sm" />}
                 {item.label}
               </button>
             ))}
           </div>
 
-          <motion.button type="button" aria-label={isAudioPlaying ? "Pause background music" : "Play background music"} aria-pressed={isAudioPlaying} className={`music-control flex h-10 w-10 shrink-0 items-center justify-center rounded-full transition-colors duration-300 ${isAudioPlaying ? "is-playing" : ""} ${isScrolled ? "" : "bg-black/10 hover:bg-black/20 text-black border border-black/10"}`} onClick={() => {
+          <motion.button type="button" aria-label={isAudioPlaying ? "Pause background music" : "Play background music"} aria-pressed={isAudioPlaying} className={`music-control flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${isAudioPlaying ? "is-playing" : ""}`} onClick={() => {
             if (!audioRef.current) return
             if (isAudioPlaying) audioRef.current.pause()
             else void audioRef.current.play()
@@ -324,7 +315,7 @@ export default function Portfolio() {
       {/* Main Layout */}
       <div className="w-full">
         {/* Hero Section - Takes full viewport height so About is hidden initially */}
-        <section id="home" className="w-full scroll-mt-20 bg-white pt-20 sm:pt-24 md:pt-32 min-h-screen flex items-center">
+        <section id="home" className="w-full scroll-mt-20 bg-background pt-20 sm:pt-24 md:pt-32 min-h-screen flex items-center">
           <div className="w-full px-4 sm:px-6 lg:px-8">
             <motion.div
               className="flex flex-col md:flex-row justify-between items-center gap-8 md:gap-12 lg:gap-16"
@@ -343,7 +334,7 @@ export default function Portfolio() {
                     className="mb-2 sm:mb-4 md:mb-6"
                   >
                     <h1 className="text-6xl xs:text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] xl:text-[12rem] font-light tracking-tighter leading-tight">
-                      <span className="bg-gradient-to-r from-[#0232B8] via-purple-500 to-[#0232B8] bg-clip-text text-transparent">
+                      <span className="bg-gradient-to-r from-primary via-purple-500 to-secondary bg-clip-text text-transparent">
                         Hi,
                       </span>
                     </h1>
@@ -362,7 +353,7 @@ export default function Portfolio() {
                     I'm{" "}
                     <span className="relative inline">
                       {/* Black text background */}
-                      <span className="relative z-10" style={{ color: "#0232B8" }}>
+                      <span className="text-black dark:text-black relative z-10" style={{ color: "#0232B8" }}>
                         Suyash
                       </span>
                       
@@ -396,7 +387,7 @@ export default function Portfolio() {
                 {/* Subtitle with smooth entry */}
                 {preloaderComplete && (
                   <motion.p
-                    className="text-lg sm:text-xl text-black/60 mb-12 max-w-2xl leading-relaxed"
+                    className="text-lg sm:text-xl text-foreground/60 mb-12 max-w-2xl leading-relaxed"
                     initial={{ opacity: 0, x: -50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, delay: 1.6 }}
@@ -440,7 +431,7 @@ export default function Portfolio() {
                     className="flex flex-col items-center gap-3 sm:gap-4"
                     style={{ paddingRight: "clamp(0rem, 6vw, 8rem)" }}
                   >
-                    <p style={{ fontSize: "clamp(2rem, 2.5vw, 1.3rem)", fontWeight: 400, color: "#1a1a1a" }}>
+                    <p style={{ fontSize: "clamp(2rem, 2.5vw, 1.3rem)", fontWeight: 400, color: "white" }}>
                       Let's <span style={{ fontFamily: "var(--font-vt323), monospace", fontWeight: 400, color: "#0232B8" }}>Connect-</span>
                     </p>
                     {/* Social Icons */}
@@ -451,7 +442,7 @@ export default function Portfolio() {
                         rel="noopener noreferrer"
                         className="hover:text-primary transition-colors duration-300"
                       >
-                        <Github size={24} className="text-black/70 hover:text-black" />
+                        <Github size={24} className="text-foreground/70 hover:text-foreground" />
                       </a>
                       <a
                         href="https://www.linkedin.com/in/s4yashh/"
@@ -459,13 +450,13 @@ export default function Portfolio() {
                         rel="noopener noreferrer"
                         className="hover:text-primary transition-colors duration-300"
                       >
-                        <Linkedin size={24} className="text-black/70 hover:text-black" />
+                        <Linkedin size={24} className="text-foreground/70 hover:text-foreground" />
                       </a>
                       <a
                         href="mailto:singhsuyash012@gmail.com"
                         className="hover:text-primary transition-colors duration-300"
                       >
-                        <Mail size={24} className="text-black/70 hover:text-black" />
+                        <Mail size={24} className="text-foreground/70 hover:text-foreground" />
                       </a>
                     </div>
                   </motion.div>
@@ -474,9 +465,6 @@ export default function Portfolio() {
             </motion.div>
           </div>
         </section>
-
-        {/* Smooth transition gradient from white hero to dark sections */}
-        <div className="h-24 bg-gradient-to-b from-white to-[#0a0e1a]" />
 
         {/* Experience Section */}
         <div className="px-4 sm:px-6 md:px-8 lg:px-12 max-w-6xl">
