@@ -1,115 +1,100 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useEffect, useRef } from "react"
 
 export function CursorBall() {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
-  const [ballPos, setBallPos] = useState({ x: 0, y: 0 })
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const animationRef = useRef<number>()
-  const prevPosRef = useRef({ x: 0, y: 0 })
+  const mouseRef = useRef({ x: 0, y: 0 })
+  const ballRef = useRef({ x: 0, y: 0 })
+  const rafRef = useRef(0)
   const footerRectRef = useRef<DOMRect | null>(null)
 
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
 
+    let mounted = true
     canvas.width = window.innerWidth
     canvas.height = window.innerHeight
 
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({ x: e.clientX, y: e.clientY })
-
-      // Get footer rect for use in animation
-      const footer = document.querySelector("footer")
-      if (footer) {
-        footerRectRef.current = footer.getBoundingClientRect()
-      }
+      mouseRef.current = { x: e.clientX, y: e.clientY }
     }
 
     const handleResize = () => {
+      if (!mounted) return
       canvas.width = window.innerWidth
       canvas.height = window.innerHeight
     }
 
-    window.addEventListener("mousemove", handleMouseMove)
-    window.addEventListener("resize", handleResize)
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove)
-      window.removeEventListener("resize", handleResize)
+    const footer = document.querySelector("footer")
+    if (footer) {
+      footerRectRef.current = footer.getBoundingClientRect()
     }
-  }, [])
 
-  // Animation loop for ball and skid marks
-  useEffect(() => {
-    const canvas = canvasRef.current
-    const ctx = canvas?.getContext("2d")
-    if (!canvas || !ctx) return
+    const ctx = canvas.getContext("2d")
+    if (!ctx) return
 
     const animate = () => {
-      setBallPos((prev) => {
-        const newX = prev.x + (mousePos.x - prev.x) * 0.12
-        const newY = prev.y + (mousePos.y - prev.y) * 0.12
+      if (!mounted) return
 
-        // Update previous position
-        prevPosRef.current = { x: newX, y: newY }
-        return { x: newX, y: newY }
-      })
+      const mouse = mouseRef.current
+      const ball = ballRef.current
+      const footer = footerRectRef.current
 
-      // Clear canvas
+      ballRef.current = {
+        x: ball.x + (mouse.x - ball.x) * 0.12,
+        y: ball.y + (mouse.y - ball.y) * 0.12,
+      }
+
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-      // Get footer bounds
-      const footer = footerRectRef.current
-      const ballRadius = 15
+      const r = 15
+      const bx = ballRef.current.x
+      const by = ballRef.current.y
 
-      // Always draw the full ball first in black
       ctx.fillStyle = "#000000"
       ctx.beginPath()
-      ctx.arc(ballPos.x, ballPos.y, ballRadius, 0, Math.PI * 2)
+      ctx.arc(bx, by, r, 0, Math.PI * 2)
       ctx.fill()
 
-      // If ball overlaps with footer, draw white part on top
-      if (footer && ballPos.x >= footer.left && ballPos.x <= footer.right) {
+      if (footer && bx >= footer.left && bx <= footer.right && by >= footer.top && by <= footer.bottom) {
         ctx.save()
-        
-        // Create clipping region for only the footer area
         ctx.beginPath()
-        ctx.rect(footer.left, footer.top, footer.right - footer.left, footer.bottom - footer.top)
+        ctx.rect(footer.left, footer.top, footer.width, footer.height)
         ctx.clip()
-        
-        // Draw white circle (only the part inside footer will be visible)
-        ctx.fillStyle = "white"
+        ctx.fillStyle = "#ffffff"
         ctx.beginPath()
-        ctx.arc(ballPos.x, ballPos.y, ballRadius, 0, Math.PI * 2)
+        ctx.arc(bx, by, r, 0, Math.PI * 2)
         ctx.fill()
-        
         ctx.restore()
       }
 
-      animationRef.current = requestAnimationFrame(animate)
+      rafRef.current = requestAnimationFrame(animate)
     }
 
-    animationRef.current = requestAnimationFrame(animate)
+    window.addEventListener("mousemove", handleMouseMove, { passive: true })
+    window.addEventListener("resize", handleResize, { passive: true })
+    rafRef.current = requestAnimationFrame(animate)
+
     return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current)
-      }
+      mounted = false
+      window.removeEventListener("mousemove", handleMouseMove)
+      window.removeEventListener("resize", handleResize)
+      cancelAnimationFrame(rafRef.current)
     }
-  }, [mousePos, ballPos])
+  }, [])
 
   return (
-    <>
-      <canvas
-        ref={canvasRef}
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          pointerEvents: "none",
-          zIndex: 99999,
-        }}
-      />
-    </>
+    <canvas
+      ref={canvasRef}
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        pointerEvents: "none",
+        zIndex: 99999,
+      }}
+    />
   )
 }
