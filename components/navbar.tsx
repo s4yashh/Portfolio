@@ -9,7 +9,6 @@ import {
   ExternalLink,
   Github,
   Linkedin,
-  FileDown,
   Code2,
   Globe,
   Database,
@@ -196,16 +195,15 @@ export function Navbar({
 
         {/* Right: Resume + Mobile toggle */}
         <div className="flex items-center gap-2 shrink-0">
-          <a
-            href="https://drive.google.com/file/d/1dd-6secFFNevohFvPGfwhFim8tSR5ipk/view?usp=drive_link"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden md:inline-flex items-center gap-1.5 rounded-full border border-foreground/10 bg-foreground/[0.04] px-4 py-2 text-[11px] font-medium text-foreground/70 transition-all duration-200 hover:scale-105 hover:border-foreground/20 hover:bg-foreground/[0.08] hover:text-foreground sm:text-sm"
-          >
-            <FileDown size={12} />
-            Resume
-            <ExternalLink size={10} className="opacity-50" />
-          </a>
+        <a
+          href="YOUR_GOOGLE_DRIVE_LINK"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center gap-2 rounded-xl px-3 py-2.5 text-sm font-medium text-foreground/70 hover:text-foreground hover:bg-foreground/[0.03] transition-all duration-200 mt-2"
+        >
+          Resume
+          <ExternalLink size={12} className="opacity-50" />
+        </a>
 
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
@@ -431,16 +429,15 @@ function MobileMenu({
         ))}
 
         {/* Resume in mobile */}
-        <a
-          href="YOUR_GOOGLE_DRIVE_LINK"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 rounded-xl border border-foreground/10 bg-foreground/[0.04] px-3 py-2.5 text-sm font-medium text-foreground/70 hover:text-foreground hover:bg-foreground/[0.08] transition-all duration-200 mt-2"
-        >
-          <FileDown size={14} />
-          Resume
-          <ExternalLink size={12} className="opacity-50" />
-        </a>
+          <a
+            href="YOUR_GOOGLE_DRIVE_LINK"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden md:inline-flex items-center gap-1.5 px-3 py-2 text-[11px] font-medium text-foreground/58 hover:text-foreground transition-all duration-200 sm:text-sm"
+          >
+            Resume
+            <ExternalLink size={10} className="opacity-50" />
+          </a>
       </div>
     </motion.div>
   )
