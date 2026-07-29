@@ -378,9 +378,7 @@ export default function Portfolio() {
         </section>
 
         {/* Experience Section */}
-        <div className="px-4 sm:px-6 md:px-8 lg:px-12 max-w-6xl">
-          <ExperienceStack experiences={experiences} />
-        </div>
+        <ExperienceStack experiences={experiences} />
 
         {/* Projects Section */}
         <ProjectsSection
