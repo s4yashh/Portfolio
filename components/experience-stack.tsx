@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { ArrowDown, Building2, MapPin } from "lucide-react"
-import { useEffect, useRef, useCallback } from "react"
+import { useEffect, useRef, useCallback, useState } from "react"
 
 const logos = ["/jolenergy.png", "/unifiedmentor.jpeg", "/hacktoberfest.png", "/adg.jpeg"]
 
@@ -11,6 +11,29 @@ export function ExperienceStack({ experiences = [] }: { experiences: any[] }) {
   const cardRefs = useRef<(HTMLDivElement | null)[]>([])
   const naturalTops = useRef<number[]>([])
   const rafId = useRef(0)
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const section = sectionRef.current
+    if (!section) return
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold: 0 },
+    )
+    observer.observe(section)
+    return () => observer.disconnect()
+  }, [])
+
+  const measureNaturalTops = useCallback(() => {
+    const section = sectionRef.current
+    if (!section) return
+    const cards = cardRefs.current
+    const sectionRect = section.getBoundingClientRect()
+    naturalTops.current = cards.map((card) => {
+      if (!card) return 0
+      return card.getBoundingClientRect().top - sectionRect.top
+    })
+  }, [])
 
   const updateCards = useCallback(() => {
     const section = sectionRef.current
@@ -40,30 +63,19 @@ export function ExperienceStack({ experiences = [] }: { experiences: any[] }) {
   }, [])
 
   const tick = useCallback(() => {
-    updateCards()
+    if (isVisible) updateCards()
     rafId.current = requestAnimationFrame(tick)
-  }, [updateCards])
-
-  const measureNaturalTops = useCallback(() => {
-    const section = sectionRef.current
-    if (!section) return
-    const cards = cardRefs.current
-    const sectionRect = section.getBoundingClientRect()
-    naturalTops.current = cards.map((card) => {
-      if (!card) return 0
-      return card.getBoundingClientRect().top - sectionRect.top
-    })
-  }, [])
+  }, [isVisible, updateCards])
 
   useEffect(() => {
     const section = sectionRef.current
     if (!section) return
 
-    measureNaturalTops()
+    requestAnimationFrame(measureNaturalTops)
     updateCards()
     rafId.current = requestAnimationFrame(tick)
 
-    window.addEventListener("resize", measureNaturalTops)
+    window.addEventListener("resize", measureNaturalTops, { passive: true })
 
     return () => {
       cancelAnimationFrame(rafId.current)
@@ -97,7 +109,7 @@ export function ExperienceStack({ experiences = [] }: { experiences: any[] }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.5, delay: index * 0.06 }}
-              className="group relative min-h-[330px] overflow-hidden rounded-3xl border border-foreground/10 bg-card p-6 text-foreground shadow-[0_18px_45px_rgba(30,35,43,0.08)] sm:p-8 md:min-h-[380px] md:p-10"
+              className="group relative min-h-[330px] overflow-hidden rounded-3xl border border-foreground/10 bg-card p-6 text-foreground shadow-[0_18px_45px_rgba(30,35,43,0.08)] will-change-transform sm:p-8 md:min-h-[380px] md:p-10"
             >
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_90%_0%,rgba(218,229,239,0.7),transparent_32%)]" />
               <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-foreground/15 to-transparent" />
