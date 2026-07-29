@@ -2,7 +2,7 @@
 
 import { useState, useCallback, memo, type ReactNode } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Github, ExternalLink, ChevronRight } from "lucide-react"
+import { Github, ExternalLink, ArrowUpRight } from "lucide-react"
 import Image from "next/image"
 
 interface Project {
@@ -21,263 +21,160 @@ interface ProjectsSectionProps {
   projects: Project[]
 }
 
-const TerminalHeader = memo(function TerminalHeader() {
+const SectionHeading = memo(function SectionHeading() {
   return (
-    <div className="mb-8 sm:mb-10">
-      <p className="mb-3 text-xs sm:text-sm tracking-widest uppercase" style={{ color: "#0232B8" }}>
-        &#47;&#47; terminal v1.0
-      </p>
-      <div className="flex items-center gap-3">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-normal tracking-wide text-black">
-          PROJECTS
+    <div className="mb-10 sm:mb-14 lg:flex lg:items-end lg:justify-between">
+      <div>
+        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.24em] text-primary/70">
+          Featured work
+        </p>
+        <h2 className="text-4xl font-semibold tracking-tight text-foreground sm:text-5xl md:text-6xl">
+          Projects
         </h2>
-        <span
-          className="cursor-blink inline-block h-[1em] w-[3px] sm:h-[1.1em] sm:w-[4px] -mt-1"
-          style={{ backgroundColor: "#0232B8" }}
-        />
       </div>
-      <div className="mt-4 h-px w-full opacity-20" style={{ backgroundColor: "#0232B8" }} />
+      <p className="mt-2 max-w-md text-sm leading-7 text-foreground/65 lg:mt-0 lg:text-right">
+        A selection of things I&apos;ve built — from full-stack apps to open-source contributions.
+      </p>
     </div>
   )
 })
 
-const ProjectNumber = memo(function ProjectNumber({ index }: { index: number }) {
-  const num = String(index + 1).padStart(2, "0")
+const TechBadge = memo(function TechBadge({ label }: { label: string }) {
   return (
-    <span className="mr-4 sm:mr-6 text-lg sm:text-xl md:text-2xl shrink-0 terminal-glow" style={{ color: "#0232B8" }}>
-      {num}
-    </span>
-  )
-})
-
-const ProjectTitle = memo(function ProjectTitle({ title, size = "md" }: { title: string; size?: "sm" | "md" | "lg" }) {
-  const sizeClasses: Record<string, string> = {
-    sm: "text-xl sm:text-2xl",
-    md: "text-2xl sm:text-3xl md:text-4xl",
-    lg: "text-3xl sm:text-4xl md:text-5xl",
-  }
-  return (
-    <span className={`${sizeClasses[size]} font-normal tracking-wide inline-block`}>
-      <span className="terminal-title-block">{`\u2588\u2588\u2588\u2588 ${title} \u2588\u2588\u2588\u2588`}</span>
-    </span>
-  )
-})
-
-const TechTag = memo(function TechTag({ tag }: { tag: string }) {
-  return (
-    <span
-      className="inline-block px-3 py-1 text-base sm:text-lg md:text-xl tracking-wide"
-      style={{
-        color: "#0232B8",
-        border: "1px solid rgba(2, 50, 184, 0.25)",
-        background: "rgba(2, 50, 184, 0.05)",
-      }}
-    >
-      {tag}
-    </span>
-  )
-})
-
-const ActionButton = memo(function ActionButton({
-  href,
-  icon,
-  label,
-  variant = "primary",
-}: {
-  href: string
-  icon: ReactNode
-  label: string
-  variant?: "primary" | "outline"
-}) {
-  const base =
-    "inline-flex items-center gap-2 px-5 py-2.5 text-base sm:text-lg tracking-wide transition-all duration-200 hover:scale-105 cursor-pointer"
-  const primary =
-    "bg-[#0232B8] text-white hover:bg-[#0228a0] hover:shadow-[0_0_16px_rgba(2,50,184,0.35)]"
-  const outline =
-    "text-[#0232B8] hover:bg-[rgba(2,50,184,0.08)] hover:shadow-[0_0_12px_rgba(2,50,184,0.15)]"
-  const borderStyle = variant === "outline" ? { border: "1px solid rgba(2, 50, 184, 0.4)" } : {}
-
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={`${base} ${variant === "primary" ? primary : outline}`}
-      style={borderStyle}
-    >
-      {icon}
+    <span className="rounded-full border border-foreground/10 bg-foreground/[0.035] px-3 py-1.5 text-xs font-medium text-foreground/70">
       {label}
-    </a>
+    </span>
   )
 })
 
-const ProjectAccordionItem = memo(function ProjectAccordionItem({
+function ProjectCard({
   project,
   index,
-  isExpanded,
-  onToggle,
 }: {
   project: Project
   index: number
-  isExpanded: boolean
-  onToggle: () => void
 }) {
-  const [readMore, setReadMore] = useState(false)
-  const descriptionLimit = 160
+  const [isExpanded, setIsExpanded] = useState(false)
+
+  const descriptionLimit = 140
   const needsTruncation = project.description.length > descriptionLimit
   const displayText =
-    readMore || !needsTruncation
+    isExpanded || !needsTruncation
       ? project.description
       : project.description.slice(0, descriptionLimit) + "..."
 
   return (
-    <div
-      className="terminal-border rounded-2xl overflow-hidden shadow-[0_8px_30px_rgba(30,35,43,0.06)] relative transition-shadow duration-300 hover:shadow-[0_12px_40px_rgba(30,35,43,0.1)]"
-      style={{ background: "rgba(2, 50, 184, 0.02)" }}
+    <motion.div
+      initial={{ opacity: 0, y: 28 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.5, delay: index * 0.06 }}
+      className="group relative overflow-hidden rounded-3xl border border-foreground/10 bg-card shadow-[0_18px_45px_rgba(30,35,43,0.08)] will-change-transform transition-all duration-500 hover:shadow-[0_24px_60px_rgba(30,35,43,0.12)] hover:-translate-y-0.5"
     >
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#0232B8]/15 to-transparent z-10" />
-      <button
-        onClick={onToggle}
-        className="flex w-full items-center px-4 py-4 sm:px-6 sm:py-5 md:px-8 md:py-6 text-left transition-all duration-200 hover:bg-[rgba(2,50,184,0.04)] cursor-pointer"
-      >
-        <ProjectNumber index={index} />
-        <div className="min-w-0 flex-1">
-          <ProjectTitle title={project.title} size="sm" />
-          <div className="mt-2 flex flex-wrap gap-2">
-            {project.tags.slice(0, 3).map((tag) => (
-              <span key={tag} className="text-xs sm:text-sm tracking-wide opacity-50" style={{ color: "#0232B8" }}>
-                {tag}
-              </span>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_90%_0%,rgba(218,229,239,0.7),transparent_32%)] pointer-events-none" />
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-foreground/15 to-transparent pointer-events-none" />
+
+      <div className="relative flex flex-col md:flex-row">
+        {/* Image panel */}
+        <div className="relative w-full md:w-[38%] shrink-0 p-5 md:p-6 md:pr-0">
+          <div className="relative aspect-video md:aspect-[4/3] w-full overflow-hidden rounded-2xl border border-foreground/8 bg-foreground/[0.02]">
+            <Image
+              src={`/${project.image}`}
+              alt={`${project.title} preview`}
+              fill
+              className="object-contain p-3 md:p-4"
+              sizes="(max-width: 768px) 100vw, 38vw"
+              loading="lazy"
+            />
+          </div>
+        </div>
+
+        {/* Content panel */}
+        <div className="flex flex-col justify-center px-5 pb-6 pt-1 md:px-8 md:py-10 md:pl-6 md:w-[62%]">
+          {/* Title and tags row */}
+          <div className="flex items-start justify-between gap-4">
+            <div className="min-w-0">
+              <h3 className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl md:text-3xl">
+                {project.title}
+              </h3>
+              {index === 0 && (
+                <span className="mt-1.5 inline-flex items-center gap-1 rounded-full border border-foreground/10 bg-foreground/[0.03] px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-[0.12em] text-foreground/50">
+                  Featured
+                </span>
+              )}
+            </div>
+          </div>
+
+          {/* Tags */}
+          <div className="mt-3 flex flex-wrap gap-1.5">
+            {project.tags.map((tag) => (
+              <TechBadge key={tag} label={tag} />
             ))}
-            {project.tags.length > 3 && (
-              <span className="text-xs sm:text-sm tracking-wide opacity-40" style={{ color: "#0232B8" }}>
-                +{project.tags.length - 3}
-              </span>
+          </div>
+
+          {/* Description */}
+          <p className="mt-4 text-sm leading-7 text-foreground/68 sm:text-base">
+            {displayText}
+          </p>
+          {needsTruncation && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation()
+                setIsExpanded(!isExpanded)
+              }}
+              className="mt-1 self-start text-xs font-medium text-foreground/50 hover:text-foreground transition-colors duration-200"
+            >
+              {isExpanded ? "Show less" : "Read more"}
+            </button>
+          )}
+
+          {/* Actions */}
+          <div className="mt-5 flex flex-wrap items-center gap-3">
+            {project.link && (
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-full border border-foreground/10 bg-white/70 px-4 py-2 text-sm font-medium text-foreground/70 shadow-sm transition-all duration-200 hover:scale-105 hover:border-foreground/20 hover:bg-white/90 hover:text-foreground hover:shadow-md"
+              >
+                <Github size={14} />
+                Code
+                <ArrowUpRight size={12} className="opacity-50" />
+              </a>
+            )}
+            {project.demo && (
+              <a
+                href={project.demo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-full border border-foreground/10 bg-foreground/[0.03] px-4 py-2 text-sm font-medium text-foreground/60 transition-all duration-200 hover:scale-105 hover:border-foreground/20 hover:bg-foreground/[0.06] hover:text-foreground"
+              >
+                <ExternalLink size={14} />
+                Live
+                <ArrowUpRight size={12} className="opacity-50" />
+              </a>
             )}
           </div>
         </div>
-        <motion.div
-          animate={{ rotate: isExpanded ? 90 : 0 }}
-          transition={{ duration: 0.25 }}
-          className="ml-4 shrink-0"
-        >
-          <ChevronRight size={20} style={{ color: "#0232B8" }} />
-        </motion.div>
-      </button>
-
-      <AnimatePresence initial={false}>
-        {isExpanded && (
-          <motion.div
-            key="content"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-            className="overflow-hidden"
-          >
-            <div className="h-px w-full opacity-15" style={{ backgroundColor: "#0232B8" }} />
-            <div className="grid grid-cols-1 md:grid-cols-[1fr_0.85fr] gap-0">
-              <div className="px-4 py-6 sm:px-6 sm:py-8 md:px-8 md:py-10">
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-sm tracking-widest uppercase opacity-50" style={{ color: "#0232B8" }}>
-                    0{index + 1} / {project.category}
-                  </span>
-                </div>
-                <ProjectTitle title={project.title} size="md" />
-                <p className="mt-5 text-base sm:text-lg md:text-xl leading-relaxed text-black/70">
-                  {displayText}
-                </p>
-                {needsTruncation && (
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      setReadMore(!readMore)
-                    }}
-                    className="mt-2 text-sm sm:text-base tracking-wide transition-colors duration-200 hover:opacity-100 opacity-70 cursor-pointer"
-                    style={{ color: "#0232B8" }}
-                  >
-                    [{readMore ? "read less" : "read more"}]
-                  </button>
-                )}
-                <div className="mt-6 flex flex-wrap gap-2.5">
-                  {project.tags.map((tag) => (
-                    <TechTag key={tag} tag={tag} />
-                  ))}
-                </div>
-                <div className="mt-7 flex flex-wrap items-center gap-3">
-                  {project.link && (
-                    <ActionButton href={project.link} icon={<Github size={16} />} label="Code" variant="primary" />
-                  )}
-                  {project.demo && (
-                    <ActionButton href={project.demo} icon={<ExternalLink size={16} />} label="Live" variant="outline" />
-                  )}
-                </div>
-              </div>
-
-              <div className="relative mx-4 mb-4 mt-2 aspect-video overflow-hidden md:mx-0 md:mr-8 md:my-8 md:aspect-auto md:min-h-[320px]">
-                <div className="absolute inset-0 z-10 pointer-events-none" style={{ border: "1px solid rgba(2, 50, 184, 0.15)" }} />
-                <div className="relative w-full h-full">
-                  <Image
-                    src={`/${project.image}`}
-                    alt={`${project.title} preview`}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 45vw"
-                    loading="lazy"
-                  />
-                </div>
-                <div
-                  className="absolute inset-0 pointer-events-none z-20"
-                  style={{
-                    boxShadow: "inset 0 0 60px rgba(2, 50, 184, 0.03), inset 0 0 120px rgba(255, 255, 255, 0.3)",
-                  }}
-                />
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
+      </div>
+    </motion.div>
   )
-})
+}
 
 export function ProjectsSection({ projectsRef, projects }: ProjectsSectionProps) {
-  const [expandedId, setExpandedId] = useState<number | null>(null)
-
-  const handleToggle = useCallback((id: number) => {
-    setExpandedId((prev) => (prev === id ? null : id))
-  }, [])
-
   return (
-    <section id="projects" ref={projectsRef} className="scroll-mt-28 crt-section">
-      <div className="relative z-10 px-4 sm:px-6 md:px-8 lg:px-12 max-w-6xl mx-auto py-12 sm:py-16 md:py-20">
-        <TerminalHeader />
+    <section id="projects" ref={projectsRef} className="scroll-mt-28 py-12 sm:py-16">
+      <div className="px-4 sm:px-6 md:px-8 lg:px-12 max-w-6xl mx-auto">
+        <SectionHeading />
 
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-6 sm:gap-8">
           {projects.map((project, index) => (
-            <motion.div
+            <ProjectCard
               key={project.id}
-              initial={{ opacity: 0, y: 28 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.5, delay: index * 0.06 }}
-            >
-              <ProjectAccordionItem
-                project={project}
-                index={index}
-                isExpanded={expandedId === project.id}
-                onToggle={() => handleToggle(project.id)}
-              />
-            </motion.div>
+              project={project}
+              index={index}
+            />
           ))}
-        </div>
-
-        <div className="mt-12 flex items-center gap-3 opacity-30">
-          <div className="h-px flex-1" style={{ backgroundColor: "#0232B8" }} />
-          <span className="text-sm tracking-widest" style={{ color: "#0232B8" }}>
-            end of projects
-          </span>
-          <div className="h-px flex-1" style={{ backgroundColor: "#0232B8" }} />
         </div>
       </div>
     </section>
