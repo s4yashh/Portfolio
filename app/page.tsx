@@ -2,77 +2,18 @@
 
 import type React from "react"
 import { useState, useEffect, useRef } from "react"
-import { Button } from "@/components/ui/button"
+import dynamic from "next/dynamic"
 import { usePreloaderContext } from "@/components/preloader-wrapper"
 
-
-import {
-  Github,
-  Linkedin,
-  Mail,
-  ExternalLink,
-  Code,
-  Smartphone,
-  Globe,
-  Database,
-} from "lucide-react"
+import { Github, Linkedin, Mail } from "lucide-react"
 import Image from "next/image"
-import Link from "next/link"
-import { motion, useScroll, useTransform, AnimatePresence, useInView, useReducedMotion } from "framer-motion"
+import { motion, useScroll, useTransform, AnimatePresence, useReducedMotion } from "framer-motion"
 import { ExperienceStack } from "@/components/experience-stack"
-import { ProjectsSection } from "@/components/projects-section"
 
-// Contact Section Component
-function ContactSection({ contactRef }: { contactRef: React.RefObject<HTMLElement> }) {
-  const isInView = useInView(contactRef, { once: true, margin: "-100px" })
-
-  return (
-    <motion.section
-      id="contact"
-      ref={contactRef}
-      className="mb-20"
-      initial={{ opacity: 1 }}
-      animate={isInView ? { opacity: 1 } : { opacity: 1 }}
-      transition={{ duration: 0.8 }}
-    >
-      <motion.div
-        initial={{ opacity: 1, y: 0 }}
-        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-      >
-        <h2 className="text-3xl sm:text-4xl font-light mb-8 tracking-tight">
-          <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-            Get In Touch
-          </span>
-        </h2>
-        <p className="text-base sm:text-lg text-white/70 leading-relaxed max-w-2xl mb-8 font-light">
-          I'm always interested in new opportunities and exciting projects. Let's discuss how we can bring your ideas to life.
-        </p>
-
-        <div className="flex flex-col gap-4">
-          <Link href="mailto:singhsuyash012@gmail.com">
-            <Button className="bg-white/10 hover:bg-white/20 text-white w-full justify-start">
-              <Mail size={18} className="mr-3" />
-              singhsuyash012@gmail.com
-            </Button>
-          </Link>
-          <Link href="https://linkedin.com/in/suyashsingh-dev" target="_blank">
-            <Button variant="outline" className="text-white w-full justify-start">
-              <Linkedin size={18} className="mr-3" />
-              LinkedIn Profile
-            </Button>
-          </Link>
-          <Link href="https://github.com/s4yashh" target="_blank">
-            <Button variant="outline" className="text-white w-full justify-start">
-              <Github size={18} className="mr-3" />
-              GitHub Profile
-            </Button>
-          </Link>
-        </div>
-      </motion.div>
-    </motion.section>
-  )
-}
+const ProjectsSection = dynamic(
+  () => import("@/components/projects-section").then((m) => ({ default: m.ProjectsSection })),
+  { ssr: false },
+)
 
 export default function Portfolio() {
   const { preloaderComplete } = usePreloaderContext()
@@ -81,6 +22,7 @@ export default function Portfolio() {
   const [isAudioPlaying, setIsAudioPlaying] = useState(false)
   const [roleIndex, setRoleIndex] = useState(0)
   const audioRef = useRef<HTMLAudioElement>(null)
+  const activeSectionRef = useRef("home")
   const reduceMotion = useReducedMotion()
   const rotatingRoles = ["Developer", "Learner", "Creator"]
 
@@ -97,27 +39,25 @@ export default function Portfolio() {
   const { scrollY } = useScroll()
   const backgroundY = useTransform(scrollY, [0, 2000], [0, -500])
 
-  // Update active section based on scroll position
   useEffect(() => {
     const handleScroll = () => {
       const sections = ["home", "experience", "projects"]
       const scrollPosition = window.scrollY + 200
-
+      let newSection = "home"
       for (const section of sections) {
-        const element = document.getElementById(section)
-        if (element) {
-          const offsetTop = element.offsetTop
-          const offsetHeight = element.offsetHeight
-
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section)
-            break
-          }
+        const el = document.getElementById(section)
+        if (el && scrollPosition >= el.offsetTop && scrollPosition < el.offsetTop + el.offsetHeight) {
+          newSection = section
+          break
         }
+      }
+      if (newSection !== activeSectionRef.current) {
+        activeSectionRef.current = newSection
+        setActiveSection(newSection)
       }
     }
 
-    window.addEventListener("scroll", handleScroll)
+    window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
   useEffect(() => {
@@ -140,12 +80,7 @@ export default function Portfolio() {
 }, []);
 
 
-  const heroRef = useRef<HTMLElement>(null)
-  const aboutRef = useRef<HTMLElement>(null)
   const projectsRef = useRef<HTMLElement>(null)
-  const experienceRef = useRef<HTMLElement>(null)
-  const resumeRef = useRef<HTMLElement>(null)
-  const contactRef = useRef<HTMLElement>(null)
 
   const projects = [
     {
@@ -168,15 +103,6 @@ export default function Portfolio() {
       link: "https://habit-tracker.vercel.app",
       demo: "https://habit-tracker.vercel.app",
     },
-  ]
-
-  const skills = [
-    { name: "React/Next.js", icon: <Globe className="w-5 h-5" /> },
-    { name: "Swift/SwiftUI", icon: <Smartphone className="w-5 h-5" /> },
-    { name: "Node.js", icon: <Code className="w-5 h-5" /> },
-    { name: "iOS Development", icon: <Smartphone className="w-5 h-5" /> },
-    { name: "TypeScript", icon: <Code className="w-5 h-5" /> },
-    { name: "MongoDB", icon: <Database className="w-5 h-5" /> },
   ]
 
   const experiences = [
