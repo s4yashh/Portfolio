@@ -7,8 +7,9 @@ import { usePreloaderContext } from "@/components/preloader-wrapper"
 
 import { Github, Linkedin, Mail } from "lucide-react"
 import Image from "next/image"
-import { motion, useScroll, useTransform, AnimatePresence, useReducedMotion } from "framer-motion"
+import { motion, useScroll, useTransform } from "framer-motion"
 import { ExperienceStack } from "@/components/experience-stack"
+import { Navbar } from "@/components/navbar"
 
 const ProjectsSection = dynamic(
   () => import("@/components/projects-section").then((m) => ({ default: m.ProjectsSection })),
@@ -19,22 +20,11 @@ export default function Portfolio() {
   const { preloaderComplete } = usePreloaderContext()
   const [mounted, setMounted] = useState(false)
   const [activeSection, setActiveSection] = useState("home")
-  const [isAudioPlaying, setIsAudioPlaying] = useState(false)
-  const [roleIndex, setRoleIndex] = useState(0)
-  const audioRef = useRef<HTMLAudioElement>(null)
   const activeSectionRef = useRef("home")
-  const reduceMotion = useReducedMotion()
-  const rotatingRoles = ["Developer", "Learner", "Creator"]
 
   useEffect(() => {
     setMounted(true)
   }, [])
-
-  useEffect(() => {
-    if (reduceMotion) return
-    const interval = window.setInterval(() => setRoleIndex((current) => (current + 1) % rotatingRoles.length), 4000)
-    return () => window.clearInterval(interval)
-  }, [reduceMotion])
 
   const { scrollY } = useScroll()
   const backgroundY = useTransform(scrollY, [0, 2000], [0, -500])
@@ -144,12 +134,6 @@ export default function Portfolio() {
     },
   ]
 
-  const navigationItems = [
-    { label: "Home", id: "home" },
-    { label: "Experience", id: "experience" },
-    { label: "Projects", id: "projects" },
-  ]
-
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
     if (element) {
@@ -184,44 +168,8 @@ export default function Portfolio() {
         />
       </motion.div>
 
-      {/* Horizontal Navigation Bar */}
-      <nav className="portfolio-nav fixed inset-x-0 top-0 z-40" aria-label="Primary navigation">
-        <div
-  className="liquid-glass flex w-full items-center justify-between gap-2 p-2 sm:p-3 sm:gap-4"
-  id="liquidGlass"
->
-          <button onClick={() => scrollToSection("home")} className="nav-identity min-w-0 px-3 py-2 text-left" aria-label="Back to top">
-            <span className="block text-sm font-semibold tracking-tight text-foreground sm:text-base">Suyash</span>
-            <span className="relative block  text-[10px] font-medium tracking-[0.12em] text-foreground/55 uppercase sm:text-[11px]">
-              <AnimatePresence mode="wait" initial={false}>
-                <motion.span key={rotatingRoles[roleIndex]} initial={reduceMotion ? false : { y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={reduceMotion ? undefined : { y: -20, opacity: 0 }} transition={{ duration: 0.28, ease: "easeOut" }} className="absolute inset-x-0 top-0">
-                  {rotatingRoles[roleIndex]}
-                </motion.span>
-              </AnimatePresence>
-            </span>
-          </button>
-
-          <div className="relative flex min-w-0 items-center gap-2">
-            {navigationItems.map((item) => (
-              <button key={item.id} onClick={() => scrollToSection(item.id)} className={`relative z-10 whitespace-nowrap rounded-full px-2.5 py-2 text-[11px] font-medium transition-all duration-200 sm:px-4 sm:text-sm hover:scale-105 ${activeSection === item.id ? "text-foreground" : "text-foreground/58 hover:text-foreground"}`}>
-                {activeSection === item.id && <motion.span layoutId="active-navigation" transition={{ type: "spring", bounce: 0.18, duration: 0.45 }} className="absolute inset-0 -z-10 rounded-full border border-foreground/10 bg-white/70 shadow-sm" />}
-                {item.label}
-              </button>
-            ))}
-          </div>
-
-          <motion.button type="button" aria-label={isAudioPlaying ? "Pause background music" : "Play background music"} aria-pressed={isAudioPlaying} className={`music-control flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${isAudioPlaying ? "is-playing" : ""}`} onClick={() => {
-            if (!audioRef.current) return
-            if (isAudioPlaying) audioRef.current.pause()
-            else void audioRef.current.play()
-          }} whileHover={reduceMotion ? undefined : { scale: 1.06 }} whileTap={{ scale: 0.94 }}>
-            <span className="sr-only">{isAudioPlaying ? "Pause music" : "Play music"}</span>
-            <span className="music-orb" aria-hidden="true">
-              {[0, 1, 2].map((bar) => <motion.i key={bar} animate={isAudioPlaying && !reduceMotion ? { scaleY: [0.45, 1, 0.6, 0.9, 0.45] } : { scaleY: 0.45 }} transition={{ duration: 0.72, repeat: isAudioPlaying && !reduceMotion ? Infinity : 0, delay: bar * 0.11, ease: "easeInOut" }} />)}
-            </span>
-          </motion.button>
-        </div>
-      </nav>
+      {/* Navigation Bar */}
+      <Navbar activeSection={activeSection} scrollToSection={scrollToSection} />
 
       {/* Main Layout */}
       <div className="w-full">
@@ -386,17 +334,6 @@ export default function Portfolio() {
           projects={projects}
         />
       </div>
-
-      {/* Audio Element */}
-      <audio
-        ref={audioRef}
-        src="/Losingmymind.mp3"
-        loop
-        preload="auto"
-        onPlay={() => setIsAudioPlaying(true)}
-        onPause={() => setIsAudioPlaying(false)}
-        onEnded={() => setIsAudioPlaying(false)}
-      />
 
       {/* Footer - Exact 94vh, no scroll below this */}
       <footer style={{ 
