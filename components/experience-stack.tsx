@@ -2,13 +2,77 @@
 
 import { motion } from "framer-motion"
 import { ArrowDown, Building2, MapPin } from "lucide-react"
+import { useEffect, useRef, useCallback } from "react"
 
 const logos = ["/jolenergy.png", "/unifiedmentor.jpeg", "/hacktoberfest.png", "/adg.jpeg"]
 
-/** Scroll-driven experience cards: each card settles over the previous one. */
 export function ExperienceStack({ experiences = [] }: { experiences: any[] }) {
+  const sectionRef = useRef<HTMLElement>(null)
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([])
+  const naturalTops = useRef<number[]>([])
+  const rafId = useRef(0)
+
+  const updateCards = useCallback(() => {
+    const section = sectionRef.current
+    if (!section) return
+
+    const sectionRect = section.getBoundingClientRect()
+    const sectionHeight = section.offsetHeight
+
+    cardRefs.current.forEach((card, i) => {
+      if (!card) return
+      const naturalTop = naturalTops.current[i]
+      if (naturalTop === undefined) return
+
+      const cardHeight = card.offsetHeight
+      const naturalTopInViewport = naturalTop + sectionRect.top
+      const stickyTop = 96 + i * 24
+
+      if (naturalTopInViewport < stickyTop) {
+        const translateToSticky = stickyTop - naturalTopInViewport
+        const maxTranslate = sectionRect.top + sectionHeight - naturalTopInViewport - cardHeight
+        const translateY = Math.max(0, Math.min(translateToSticky, maxTranslate))
+        card.style.transform = `translateY(${translateY}px)`
+      } else {
+        card.style.transform = ""
+      }
+    })
+  }, [])
+
+  const tick = useCallback(() => {
+    updateCards()
+    rafId.current = requestAnimationFrame(tick)
+  }, [updateCards])
+
+  const measureNaturalTops = useCallback(() => {
+    const section = sectionRef.current
+    if (!section) return
+    const cards = cardRefs.current
+    const sectionRect = section.getBoundingClientRect()
+    naturalTops.current = cards.map((card) => {
+      if (!card) return 0
+      return card.getBoundingClientRect().top - sectionRect.top
+    })
+  }, [])
+
+  useEffect(() => {
+    const section = sectionRef.current
+    if (!section) return
+
+    measureNaturalTops()
+    updateCards()
+    rafId.current = requestAnimationFrame(tick)
+
+    window.addEventListener("resize", measureNaturalTops)
+
+    return () => {
+      cancelAnimationFrame(rafId.current)
+      window.removeEventListener("resize", measureNaturalTops)
+    }
+  }, [tick, updateCards, measureNaturalTops])
+
   return (
-    <section id="experience" className="relative scroll-mt-28 py-12 sm:py-16">
+    <section id="experience" ref={sectionRef} className="relative scroll-mt-28 py-12 sm:py-16">
       <div className="mb-10 flex flex-col gap-4 sm:mb-14 lg:flex-row lg:items-end lg:justify-between">
         <div>
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.24em] text-primary/70">Career journey</p>
@@ -24,10 +88,11 @@ export function ExperienceStack({ experiences = [] }: { experiences: any[] }) {
         {experiences.map((exp: any, index: number) => (
           <article
             key={exp.id}
-            className="relative mb-5 last:mb-0 md:sticky"
-            style={{ top: `${96 + index * 24}px`, zIndex: index + 1 }}
+            className="relative mb-5 last:mb-0"
+            style={{ zIndex: index + 1 }}
           >
             <motion.div
+              ref={(el) => { cardRefs.current[index] = el }}
               initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
