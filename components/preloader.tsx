@@ -79,8 +79,8 @@ export default function Preloader({ onComplete }: PreloaderProps) {
             {/* Progress Bar Container */}
             <motion.div
               style={{
-                width: "80%",
-                maxWidth: "240px",
+                width: "fit-content",
+                maxWidth: "90%",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
@@ -94,13 +94,14 @@ export default function Preloader({ onComplete }: PreloaderProps) {
               <motion.p
                 style={{
                   color: "#F5F5F5",
-                  fontSize: "1rem",
+                  fontSize: "clamp(1.4rem, 4vw, 2rem)",
                   fontWeight: "500",
                   fontFamily: "var(--font-vt323), monospace",
                   letterSpacing: "0.08em",
                   margin: 0,
                   marginBottom: "-1rem",
                   textAlign: "center",
+                  whiteSpace: "nowrap",
                   maxWidth: "90%",
                 }}
                 initial={{ opacity: 0, y: 10 }}
@@ -119,6 +120,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
                   borderRadius: "1px",
                   overflow: "hidden",
                   position: "relative",
+                  marginLeft: "2rem",
                 }}
                 initial={{ opacity: 0, scaleX: 0, transformOrigin: "left" }}
                 animate={{ opacity: 1, scaleX: 1 }}
