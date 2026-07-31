@@ -80,8 +80,8 @@ export default function Portfolio() {
       image: "gitorg.png",
       tags: ["Web Dashboard", "GitHub API", "API Caching", "Performance"],
       category: "web",
-      link: "https://github.com/SUYASHSINGH7985/GitOrg",
-      demo: "https://gitorg.vercel.app",
+      link: "https://github.com/s4yashh/GitHubDashboard",
+      demo: "https://gitorg.suyashh.me",
     },
     {
       id: 2,
@@ -90,8 +90,8 @@ export default function Portfolio() {
       image: "habit-tracker.png",
       tags: ["Next.js 14", "Tailwind CSS", "PostgreSQL", "Prisma", "JWT", "shadcn/ui"],
       category: "web",
-      link: "https://habit-tracker.vercel.app",
-      demo: "https://habit-tracker.vercel.app",
+      link: "https://github.com/s4yashh/Health-Tracker",
+      demo: "https://healthmatters.vercel.app",
     },
   ]
 
