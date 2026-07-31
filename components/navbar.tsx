@@ -196,7 +196,7 @@ export function Navbar({
         {/* Right: Resume + Mobile toggle */}
         <div className="flex items-center gap-2 shrink-0">
         <a
-          href="YOUR_GOOGLE_DRIVE_LINK"
+           href="https://drive.google.com/file/d/1JwV4WLSdgRs7sdy3rRG0P5nUzjZiqjIP/view?usp=share_link"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center justify-center gap-2 rounded-xl px-3 py-2.5 text-sm font-medium text-foreground/70 hover:text-foreground hover:bg-foreground/[0.03] transition-all duration-200 mt-2"
@@ -430,7 +430,7 @@ function MobileMenu({
 
         {/* Resume in mobile */}
           <a
-            href="YOUR_GOOGLE_DRIVE_LINK"
+          href="https://drive.google.com/file/d/1JwV4WLSdgRs7sdy3rRG0P5nUzjZiqjIP/view?usp=share_link"
             target="_blank"
             rel="noopener noreferrer"
             className="hidden md:inline-flex items-center gap-1.5 px-3 py-2 text-[11px] font-medium text-foreground/58 hover:text-foreground transition-all duration-200 sm:text-sm"
