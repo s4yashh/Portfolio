@@ -79,8 +79,8 @@ export default function Preloader({ onComplete }: PreloaderProps) {
             {/* Progress Bar Container */}
             <motion.div
               style={{
-                width: "90%",
-                maxWidth: "400px",
+                width: "80%",
+                maxWidth: "240px",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
