@@ -169,7 +169,7 @@ export default function Portfolio() {
       </motion.div>
 
       {/* Navigation Bar */}
-      <Navbar activeSection={activeSection} scrollToSection={scrollToSection} />
+      {preloaderComplete && <Navbar activeSection={activeSection} scrollToSection={scrollToSection} />}
 
       {/* Main Layout */}
       <div className="w-full">
