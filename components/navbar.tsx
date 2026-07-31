@@ -56,11 +56,11 @@ const techGroups = [
 ]
 
 const navItems = [
-  { id: "home", label: "Home" },
-  { id: "experience", label: "Experience" },
-  { id: "projects", label: "Projects" },
-  { id: "tech", label: "Tech Stack", hasDropdown: true },
-  { id: "about", label: "About", hasDropdown: true },
+  { id: "home", label: "HOME" },
+  { id: "experience", label: "EXPERIENCE" },
+  { id: "projects", label: "PROJECTS" },
+  { id: "tech", label: "TECH STACK", hasDropdown: true },
+  { id: "about", label: "ABOUT", hasDropdown: true },
 ]
 
 const techIconMap: Record<string, ReactNode> = {
@@ -143,8 +143,8 @@ export function Navbar({
           className="min-w-0 px-3 py-2 text-left shrink-0"
           aria-label="Back to top"
         >
-          <span className="block text-sm font-semibold tracking-tight text-foreground sm:text-base">
-            Suyash
+          <span className="block text-base font-semibold tracking-tight text-foreground sm:text-base">
+            SUYASH
           </span>
         </button>
 
@@ -201,7 +201,7 @@ export function Navbar({
           rel="noopener noreferrer"
           className="flex items-center justify-center gap-2 rounded-xl px-3 py-2.5 text-sm font-medium text-foreground/70 hover:text-foreground hover:bg-foreground/[0.03] transition-all duration-200 mt-2"
         >
-          Resume
+          RESUME
           <ExternalLink size={12} className="opacity-50" />
         </a>
 
